@@ -7,15 +7,17 @@ import pygame
 from pygame.locals import *
 
 pygame.init() 
-"""initialise le module"""
+
 
 def background():
-    """Script qui permet de réunir plusieurs images 
-    afin de créer et d'afficher le fond d'écran"""
+    """Script qui permet de réunir plusieurs images (dans l'esprit puzzle) 
+    afin de créer un fond d'écran et qui permet de l'afficher dans une fenêtre"""
 
     os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
+    """chemin dans lequel se trouve les images utilisées dans ce script"""
 
     window = pygame.display.set_mode((600, 600)) 
+    """Affichage de la fenêtre en taille 600/600 pixels"""
 
     wall_top_left = pygame.image.load("top_left.png").convert_alpha()
     wall_top_right = pygame.image.load("top_right.png").convert_alpha()
@@ -23,7 +25,7 @@ def background():
     wall_low_left = pygame.image.load("low_left.png").convert_alpha()
     wall_horizontal = pygame.image.load("horizontal.png").convert_alpha()
     wall_vertical = pygame.image.load("vertical.png").convert_alpha()
-    """Téléchargement des images de fond"""
+    """récupèration de mes images de mon fond d'écran"""
     
     line_0 =  ["0","4","4","4","4","4","4","4","4","4","2"," ","3","4","1"]
     line_1 =  ["5"," "," "," "," "," "," "," "," "," "," "," "," "," ","5"]
@@ -40,32 +42,31 @@ def background():
     line_12 = ["3","4","4","4","4","4","2"," ","5"," ","3","4","4","4","5"]
     line_13 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," ","5"]
     line_14 = ["4","4","4","4","4","4","4","4","4","4","4","4","4","4","2"]
-    
-    
-    def wall_location(line_number, index, number_picture, picture):
-        """fonction qui permet d'appliquer les informations des lines ci-dessus afin
-        de bliter les images sur la fond d'écran :
-        ces lignes forment un visuel du fond d'écran, et nous pouvons ainsi indiquer
-        quelles images nous souhaitons positionner à tel endroit (number_picture):
-        0 pour wall top left
-        1 pour wall top right
-        2 pour wall low right
-        3 pour wall low left
-        4 pour wall horizontal
-        5 pour wall vertical"""
-        line_finale=[]
-        i=0
-        for i, elt in enumerate(line_number):
-            if elt == number_picture:
-                line_finale.append(((i*40), index))
-        i+=1
-        print(line_finale)
+    """L'ensemble de ces listes représente ma fenêtre. 
+    Chaque valeur dans ces listes correspond à une case de la fenêtre (15/15)
+    et donc à une image (60/60 pixels): 
+    0 pour wall top left
+    1 pour wall top right
+    2 pour wall low right
+    3 pour wall low left
+    4 pour wall horizontal
+    5 pour wall vertical"""
+
+    """Fonction qui permet de traduire les listes ci-dessus 
+    afin de coller les images et créer le fond d'écran désiré"""
+    def wall_location(line_number, index, number_picture, picture): # on indique des paramètres afin d'utiliser une seule fonction 
+        line_finale=[]  # on crée une liste vide                      pour fabriquer l'ensemble du fond d'écran
+        i=0             # i : notre compteur
+        for i, elt in enumerate(line_number):     # va permettre de parcourir tous les élèments de la ligne définie dans les paramètres 
+            if elt == number_picture:                   # si un des élèments correspond au number_picture demandé,
+                line_finale.append(((i*40), index))     # les coordonnées de son emplacement s'ajoute à ma liste vide
+        i+=1                                            # permet de prendre en compte les élèments de ma liste 1 à 1 jusqu'à sa fin
         for location in line_finale:
-            window.blit(picture, (location))
-    
+            window.blit(picture, (location))            # parcours les valeurs de ma nouvelle liste afin de traduire les coordonnées
+                                                        # et coller les images à la bonne place pour former le fond d'écran
     wall_location(line_0, 0, "0", wall_top_left)
-    wall_location(line_1, 40, "0", wall_top_left)
-    wall_location(line_2, 80, "0", wall_top_left)
+    wall_location(line_1, 40, "0", wall_top_left)       # appel de la fonction wall_location à de multiples reprises avec différents paramètres
+    wall_location(line_2, 80, "0", wall_top_left)       # afin de prendre en compte toutes les lignes et toutes les images
     wall_location(line_3, 120, "0", wall_top_left)
     wall_location(line_4, 160, "0", wall_top_left)
     wall_location(line_5, 200, "0", wall_top_left)
@@ -160,10 +161,10 @@ def background():
     wall_location(line_14, 560, "5", wall_vertical)
 
     
-    pygame.display.flip()
+    pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
     continuer = 1
-    while continuer:
+    while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
         for event in pygame.event.get():
             if event.type == MOUSEMOTION and event.buttons [0] == 1:
                 continuer = 0

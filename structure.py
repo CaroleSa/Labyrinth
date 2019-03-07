@@ -5,9 +5,7 @@ import os
 import pygame
 
 from pygame.locals import *
-
 pygame.init() 
-
 
 def background():
     """Script qui permet de réunir plusieurs images (dans l'esprit puzzle) 
@@ -25,7 +23,7 @@ def background():
     wall_low_left = pygame.image.load("low_left.png").convert_alpha()
     wall_horizontal = pygame.image.load("horizontal.png").convert_alpha()
     wall_vertical = pygame.image.load("vertical.png").convert_alpha()
-    """récupèration de mes images de mon fond d'écran"""
+    """récupèration des images de mon fond d'écran"""
     
     line_0 =  ["0","4","4","4","4","4","4","4","4","4","2"," ","3","4","1"]
     line_1 =  ["5"," "," "," "," "," "," "," "," "," "," "," "," "," ","5"]
@@ -64,7 +62,8 @@ def background():
         for location in line_finale:
             window.blit(picture, (location))            # parcours les valeurs de ma nouvelle liste afin de traduire les coordonnées
                                                         # et coller les images à la bonne place pour former le fond d'écran
-    wall_location(line_0, 0, "0", wall_top_left)
+                                                        
+    wall_location(line_0, 0, "0", wall_top_left)    
     wall_location(line_1, 40, "0", wall_top_left)       # appel de la fonction wall_location à de multiples reprises avec différents paramètres
     wall_location(line_2, 80, "0", wall_top_left)       # afin de prendre en compte toutes les lignes et toutes les images
     wall_location(line_3, 120, "0", wall_top_left)
@@ -170,10 +169,14 @@ def background():
                 continuer = 0
 
 
+    
 
 
 
-background()
+
+
+
+
         
 
 

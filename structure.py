@@ -17,6 +17,7 @@ def background():
     os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
     """chemin dans lequel se trouve les images utilisées dans ce script"""
 
+    ground = pygame.image.load("ground.png").convert_alpha()
     wall_top_left = pygame.image.load("top_left.png").convert_alpha()
     wall_top_right = pygame.image.load("top_right.png").convert_alpha()
     wall_low_right = pygame.image.load("low_right.png").convert_alpha()
@@ -25,20 +26,20 @@ def background():
     wall_vertical = pygame.image.load("vertical.png").convert_alpha()
     """récupèration des images de mon fond d'écran"""
     
-    line_0 =  ["0","4","4","4","4","4","4","4","4","4","2"," ","3","4","1"]
-    line_1 =  ["5"," "," "," "," "," "," "," "," "," "," "," "," "," ","5"]
-    line_2 =  ["5"," ","0","4","4","4","4","4","4","4","4","4","4","4","5"]
-    line_3 =  ["5"," ","5"," "," "," "," "," "," "," ","5"," "," "," ","5"]
-    line_4 =  ["5"," ","5"," ","0","4","4"," ","4","4","4","4","1"," ","5"]
-    line_5 =  ["5"," ","5"," ","5"," "," "," "," "," "," "," ","5"," ","5"]
-    line_6 =  ["5"," ","5"," ","5"," ","0","4","4","4","4"," ","5"," ","5"]
-    line_7 =  ["5"," ","5"," ","5"," ","5"," "," "," "," "," "," "," ","5"]
-    line_8 =  ["5"," ","5"," ","5"," ","5"," ","5"," ","4","4","4","4","5"]
-    line_9 =  ["5"," "," "," ","5"," ","5"," ","5"," "," "," "," "," ","5"]
-    line_10 = ["5"," ","5"," ","5"," ","5"," ","5","4","4","4","4"," ","5"]
-    line_11 = ["5"," ","5"," ","5"," ","5"," ","5"," ","5"," "," "," ","5"]
-    line_12 = ["3","4","4","4","4","4","2"," ","5"," ","3","4","4","4","5"]
-    line_13 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," ","5"]
+    line_0 =  ["0","4","4","4","4","4","4","4","4","4","2","6","3","4","1"]
+    line_1 =  ["5","6","6","6","6","6","6","6","6","6","6","6","6","6","5"]
+    line_2 =  ["5","6","0","4","4","4","4","4","4","4","4","4","4","4","5"]
+    line_3 =  ["5","6","5","6","6","6","6","6","6","6","5","6","6","6","5"]
+    line_4 =  ["5","6","5","6","0","4","4","6","4","4","4","4","1","6","5"]
+    line_5 =  ["5","6","5","6","5","6","6","6","6","6","6","6","5","6","5"]
+    line_6 =  ["5","6","5","6","5","6","0","4","4","4","4","6","5","6","5"]
+    line_7 =  ["5","6","5","6","5","6","5","6","6","6","6","6","6","6","5"]
+    line_8 =  ["5","6","5","6","5","6","5","6","5","6","4","4","4","4","5"]
+    line_9 =  ["5","6","6","6","5","6","5","6","5","6","6","6","6","6","5"]
+    line_10 = ["5","6","5","6","5","6","5","6","5","4","4","4","4","6","5"]
+    line_11 = ["5","6","5","6","5","6","5","6","5","6","5","6","6","6","5"]
+    line_12 = ["3","4","4","4","4","4","2","6","5","6","3","4","4","4","5"]
+    line_13 = ["6","6","6","6","6","6","6","6","6","6","6","6","6","6","5"]
     line_14 = ["4","4","4","4","4","4","4","4","4","4","4","4","4","4","2"]
     """L'ensemble de ces listes représente ma fenêtre. 
     Chaque valeur dans ces listes correspond à une case de la fenêtre (15/15)
@@ -48,7 +49,8 @@ def background():
     2 pour wall low right
     3 pour wall low left
     4 pour wall horizontal
-    5 pour wall vertical"""
+    5 pour wall vertical
+    6 pour ground"""
 
     """Fonction qui permet de traduire les listes ci-dessus 
     afin de coller les images et créer le fond d'écran désiré"""
@@ -159,6 +161,21 @@ def background():
     wall_location(line_13, 520, "5", wall_vertical)
     wall_location(line_14, 560, "5", wall_vertical)
 
+    wall_location(line_0, 0, "6", ground)
+    wall_location(line_1, 40, "6", ground)
+    wall_location(line_2, 80, "6", ground)
+    wall_location(line_3, 120, "6", ground)
+    wall_location(line_4, 160, "6", ground)
+    wall_location(line_5, 200, "6", ground)
+    wall_location(line_6, 240, "6", ground)
+    wall_location(line_7, 280, "6", ground)
+    wall_location(line_8, 320, "6", ground)
+    wall_location(line_9, 360, "6", ground)
+    wall_location(line_10, 400, "6", ground)
+    wall_location(line_11, 440, "6", ground)
+    wall_location(line_12, 480, "6", ground)
+    wall_location(line_13, 520, "6", ground)
+    wall_location(line_14, 560, "6", ground)
     
 background()
     

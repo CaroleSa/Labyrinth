@@ -13,13 +13,9 @@ from structure import *  # j'importe le module structure et la fonction backgrou
                          # pour faire apparaitre ma fenêtre et mon fond d'écran
 
 mac_gyver=pygame.image.load("MacGyver.png").convert_alpha()
-gardien=pygame.image.load("gardien.png").convert_alpha()
-
-window.blit(gardien, (440, 0))
+guardian=pygame.image.load("guardian.png").convert_alpha()
+window.blit(guardian, (440, 0))
 window.blit(mac_gyver, (0, 520))
-pygame.display.flip()
-mac_gyver.set_colorkey((255, 255, 255))
-gardien.set_colorkey((255, 255, 255))
 
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 

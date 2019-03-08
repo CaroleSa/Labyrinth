@@ -7,15 +7,15 @@ import pygame
 from pygame.locals import *
 pygame.init() 
 
+window = pygame.display.set_mode((600, 600)) 
+"""Affichage de la fenêtre en taille 600/600 pixels"""
+
 def background():
     """Script qui permet de réunir plusieurs images (dans l'esprit puzzle) 
     afin de créer un fond d'écran et qui permet de l'afficher dans une fenêtre"""
 
     os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
     """chemin dans lequel se trouve les images utilisées dans ce script"""
-
-    window = pygame.display.set_mode((600, 600)) 
-    """Affichage de la fenêtre en taille 600/600 pixels"""
 
     wall_top_left = pygame.image.load("top_left.png").convert_alpha()
     wall_top_right = pygame.image.load("top_right.png").convert_alpha()
@@ -160,15 +160,7 @@ def background():
     wall_location(line_14, 560, "5", wall_vertical)
 
     
-    pygame.display.flip()                                             # rafraichissement de ma fenêtre
-
-    continuer = 1
-    while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
-        for event in pygame.event.get():
-            if event.type == MOUSEMOTION and event.buttons [0] == 1:
-                continuer = 0
-
-
+background()
     
 
 

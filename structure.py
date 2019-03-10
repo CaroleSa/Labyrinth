@@ -3,20 +3,23 @@
 
 import os
 import pygame
-
 from pygame.locals import *
+
 pygame.init() 
 
+
+os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
+"""chemin dans lequel se trouve les images utilisées dans ce script"""
 window = pygame.display.set_mode((600, 600)) 
 """Affichage de la fenêtre en taille 600/600 pixels"""
+
+
 
 def background():
     """Script qui permet de réunir plusieurs images (dans l'esprit puzzle) 
     afin de créer un fond d'écran et qui permet de l'afficher dans une fenêtre"""
-
-    os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
-    """chemin dans lequel se trouve les images utilisées dans ce script"""
-
+    
+    
     ground = pygame.image.load("ground.png").convert_alpha()
     wall_top_left = pygame.image.load("top_left.png").convert_alpha()
     wall_top_right = pygame.image.load("top_right.png").convert_alpha()
@@ -63,6 +66,7 @@ def background():
         i+=1                                            # permet de prendre en compte les élèments de ma liste 1 à 1 jusqu'à sa fin
         for location in line_finale:
             window.blit(picture, (location))            # parcours les valeurs de ma nouvelle liste afin de traduire les coordonnées
+        
                                                         # et coller les images à la bonne place pour former le fond d'écran
                                                         
     wall_location(line_0, 0, "0", wall_top_left)    
@@ -103,7 +107,6 @@ def background():
     wall_location(line_3, 120, "2", wall_low_right)
     wall_location(line_4, 160, "2", wall_low_right)
     wall_location(line_5, 200, "2", wall_low_right)
-    wall_location(line_6, 240, "2", wall_low_right)
     wall_location(line_7, 280, "2", wall_low_right)
     wall_location(line_8, 320, "2", wall_low_right)
     wall_location(line_9, 360, "2", wall_low_right)
@@ -177,8 +180,9 @@ def background():
     wall_location(line_13, 520, "6", ground)
     wall_location(line_14, 560, "6", ground)
     
-background()
+    return
     
+        
 
 
 
@@ -187,7 +191,6 @@ background()
 
 
         
-
 
 
 

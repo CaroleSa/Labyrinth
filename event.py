@@ -22,6 +22,16 @@ guardian=pygame.image.load("guardian.png").convert()
 guardian.set_colorkey((255,255,255))
 window.blit(guardian, (440, 0))
 
+def init_event(column, line):
+    background()
+    window.blit(guardian, (440, 0))
+    window.blit(mac_gyver, (column, line))
+    pygame.display.flip() 
+
+
+
+
+
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
 continuer = 1
@@ -32,22 +42,14 @@ while continuer:                                                  # permet de so
         if event.type == KEYDOWN:
             if event.key == K_RIGHT:
                 mac_gyver_location = mac_gyver_location.move(40, 0)
-                if event.key == K_LEFT:
-                    mac_gyver_location = mac_gyver_location.move(-40, 0)
-       
-        
+                init_event(40, 520) # rafraichissement et recollage des images
+
+            if event.key == K_LEFT:
+                mac_gyver_location = mac_gyver_location.move(-40, 0)
+                init_event(0, 520) # rafraichissement et recollage des images
 
 
 
-#Re-collage
-
-                background()
-                window.blit(guardian, (440, 0))
-                window.blit(mac_gyver, (40, 520))
-                pygame.display.flip() 
-
-
-#Rafraichissement
 
 
 

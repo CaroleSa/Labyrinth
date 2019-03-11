@@ -3,6 +3,7 @@
 
 import os
 import pygame
+from labyrinth_position import *
 from pygame.locals import *
 
 pygame.init() 
@@ -13,12 +14,9 @@ os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
 window = pygame.display.set_mode((600, 600)) 
 """Affichage de la fenêtre en taille 600/600 pixels"""
 
-
-
 def background():
     """Script qui permet de réunir plusieurs images (dans l'esprit puzzle) 
     afin de créer un fond d'écran et qui permet de l'afficher dans une fenêtre"""
-    
     
     ground = pygame.image.load("ground.png").convert_alpha()
     wall_top_left = pygame.image.load("top_left.png").convert_alpha()
@@ -29,31 +27,7 @@ def background():
     wall_vertical = pygame.image.load("vertical.png").convert_alpha()
     """récupèration des images de mon fond d'écran"""
     
-    line_0 =  ["0","4","4","4","4","4","4","4","4","4","2","6","3","4","1"]
-    line_1 =  ["5","6","6","6","6","6","6","6","6","6","6","6","6","6","5"]
-    line_2 =  ["5","6","0","4","4","4","4","4","4","4","4","4","4","4","5"]
-    line_3 =  ["5","6","5","6","6","6","6","6","6","6","5","6","6","6","5"]
-    line_4 =  ["5","6","5","6","0","4","4","6","4","4","4","4","1","6","5"]
-    line_5 =  ["5","6","5","6","5","6","6","6","6","6","6","6","5","6","5"]
-    line_6 =  ["5","6","5","6","5","6","0","4","4","4","4","6","5","6","5"]
-    line_7 =  ["5","6","5","6","5","6","5","6","6","6","6","6","6","6","5"]
-    line_8 =  ["5","6","5","6","5","6","5","6","5","6","4","4","4","4","5"]
-    line_9 =  ["5","6","6","6","5","6","5","6","5","6","6","6","6","6","5"]
-    line_10 = ["5","6","5","6","5","6","5","6","5","4","4","4","4","6","5"]
-    line_11 = ["5","6","5","6","5","6","5","6","5","6","5","6","6","6","5"]
-    line_12 = ["3","4","4","4","4","4","2","6","5","6","3","4","4","4","5"]
-    line_13 = ["6","6","6","6","6","6","6","6","6","6","6","6","6","6","5"]
-    line_14 = ["4","4","4","4","4","4","4","4","4","4","4","4","4","4","2"]
-    """L'ensemble de ces listes représente ma fenêtre. 
-    Chaque valeur dans ces listes correspond à une case de la fenêtre (15/15)
-    et donc à une image (60/60 pixels): 
-    0 pour wall top left
-    1 pour wall top right
-    2 pour wall low right
-    3 pour wall low left
-    4 pour wall horizontal
-    5 pour wall vertical
-    6 pour ground"""
+    
 
     """Fonction qui permet de traduire les listes ci-dessus 
     afin de coller les images et créer le fond d'écran désiré"""
@@ -66,7 +40,6 @@ def background():
         i+=1                                            # permet de prendre en compte les élèments de ma liste 1 à 1 jusqu'à sa fin
         for location in line_finale:
             window.blit(picture, (location))            # parcours les valeurs de ma nouvelle liste afin de traduire les coordonnées
-        
                                                         # et coller les images à la bonne place pour former le fond d'écran
                                                         
     wall_location(line_0, 0, "0", wall_top_left)    

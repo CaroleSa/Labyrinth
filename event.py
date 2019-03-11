@@ -4,33 +4,42 @@
 import os
 import pygame
 from pygame.locals import *
+from random_position import *    # j'importe le script qui permet de déterminer au hasard la position des objets en début de partie
+from labyrinth_position import * # j'importe les listes qui représentent visuellement la fenêtre de jeu  
+from structure import *          # j'importe le script qui colle les images en fonction du contenu des listes de labyrinth_position.py
+background() 
 
-pygame.init() 
+pygame.init()  # j'initialise le module pygame
 
-os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource")
-
-
-from structure import *  # j'importe le module structure et la fonction background
-background()                         # j'importe le module structure et la fonction background
-                         # pour faire apparaitre ma fenêtre et mon fond d'écran
-mac_gyver=pygame.image.load("MacGyver.png").convert()
-mac_gyver.set_colorkey((255,255,255))
-mac_gyver_location=mac_gyver.get_rect()
-window.blit(mac_gyver, (0, 520))
+os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource") # j'indique le chemin de mes images
+                            
+mac_gyver=pygame.image.load("MacGyver.png").convert()  # je charge mon image dans mon script
+mac_gyver.set_colorkey((255,255,255))                  # je rends le fond de l'image transparente
+mac_gyver_location=mac_gyver.get_rect()                # j'indique que l'image serra en mouvement par la suite
+window.blit(mac_gyver, (0, 520))                       # j'indique l'emplacement de départ de l'image
 
 guardian=pygame.image.load("guardian.png").convert()
 guardian.set_colorkey((255,255,255))
-window.blit(guardian, (440, 0))
+guardian_position=window.blit(guardian, (440, 0))
+
+needle=pygame.image.load("needle.png").convert()
+needle.set_colorkey((255,255,255))
+window.blit(needle, needle_position)
+
+ether=pygame.image.load("ether.png").convert_alpha()
+ether.set_colorkey((0,0,0))
+window.blit(ether, ether_position)
+
+syringe=pygame.image.load("syringe.png").convert()
+syringe.set_colorkey((255,255,255))
+window.blit(syringe, syringe_position)
+
 
 def init_event(column, line):
     background()
     window.blit(guardian, (440, 0))
     window.blit(mac_gyver, (column, line))
     pygame.display.flip() 
-
-
-
-
 
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 

@@ -52,24 +52,36 @@ while continuer:                                                  # permet de so
     for event in pygame.event.get():
         if event.type == MOUSEMOTION and event.buttons [0] == 1:
             continuer = 0
-        
         if event.type == KEYDOWN and event.key == K_RIGHT:
-            
             for cle, valeur in mouv_dict.items():
-                
                 mac_gyver_location = mac_gyver_location.move(40, 0)
                 position_finale=(cle+40, valeur)  
                 mouv_dict.clear()
-                new_key=cle+40
-                new_value=valeur
-                mouv_dict[new_key]=new_value  
-                background()
-                window.blit(mac_gyver, (position_finale))
-                window.blit(guardian, (440, 0))
-                window.blit(ether, ether_position)
-                window.blit(needle, needle_position)
-                window.blit(syringe, syringe_position)
-                pygame.display.flip()
+                mouv_dict[cle+40]=valeur
+                init_event()  
+        if event.type == KEYDOWN and event.key == K_LEFT:
+            for cle, valeur in mouv_dict.items():
+                mac_gyver_location = mac_gyver_location.move(-40, 0)
+                position_finale=(cle-40, valeur)  
+                mouv_dict.clear()
+                mouv_dict[cle-40]=valeur
+                init_event()  
+        if event.type == KEYDOWN and event.key == K_UP:
+            for cle, valeur in mouv_dict.items():
+                mac_gyver_location = mac_gyver_location.move(0, -40)
+                position_finale=(cle, valeur-40)  
+                mouv_dict.clear()
+                mouv_dict[cle]=valeur-40
+                init_event()  
+        if event.type == KEYDOWN and event.key == K_DOWN:
+            for cle, valeur in mouv_dict.items():
+                mac_gyver_location = mac_gyver_location.move(0, 40)
+                position_finale=(cle, valeur+40)  
+                mouv_dict.clear()
+                mouv_dict[cle]=valeur+40
+                init_event()  
+
+                
                 
                 
         

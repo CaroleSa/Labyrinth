@@ -35,10 +35,10 @@ syringe.set_colorkey((255,255,255))
 window.blit(syringe, syringe_position)
 
 
-def init_event(column, line):
+def init_event():
     background()
     window.blit(guardian, (440, 0))
-    window.blit(mac_gyver, (column, line))
+    window.blit(mac_gyver, (position_finale))
     window.blit(ether, ether_position)
     window.blit(needle, needle_position)
     window.blit(syringe, syringe_position)
@@ -47,14 +47,38 @@ def init_event(column, line):
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
 continuer = 1
+mouv_dict={0: 520}
 while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
         if event.type == MOUSEMOTION and event.buttons [0] == 1:
             continuer = 0
-        if event.type == KEYDOWN:
+        
+        if event.type == KEYDOWN and event.key == K_RIGHT:
+            
+            for cle, valeur in mouv_dict.items():
+                
+                mac_gyver_location = mac_gyver_location.move(40, 0)
+                position_finale=(cle+40, valeur)  
+                mouv_dict.clear()
+                new_key=cle+40
+                new_value=valeur
+                mouv_dict[new_key]=new_value  
+                background()
+                window.blit(mac_gyver, (position_finale))
+                window.blit(guardian, (440, 0))
+                window.blit(ether, ether_position)
+                window.blit(needle, needle_position)
+                window.blit(syringe, syringe_position)
+                pygame.display.flip()
+                
+                
+        
+        
+        """if event.type == KEYDOWN:
             if event.key == K_RIGHT:
                 mac_gyver_location = mac_gyver_location.move(40, 0)
                 init_event(40, 520) # rafraichissement et recollage des images
             if event.key == K_LEFT:
                 mac_gyver_location = mac_gyver_location.move(-40, 0)
-                init_event(0, 520) # rafraichissement et recollage des images
+                init_event(0, 520) # rafraichissement et recollage des images"""
+

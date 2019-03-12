@@ -34,7 +34,6 @@ syringe=pygame.image.load("syringe.png").convert()
 syringe.set_colorkey((255,255,255))
 window.blit(syringe, syringe_position)
 
-
 def init_event():
     background()
     window.blit(guardian, (440, 0))
@@ -42,12 +41,34 @@ def init_event():
     window.blit(ether, ether_position)
     window.blit(needle, needle_position)
     window.blit(syringe, syringe_position)
-    pygame.display.flip() 
+    pygame.display.flip()
+    
+    
+
+    """if event.type == KEYDOWN:  POUR ENELEVER LOBJET QUAND ON PASSE DESSUS
+        mac_gyver_path=[(0, 520)]
+        mac_gyver_path.append(position_finale)
+        mac_gyver_path.append(position_finale)
+        print(position_finale)
+
+        for value in mac_gyver_path:  
+            if value == needle_position:
+                background()
+                window.blit(guardian, (440, 0))
+                window.blit(mac_gyver, (position_finale))
+                window.blit(ether, ether_position)
+                window.blit(syringe, syringe_position)
+                pygame.display.flip()"""   
+    
+  
+    
 
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
 continuer = 1
 mouv_dict={0: 520}
+
+
 while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
         if event.type == MOUSEMOTION and event.buttons [0] == 1:
@@ -58,7 +79,7 @@ while continuer:                                                  # permet de so
                 position_finale=(cle+40, valeur)  
                 mouv_dict.clear()
                 mouv_dict[cle+40]=valeur
-                init_event()  
+                init_event()
         if event.type == KEYDOWN and event.key == K_LEFT:
             for cle, valeur in mouv_dict.items():
                 mac_gyver_location = mac_gyver_location.move(-40, 0)
@@ -79,18 +100,7 @@ while continuer:                                                  # permet de so
                 position_finale=(cle, valeur+40)  
                 mouv_dict.clear()
                 mouv_dict[cle]=valeur+40
-                init_event()  
-
+                init_event() 
                 
-                
-                
-        
-        
-        """if event.type == KEYDOWN:
-            if event.key == K_RIGHT:
-                mac_gyver_location = mac_gyver_location.move(40, 0)
-                init_event(40, 520) # rafraichissement et recollage des images
-            if event.key == K_LEFT:
-                mac_gyver_location = mac_gyver_location.move(-40, 0)
-                init_event(0, 520) # rafraichissement et recollage des images"""
-
+            
+    

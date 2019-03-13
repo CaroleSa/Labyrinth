@@ -101,18 +101,18 @@ while continuer:                                                  # permet de so
         if path_traveled.count(syringe_position) == 1:
             counter_objects=counter_objects+1
             syringe_position=window.blit(syringe, (600, 600))
-        
-        """if mouv_dict == {440: 0} and counter_objects != 3:
+        if mouv_dict == {440: 0} and counter_objects != 3:
             background()
-            window.blit(guardian, (440, 0))
-            window.blit(mac_gyver, (600, 600))
             window.blit(ether, ether_position)
             window.blit(needle, needle_position)
             window.blit(syringe, syringe_position)
-            window.blit(grave, (200, 160))
-            window.blit(replay, (0, 520))
+            window.blit(guardian, (440, 0))
+            window.blit(mac_gyver, (position_finale))
+            window.blit(grave, (200, 200))
             pygame.display.flip()
-            if event.type == MOUSEBUTTONDOWN or event.type == KEYDOWN:"""
+            
+            
+
                     
                     
                     

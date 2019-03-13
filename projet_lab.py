@@ -13,7 +13,7 @@ from path import *
 pygame.init()  # j'initialise le module pygame
 
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource") # j'indique le chemin de mes images
-                            
+
 mac_gyver=pygame.image.load("MacGyver.png").convert()  # je charge mon image dans mon script
 mac_gyver.set_colorkey((255,255,255))                  # je rends le fond de l'image transparente
 mac_gyver_location=mac_gyver.get_rect()                # j'indique que l'image serra en mouvement par la suite
@@ -35,6 +35,9 @@ syringe=pygame.image.load("syringe.png").convert()
 syringe.set_colorkey((255,255,255))
 window.blit(syringe, syringe_position)
 
+grave=pygame.image.load("grave.png").convert()
+grave.set_colorkey((255,255,255))
+
 def init_event(): 
     background()
     window.blit(guardian, (440, 0))
@@ -47,12 +50,7 @@ def init_event():
         print("chemin")
     else:
         print("mur")
-    """if position_finale == (440, 0) and counter_objects == 3:
-        continuer = 0
-        pygame.display.flip()
-    if position_finale == (440, 0) and counter_objects != 3:
-        print("perdu")"""  
-
+  
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
 continuer = 1
@@ -61,7 +59,7 @@ path_traveled = [(0, 520)]
 counter_objects = 0
 while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
-        if event.type == MOUSEMOTION and event.buttons [0] == 1:
+        if mouv_dict == {440: 0} and counter_objects == 3:
             continuer = 0
         if event.type == KEYDOWN and event.key == K_RIGHT:
             for cle, valeur in mouv_dict.items():
@@ -94,11 +92,6 @@ while continuer:                                                  # permet de so
         if event.type == KEYDOWN:
             path_traveled.append(position_finale)
             print(path_traveled)
-        if mouv_dict == {440: 0} and counter_objects == 3:
-            continuer = 0
-        if mouv_dict == {440: 0} and counter_objects != 3:
-            print("perdu")  
-
         if path_traveled.count(needle_position) == 1:
             counter_objects=counter_objects+1
             needle_position=window.blit(needle, (600, 600))
@@ -109,8 +102,26 @@ while continuer:                                                  # permet de so
             counter_objects=counter_objects+1
             syringe_position=window.blit(syringe, (600, 600))
         
+        """if mouv_dict == {440: 0} and counter_objects != 3:
+            background()
+            window.blit(guardian, (440, 0))
+            window.blit(mac_gyver, (600, 600))
+            window.blit(ether, ether_position)
+            window.blit(needle, needle_position)
+            window.blit(syringe, syringe_position)
+            window.blit(grave, (200, 160))
+            window.blit(replay, (0, 520))
+            pygame.display.flip()
+            if event.type == MOUSEBUTTONDOWN or event.type == KEYDOWN:"""
+                    
+                    
+                    
                 
-        
+                
+            
+            
+                
+#FAIRE ARRETER LE PROGRAMME SEULEMENT SI MC GYVER A TROUVER TOUS LES OBJETS + SORTIE DU LABYRINTH        
 
 
 

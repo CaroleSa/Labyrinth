@@ -8,6 +8,7 @@ from random_position import *    # j'importe le script qui permet de déterminer
 from labyrinth_position import * # j'importe les listes qui représentent visuellement la fenêtre de jeu  
 from structure import *          # j'importe le script qui colle les images en fonction du contenu des listes de labyrinth_position.py
 background() 
+from path import *
 
 pygame.init()  # j'initialise le module pygame
 
@@ -34,7 +35,7 @@ syringe=pygame.image.load("syringe.png").convert()
 syringe.set_colorkey((255,255,255))
 window.blit(syringe, syringe_position)
 
-def init_event():
+def init_event(): 
     background()
     window.blit(guardian, (440, 0))
     window.blit(mac_gyver, (position_finale))
@@ -42,8 +43,20 @@ def init_event():
     window.blit(needle, needle_position)
     window.blit(syringe, syringe_position)
     pygame.display.flip()
+    if path_position.count(position_finale) == 1:
+        print("chemin")
+    else:
+        print("mur")
+
     
     
+    
+    
+    """if path_position.count(position_finale) == 1:
+                print("chemin")
+    else:
+        position_finale=path_traveled[-2]
+        print("mur")"""
 
     """if event.type == KEYDOWN:  POUR ENELEVER LOBJET QUAND ON PASSE DESSUS
         mac_gyver_path=[(0, 520)]
@@ -67,7 +80,7 @@ pygame.display.flip()                                             # rafraichisse
 
 continuer = 1
 mouv_dict={0: 520}
-
+path_traveled=[(0, 520)]
 
 while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
@@ -100,7 +113,32 @@ while continuer:                                                  # permet de so
                 position_finale=(cle, valeur+40)  
                 mouv_dict.clear()
                 mouv_dict[cle]=valeur+40
-                init_event() 
+                init_event()
+        if event.type == KEYDOWN:
+            path_traveled.append(position_finale)
+            print(path_traveled)
+        if path_traveled.count(needle_position) == 1:
+            needle_position=window.blit(needle, (600, 600))
+        if path_traveled.count(ether_position) == 1:
+            ether_position=window.blit(ether, (600, 600))
+        if path_traveled.count(syringe_position) == 1:
+            syringe_position=window.blit(syringe, (600, 600))
+                
+        
+"""test[-1] != position_finale"""
+"""idee=[(position_finale)]
+if position_finale
+for position_finale in idee:
+        
+test=[(0, 520)]
+if position_finale >=0:
+test.append(position_finale)    
+
+print(test)""" 
+
+
+
+             
                 
             
     

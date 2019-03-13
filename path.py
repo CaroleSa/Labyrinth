@@ -51,4 +51,3 @@ for i, elt in enumerate(line_14):
         path_position.append((i*40, 560))               
 i+=1
 
-print(path_position)

@@ -47,41 +47,18 @@ def init_event():
         print("chemin")
     else:
         print("mur")
-
-    
-    
-    
-    
-    """if path_position.count(position_finale) == 1:
-                print("chemin")
-    else:
-        position_finale=path_traveled[-2]
-        print("mur")"""
-
-    """if event.type == KEYDOWN:  POUR ENELEVER LOBJET QUAND ON PASSE DESSUS
-        mac_gyver_path=[(0, 520)]
-        mac_gyver_path.append(position_finale)
-        mac_gyver_path.append(position_finale)
-        print(position_finale)
-
-        for value in mac_gyver_path:  
-            if value == needle_position:
-                background()
-                window.blit(guardian, (440, 0))
-                window.blit(mac_gyver, (position_finale))
-                window.blit(ether, ether_position)
-                window.blit(syringe, syringe_position)
-                pygame.display.flip()"""   
-    
-  
-    
+    """if position_finale == (440, 0) and counter_objects == 3:
+        continuer = 0
+        pygame.display.flip()
+    if position_finale == (440, 0) and counter_objects != 3:
+        print("perdu")"""  
 
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
 continuer = 1
-mouv_dict={0: 520}
-path_traveled=[(0, 520)]
-
+mouv_dict = {0: 520}
+path_traveled = [(0, 520)]
+counter_objects = 0
 while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
         if event.type == MOUSEMOTION and event.buttons [0] == 1:
@@ -117,24 +94,24 @@ while continuer:                                                  # permet de so
         if event.type == KEYDOWN:
             path_traveled.append(position_finale)
             print(path_traveled)
+        if mouv_dict == {440: 0} and counter_objects == 3:
+            continuer = 0
+        if mouv_dict == {440: 0} and counter_objects != 3:
+            print("perdu")  
+
         if path_traveled.count(needle_position) == 1:
+            counter_objects=counter_objects+1
             needle_position=window.blit(needle, (600, 600))
         if path_traveled.count(ether_position) == 1:
+            counter_objects=counter_objects+1
             ether_position=window.blit(ether, (600, 600))
         if path_traveled.count(syringe_position) == 1:
+            counter_objects=counter_objects+1
             syringe_position=window.blit(syringe, (600, 600))
+        
                 
         
-"""test[-1] != position_finale"""
-"""idee=[(position_finale)]
-if position_finale
-for position_finale in idee:
-        
-test=[(0, 520)]
-if position_finale >=0:
-test.append(position_finale)    
 
-print(test)""" 
 
 
 

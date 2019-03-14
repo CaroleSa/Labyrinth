@@ -14,7 +14,7 @@ os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
 window = pygame.display.set_mode((600, 600)) 
 """Affichage de la fenêtre en taille 600/600 pixels"""
 
-def background():
+def blit_background():
     """Script qui permet de réunir plusieurs images (dans l'esprit puzzle) 
     afin de créer un fond d'écran et qui permet de l'afficher dans une fenêtre"""
     

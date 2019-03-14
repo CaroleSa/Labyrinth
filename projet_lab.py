@@ -4,145 +4,144 @@
 import os
 import pygame
 from pygame.locals import *
-from random_position import *    # j'importe le script qui permet de déterminer au hasard la position des objets en début de partie
 from labyrinth_position import * # j'importe les listes qui représentent visuellement la fenêtre de jeu  
 from structure import *          # j'importe le script qui colle les images en fonction du contenu des listes de labyrinth_position.py
-background() 
+blit_background() 
+from random_position import *    # j'importe le script qui permet de déterminer au hasard la position des objets en début de partie
 from path import *
 
 pygame.init()  # j'initialise le module pygame
 
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource") # j'indique le chemin de mes images
 
-mac_gyver=pygame.image.load("MacGyver.png").convert()  # je charge mon image dans mon script
-mac_gyver.set_colorkey((255, 255, 255))                  # je rends le fond de l'image transparente
-mac_gyver_location=mac_gyver.get_rect()                # j'indique que l'image serra en mouvement par la suite
-window.blit(mac_gyver, (0, 520))                       # j'indique l'emplacement de départ de l'image
+mac_gyver_picture = pygame.image.load("MacGyver.png").convert()  # je charge mon image dans mon script
+mac_gyver_picture.set_colorkey((255, 255, 255))                  # je rends le fond de l'image transparente
+moving_mac_gyver = mac_gyver_picture.get_rect()                # j'indique que l'image serra en mouvement par la suite
+window.blit(mac_gyver_picture, (0, 520))                       # j'indique l'emplacement de départ de l'image
 
-guardian=pygame.image.load("guardian.png").convert()
-guardian.set_colorkey((255, 255, 255))
-guardian_position=window.blit(guardian, (440, 0))
+guardian_picture = pygame.image.load("guardian.png").convert()
+guardian_picture.set_colorkey((255, 255, 255))
+window.blit(guardian_picture, (440, 0))
 
-needle=pygame.image.load("needle.png").convert()
-needle.set_colorkey((255, 255, 255))
-window.blit(needle, needle_position)
+needle_picture = pygame.image.load("needle.png").convert()
+needle_picture.set_colorkey((255, 255, 255))
+window.blit(needle_picture, needle_position)
 
-ether=pygame.image.load("ether.png").convert_alpha()
-ether.set_colorkey((0, 0, 0))
-window.blit(ether, ether_position)
+ether_picture = pygame.image.load("ether.png").convert_alpha()
+ether_picture.set_colorkey((0, 0, 0))
+window.blit(ether_picture, ether_position)
 
-syringe=pygame.image.load("syringe.png").convert()
-syringe.set_colorkey((255,255,255))
-window.blit(syringe, syringe_position)
+syringe_picture = pygame.image.load("syringe.png").convert()
+syringe_picture.set_colorkey((255, 255, 255))
+window.blit(syringe_picture, syringe_position)
 
-grave=pygame.image.load("grave.png").convert()
-grave.set_colorkey((255, 255, 255))
+grave_picture = pygame.image.load("grave.png").convert()
+grave_picture.set_colorkey((255, 255, 255))
 
-won=pygame.image.load("won.png").convert()
-won.set_colorkey((255, 255, 255))
+won_picture = pygame.image.load("won.png").convert()
+won_picture.set_colorkey((255, 255, 255))
 
 pygame.display.flip() 
 
 def init_event():
-
-    background()
-    window.blit(guardian, (440, 0))
-    window.blit(mac_gyver, (position_finale))
-    window.blit(ether, ether_position)
-    window.blit(needle, needle_position)
-    window.blit(syringe, syringe_position)
+    blit_background()
+    window.blit(guardian_picture, (440, 0))
+    window.blit(mac_gyver_picture, (last_location_mac_gyver_tuple))
+    window.blit(ether_picture, ether_position)
+    window.blit(needle_picture, needle_position)
+    window.blit(syringe_picture, syringe_position)
     pygame.display.flip()
 
-continuer = 1
-mouv_dict = {0: 520}
-path_traveled = [(0, 520)]
+play = 1
+last_location_mac_gyver_dict = {0: 520}
+path_traveled_mac_gyver = [(0, 520)]
 counter_objects = 0
-while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
+while play:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
-        if mouv_dict == {440: 0} and counter_objects == 3:
-            background()
-            window.blit(ether, ether_position)
-            window.blit(needle, needle_position)
-            window.blit(syringe, syringe_position)
-            window.blit(won, (120, 120))
-            pygame.display.flip()
-            continuer = 0
         if event.type == KEYDOWN and event.key == K_RIGHT:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(40, 0)
-                position_finale=(cle+40, valeur)  
-                mouv_dict.clear()
-                mouv_dict[cle+40]=valeur
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(40, 0)
+                last_location_mac_gyver_tuple = (cle + 40, valeur)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle + 40]=valeur
                 init_event()
         if event.type == KEYDOWN and event.key == K_LEFT:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(-40, 0)
-                position_finale=(cle-40, valeur)  
-                mouv_dict.clear()
-                mouv_dict[cle-40]=valeur
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(- 40, 0)
+                last_location_mac_gyver_tuple = (cle - 40, valeur)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle - 40] = valeur
                 init_event()  
         if event.type == KEYDOWN and event.key == K_UP:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(0, -40)
-                position_finale=(cle, valeur-40)  
-                mouv_dict.clear()
-                mouv_dict[cle]=valeur-40
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(0, - 40)
+                last_location_mac_gyver_tuple = (cle, valeur - 40)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle] = valeur- 40
                 init_event()  
         if event.type == KEYDOWN and event.key == K_DOWN:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(0, 40)
-                position_finale=(cle, valeur+40)  
-                mouv_dict.clear()
-                mouv_dict[cle]=valeur+40
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(0, 40)
+                last_location_mac_gyver_tuple = (cle, valeur + 40)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle] = valeur + 40
                 init_event()
         if event.type == KEYDOWN:
-            path_traveled.append(position_finale)
-        while event.type == KEYDOWN and event.key == K_DOWN and path_position.count(position_finale) == 0:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(0, -40)
-                position_finale=(cle, valeur-40)  
-                mouv_dict.clear()
-                mouv_dict[cle]=valeur-40
+            path_traveled_mac_gyver.append(last_location_mac_gyver_tuple)
+        while event.type == KEYDOWN and event.key == K_DOWN and path_position.count(last_location_mac_gyver_tuple) == 0:
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(0, - 40)
+                last_location_mac_gyver_tuple = (cle, valeur - 40)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle] = valeur - 40
                 init_event()
-        while event.type == KEYDOWN and event.key == K_UP and path_position.count(position_finale) == 0:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(0, 40)
-                position_finale=(cle, valeur+40)  
-                mouv_dict.clear()
-                mouv_dict[cle]=valeur+40
+        while event.type == KEYDOWN and event.key == K_UP and path_position.count(last_location_mac_gyver_tuple) == 0:
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(0, 40)
+                last_location_mac_gyver_tuple = (cle, valeur + 40)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle] = valeur + 40
                 init_event()
-        while event.type == KEYDOWN and event.key == K_RIGHT and path_position.count(position_finale) == 0:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(-40, 0)
-                position_finale=(cle-40, valeur)  
-                mouv_dict.clear()
-                mouv_dict[cle-40]=valeur
+        while event.type == KEYDOWN and event.key == K_RIGHT and path_position.count(last_location_mac_gyver_tuple) == 0:
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(- 40, 0)
+                last_location_mac_gyver_tuple = (cle - 40, valeur)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle - 40] = valeur
                 init_event()
-        while event.type == KEYDOWN and event.key == K_LEFT and path_position.count(position_finale) == 0:
-            for cle, valeur in mouv_dict.items():
-                mac_gyver_location = mac_gyver_location.move(40, 0)
-                position_finale=(cle+40, valeur)  
-                mouv_dict.clear()
-                mouv_dict[cle+40]=valeur
+        while event.type == KEYDOWN and event.key == K_LEFT and path_position.count(last_location_mac_gyver_tuple) == 0:
+            for cle, valeur in last_location_mac_gyver_dict.items():
+                moving_mac_gyver = moving_mac_gyver.move(40, 0)
+                last_location_mac_gyver_tuple = (cle + 40, valeur)  
+                last_location_mac_gyver_dict.clear()
+                last_location_mac_gyver_dict[cle + 40] = valeur
                 init_event()
-        if path_traveled.count(needle_position) == 1:
-            counter_objects=counter_objects+1
-            needle_position=window.blit(needle, (600, 600))
-        if path_traveled.count(ether_position) == 1:
-            counter_objects=counter_objects+1
-            ether_position=window.blit(ether, (600, 600))
-        if path_traveled.count(syringe_position) == 1:
-            counter_objects=counter_objects+1
-            syringe_position=window.blit(syringe, (600, 600))
-        if path_traveled.count((440, 0)) == 1 and counter_objects != 3:
-            background()
-            window.blit(ether, ether_position)
-            window.blit(needle, needle_position)
-            window.blit(syringe, syringe_position)
-            window.blit(guardian, (440, 0))
-            window.blit(mac_gyver, (position_finale))
-            window.blit(grave, (200, 200))
+        if path_traveled_mac_gyver.count(needle_position) == 1:
+            counter_objects = counter_objects + 1
+            needle_position = window.blit(needle_picture, (600, 600))
+        if path_traveled_mac_gyver.count(ether_position) == 1:
+            counter_objects = counter_objects + 1
+            ether_position = window.blit(ether_picture, (600, 600))
+        if path_traveled_mac_gyver.count(syringe_position) == 1:
+            counter_objects = counter_objects + 1
+            syringe_position = window.blit(syringe_picture, (600, 600))
+        if path_traveled_mac_gyver.count((440, 0)) == 1 and counter_objects != 3:
+            blit_background()
+            window.blit(ether_picture, ether_position)
+            window.blit(needle_picture, needle_position)
+            window.blit(syringe_picture, syringe_position)
+            window.blit(guardian_picture, (440, 0))
+            window.blit(mac_gyver_picture, (last_location_mac_gyver_tuple))
+            window.blit(grave_picture, (200, 200))
             pygame.display.flip()
+        if last_location_mac_gyver_dict == {440: 0} and counter_objects == 3:
+            blit_background()
+            window.blit(ether_picture, ether_position)
+            window.blit(needle_picture, needle_position)
+            window.blit(syringe_picture, syringe_position)
+            window.blit(won_picture, (120, 120))
+            pygame.display.flip()
+            play = 0
         
 
 #eviter les murs et recommencer programme si il perd    , objet doit etre different de position mc gyver   

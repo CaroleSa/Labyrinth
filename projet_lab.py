@@ -38,7 +38,11 @@ window.blit(syringe, syringe_position)
 grave=pygame.image.load("grave.png").convert()
 grave.set_colorkey((255,255,255))
 
-def init_event(): 
+won=pygame.image.load("won.png").convert()
+won.set_colorkey((255,255,255))
+
+def init_event():
+
     background()
     window.blit(guardian, (440, 0))
     window.blit(mac_gyver, (position_finale))
@@ -46,10 +50,13 @@ def init_event():
     window.blit(needle, needle_position)
     window.blit(syringe, syringe_position)
     pygame.display.flip()
+
     if path_position.count(position_finale) == 1:
         print("chemin")
     else:
         print("mur")
+        
+    
   
 pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
@@ -60,6 +67,12 @@ counter_objects = 0
 while continuer:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
         if mouv_dict == {440: 0} and counter_objects == 3:
+            background()
+            window.blit(ether, ether_position)
+            window.blit(needle, needle_position)
+            window.blit(syringe, syringe_position)
+            window.blit(won, (120, 120))
+            pygame.display.flip()
             continuer = 0
         if event.type == KEYDOWN and event.key == K_RIGHT:
             for cle, valeur in mouv_dict.items():
@@ -92,6 +105,34 @@ while continuer:                                                  # permet de so
         if event.type == KEYDOWN:
             path_traveled.append(position_finale)
             print(path_traveled)
+        while event.type == KEYDOWN and event.key == K_DOWN and path_position.count(position_finale) == 0:
+            for cle, valeur in mouv_dict.items():
+                mac_gyver_location = mac_gyver_location.move(0, -40)
+                position_finale=(cle, valeur-40)  
+                mouv_dict.clear()
+                mouv_dict[cle]=valeur-40
+                init_event()
+        while event.type == KEYDOWN and event.key == K_UP and path_position.count(position_finale) == 0:
+            for cle, valeur in mouv_dict.items():
+                mac_gyver_location = mac_gyver_location.move(0, 40)
+                position_finale=(cle, valeur+40)  
+                mouv_dict.clear()
+                mouv_dict[cle]=valeur+40
+                init_event()
+        while event.type == KEYDOWN and event.key == K_RIGHT and path_position.count(position_finale) == 0:
+            for cle, valeur in mouv_dict.items():
+                mac_gyver_location = mac_gyver_location.move(-40, 0)
+                position_finale=(cle-40, valeur)  
+                mouv_dict.clear()
+                mouv_dict[cle-40]=valeur
+                init_event()
+        while event.type == KEYDOWN and event.key == K_LEFT and path_position.count(position_finale) == 0:
+            for cle, valeur in mouv_dict.items():
+                mac_gyver_location = mac_gyver_location.move(40, 0)
+                position_finale=(cle+40, valeur)  
+                mouv_dict.clear()
+                mouv_dict[cle+40]=valeur
+                init_event()
         if path_traveled.count(needle_position) == 1:
             counter_objects=counter_objects+1
             needle_position=window.blit(needle, (600, 600))
@@ -110,18 +151,9 @@ while continuer:                                                  # permet de so
             window.blit(mac_gyver, (position_finale))
             window.blit(grave, (200, 200))
             pygame.display.flip()
-            
-            
+        
 
-                    
-                    
-                    
-                
-                
-            
-            
-                
-#FAIRE ARRETER LE PROGRAMME SEULEMENT SI MC GYVER A TROUVER TOUS LES OBJETS + SORTIE DU LABYRINTH        
+#eviter les murs et recommencer programme si il perd    , objet doit etre different de position mc gyver   
 
 
 
@@ -130,3 +162,19 @@ while continuer:                                                  # permet de so
                 
             
     
+
+             
+                
+            
+    
+
+
+
+
+
+
+
+
+
+
+

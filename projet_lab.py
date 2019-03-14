@@ -28,7 +28,8 @@ needle.set_colorkey((255,255,255))
 window.blit(needle, needle_position)
 
 ether=pygame.image.load("ether.png").convert_alpha()
-ether.set_colorkey((0,0,0))
+ether.set_alpha(128)
+#ether.set_colorkey((0,0,0))
 window.blit(ether, ether_position)
 
 syringe=pygame.image.load("syringe.png").convert()
@@ -41,6 +42,8 @@ grave.set_colorkey((255,255,255))
 won=pygame.image.load("won.png").convert()
 won.set_colorkey((255,255,255))
 
+pygame.display.flip() 
+
 def init_event():
 
     background()
@@ -50,15 +53,6 @@ def init_event():
     window.blit(needle, needle_position)
     window.blit(syringe, syringe_position)
     pygame.display.flip()
-
-    if path_position.count(position_finale) == 1:
-        print("chemin")
-    else:
-        print("mur")
-        
-    
-  
-pygame.display.flip()                                             # rafraichissement de ma fenêtre
 
 continuer = 1
 mouv_dict = {0: 520}
@@ -141,7 +135,7 @@ while continuer:                                                  # permet de so
         if path_traveled.count(syringe_position) == 1:
             counter_objects=counter_objects+1
             syringe_position=window.blit(syringe, (600, 600))
-        if mouv_dict == {440: 0} and counter_objects != 3:
+        if path_traveled.count((440, 0)) == 1 and counter_objects != 3:
             background()
             window.blit(ether, ether_position)
             window.blit(needle, needle_position)

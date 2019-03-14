@@ -8,7 +8,7 @@ from labyrinth_position import * # j'importe les listes qui représentent visuel
 from structure import *          # j'importe le script qui colle les images en fonction du contenu des listes de labyrinth_position.py
 blit_background() 
 from random_position_objects import *    # j'importe le script qui permet de déterminer au hasard la position des objets en début de partie
-from path import *
+from path_position import *
 
 pygame.init()  # j'initialise le module pygame
 

@@ -104,7 +104,6 @@ while continuer:                                                  # permet de so
                 init_event()
         if event.type == KEYDOWN:
             path_traveled.append(position_finale)
-            print(path_traveled)
         while event.type == KEYDOWN and event.key == K_DOWN and path_position.count(position_finale) == 0:
             for cle, valeur in mouv_dict.items():
                 mac_gyver_location = mac_gyver_location.move(0, -40)

@@ -36,10 +36,11 @@ while needle_position == ether_position or ether_position == syringe_position or
     needle_position = needle_location.random_location
     ether_position = ether_location.random_location
     syringe_position = syringe_location.random_location
-    while needle_position == (0,520) or ether_position == (0,520) or syringe_position == (0,520):
-        needle_location=random_position()
-        ether_location=random_position()
-        syringe_location=random_position()
-        needle_position = needle_location.random_location
-        ether_position = ether_location.random_location
-        syringe_position = syringe_location.random_location
+    
+while needle_position == (0,520) or ether_position == (0,520) or syringe_position == (0,520):
+    needle_location=random_position()
+    ether_location=random_position()
+    syringe_location=random_position()
+    needle_position = needle_location.random_location
+    ether_position = ether_location.random_location
+    syringe_position = syringe_location.random_location

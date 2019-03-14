@@ -7,7 +7,7 @@ from pygame.locals import *
 from labyrinth_position import * # j'importe les listes qui représentent visuellement la fenêtre de jeu  
 from structure import *          # j'importe le script qui colle les images en fonction du contenu des listes de labyrinth_position.py
 blit_background() 
-from random_position import *    # j'importe le script qui permet de déterminer au hasard la position des objets en début de partie
+from random_position_objects import *    # j'importe le script qui permet de déterminer au hasard la position des objets en début de partie
 from path import *
 
 pygame.init()  # j'initialise le module pygame
@@ -56,6 +56,7 @@ play = 1
 last_location_mac_gyver_dict = {0: 520}
 path_traveled_mac_gyver = [(0, 520)]
 counter_objects = 0
+
 while play:                                                  # permet de sortir de la denêtre avec clic droit et souris en mouvement
     for event in pygame.event.get():
         if event.type == KEYDOWN and event.key == K_RIGHT:
@@ -144,7 +145,7 @@ while play:                                                  # permet de sortir 
             play = 0
         
 
-#eviter les murs et recommencer programme si il perd    , objet doit etre different de position mc gyver   
+  
 
 
 

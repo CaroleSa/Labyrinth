@@ -15,21 +15,20 @@ pygame.init()  # j'initialise le module pygame
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource") # j'indique le chemin de mes images
 
 mac_gyver=pygame.image.load("MacGyver.png").convert()  # je charge mon image dans mon script
-mac_gyver.set_colorkey((255,255,255))                  # je rends le fond de l'image transparente
+mac_gyver.set_colorkey((255, 255, 255))                  # je rends le fond de l'image transparente
 mac_gyver_location=mac_gyver.get_rect()                # j'indique que l'image serra en mouvement par la suite
 window.blit(mac_gyver, (0, 520))                       # j'indique l'emplacement de départ de l'image
 
 guardian=pygame.image.load("guardian.png").convert()
-guardian.set_colorkey((255,255,255))
+guardian.set_colorkey((255, 255, 255))
 guardian_position=window.blit(guardian, (440, 0))
 
 needle=pygame.image.load("needle.png").convert()
-needle.set_colorkey((255,255,255))
+needle.set_colorkey((255, 255, 255))
 window.blit(needle, needle_position)
 
 ether=pygame.image.load("ether.png").convert_alpha()
-ether.set_alpha(128)
-#ether.set_colorkey((0,0,0))
+ether.set_colorkey((0, 0, 0))
 window.blit(ether, ether_position)
 
 syringe=pygame.image.load("syringe.png").convert()
@@ -37,10 +36,10 @@ syringe.set_colorkey((255,255,255))
 window.blit(syringe, syringe_position)
 
 grave=pygame.image.load("grave.png").convert()
-grave.set_colorkey((255,255,255))
+grave.set_colorkey((255, 255, 255))
 
 won=pygame.image.load("won.png").convert()
-won.set_colorkey((255,255,255))
+won.set_colorkey((255, 255, 255))
 
 pygame.display.flip() 
 

@@ -5,14 +5,15 @@ import os
 import pygame
 from pygame.locals import *
 from labyrinth_position import * # j'importe les listes qui représentent visuellement la fenêtre de jeu  
-from structure import *          # j'importe le script qui colle les images en fonction du contenu des listes de labyrinth_position.py
-blit_background() 
+from decor_blit import *          # j'importe le script qui colle les images en fonction du contenu des listes de labyrinth_position.py
 from random_position_objects import *    # j'importe le script qui permet de déterminer au hasard la position des objets en début de partie
 from path_position import *
 
 pygame.init()  # j'initialise le module pygame
 
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource") # j'indique le chemin de mes images
+
+background()
 
 mac_gyver_picture = pygame.image.load("MacGyver.png").convert()  # je charge mon image dans mon script
 mac_gyver_picture.set_colorkey((255, 255, 255))                  # je rends le fond de l'image transparente
@@ -44,7 +45,7 @@ won_picture.set_colorkey((255, 255, 255))
 pygame.display.flip() 
 
 def init_event():
-    blit_background()
+    background()
     window.blit(guardian_picture, (440, 0))
     window.blit(mac_gyver_picture, (last_location_mac_gyver_tuple))
     window.blit(ether_picture, ether_position)
@@ -127,7 +128,7 @@ while play:                                                  # permet de sortir 
             counter_objects = counter_objects + 1
             syringe_position = window.blit(syringe_picture, (600, 600))
         if path_traveled_mac_gyver.count((440, 0)) == 1 and counter_objects != 3:
-            blit_background()
+            background()
             window.blit(ether_picture, ether_position)
             window.blit(needle_picture, needle_position)
             window.blit(syringe_picture, syringe_position)
@@ -136,7 +137,7 @@ while play:                                                  # permet de sortir 
             window.blit(grave_picture, (200, 200))
             pygame.display.flip()
         if last_location_mac_gyver_dict == {440: 0} and counter_objects == 3:
-            blit_background()
+            background()
             window.blit(ether_picture, ether_position)
             window.blit(needle_picture, needle_position)
             window.blit(syringe_picture, syringe_position)

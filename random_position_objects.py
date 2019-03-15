@@ -1,47 +1,57 @@
-import os
-from random import *
-import pygame
+#! /usr/bin/env python3
+# coding: utf-8
+
+"""Allows to define the coordinates of objects at random"""
+
+from random import *             # import the random library
+import pygame                    # import the pygame library and this module
 from pygame.locals import *
-from labyrinth_position import *
+from labyrinth_position import * # import lists that represent the game background
 
-pygame.init() 
+# initialize the pygame library
+pygame.init()
 
-
-class random_position:
+class RandomPosition:
+    """Class that determines a random line and a random number in this line"""
     def __init__(self):
-        line_list = [line_1, line_2, line_3, line_4, line_5, line_6, line_7, line_8,
-             line_9, line_10, line_11, line_12, line_13
-]
-        path_position_of_random_line=[]
-        
-        random_line = choice(line_list)
-        i=0             # i : notre compteur
-        for i, elt in enumerate(random_line):     # va permettre de parcourir tous les élèments de la ligne définie dans les paramètres 
-            if elt == "6": 
-                index_random_line = line_list.index(random_line)                  # si un des élèments correspond au number_picture demandé,
-                path_position_of_random_line.append(((i * 40), (index_random_line + 1) * 40))     # les coordonnées de son emplacement s'ajoute à ma liste vide
-        self.random_location = choice(path_position_of_random_line)
-        i+=1  
-       
-needle_location = random_position()
-ether_location = random_position()
-syringe_location = random_position()
-needle_position = needle_location.random_location
-ether_position = ether_location.random_location
-syringe_position = syringe_location.random_location
+        line_list = [LINE_1, LINE_2, LINE_3, LINE_4, LINE_5, LINE_6, LINE_7, LINE_8,
+                     LINE_9, LINE_10, LINE_11, LINE_12, LINE_13]
+        path_position_of_random_line = []
 
-while needle_position == ether_position or ether_position == syringe_position or syringe_position == needle_position:
-    needle_location = random_position()
-    ether_location = random_position()
-    syringe_location = random_position()
-    needle_position = needle_location.random_location
-    ether_position = ether_location.random_location
-    syringe_position = syringe_location.random_location
-    
-while needle_position == (0,520) or ether_position == (0,520) or syringe_position == (0,520):
-    needle_location = random_position()
-    ether_location = random_position()
-    syringe_location = random_position()
-    needle_position = needle_location.random_location
-    ether_position = ether_location.random_location
-    syringe_position = syringe_location.random_location
+        random_line = choice(line_list) # determines a random line
+        i = 0
+        # add in path_position_of_random_line the path coordinates of the random list
+        for i, elt in enumerate(random_line):
+            if elt == "6":
+                index_random_line = line_list.index(random_line)
+                path_position_of_random_line.append(((i * 40), (index_random_line + 1) * 40))
+        # determines a random coordinates
+        self.random_location = choice(path_position_of_random_line)
+        i += 1
+
+# creating variables with random coordinates for each objects
+NEEDLE_LOCATION = RandomPosition()
+ETHER_LOCATION = RandomPosition()
+SYRINGE_LOCATION = RandomPosition()
+NEEDLE_POSITION = NEEDLE_LOCATION.random_location
+ETHER_POSITION = ETHER_LOCATION.random_location
+SYRINGE_POSITION = SYRINGE_LOCATION.random_location
+
+# while the objects overlap, we determine a new random coordinates
+while NEEDLE_POSITION == ETHER_POSITION or ETHER_POSITION == SYRINGE_POSITION \
+    or SYRINGE_POSITION == NEEDLE_LOCATION:
+    NEEDLE_LOCATION = RandomPosition()
+    ETHER_LOCATION = RandomPosition()
+    SYRINGE_LOCATION = RandomPosition()
+    NEEDLE_POSITION = NEEDLE_LOCATION.random_location
+    ETHER_POSITION = ETHER_LOCATION.random_location
+    SYRINGE_POSITION = SYRINGE_LOCATION.random_location
+
+# while the objects overlap the characters, we determine a new random coordinates
+while NEEDLE_POSITION == (0, 520) or ETHER_POSITION == (0, 520) or SYRINGE_POSITION == (0, 520):
+    NEEDLE_LOCATION = RandomPosition()
+    ETHER_LOCATION = RandomPosition()
+    SYRINGE_LOCATION = RandomPosition()
+    NEEDLE_POSITION = NEEDLE_LOCATION.random_location
+    ETHER_POSITION = ETHER_LOCATION.random_location
+    SYRINGE_POSITION = SYRINGE_LOCATION.random_location

@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+"""Labyrinth game in which mac gyver must retrieve all objects to kill the guardian and escape"""
+
 import os
 import pygame                         # import the pygame library and this module
 from pygame.locals import *         
@@ -15,7 +17,7 @@ pygame.init()
 # indicates the way to find the images to be used for the program
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource") 
 
-# use the function imported from the file decor_blit.py : open the window and paste the background
+# use the function imported from the file decor_blit.py : paste the background
 background() 
 
 # load the picture of the Mac Gyver, make the background of the picture transparent and paste the picture

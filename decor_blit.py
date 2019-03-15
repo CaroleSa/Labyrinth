@@ -1,23 +1,25 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-import os
-import pygame
-from labyrinth_position import *
-from pygame.locals import *
+"""creates the window and paste the background"""
 
+import os
+import pygame                    # import the pygame library and this module
+from pygame.locals import *
+from labyrinth_position import * # import lists that visually represent the game background
+
+# initialize the pygame library
 pygame.init() 
 
-
+# indicates the way to find the images to be used for the program
 os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
-"""chemin dans lequel se trouve les images utilisées dans ce script"""
-window = pygame.display.set_mode((600, 600)) 
-"""Affichage de la fenêtre en taille 600/600 pixels"""
 
+# creates the window
+window = pygame.display.set_mode((600, 600)) 
+
+# function that pastes multiple images to create the wallpaper
 def background():
-    """Script qui permet de réunir plusieurs images (dans l'esprit puzzle) 
-    afin de créer un fond d'écran et qui permet de l'afficher dans une fenêtre"""
-    
+    # load the pictures of the wall and the ground
     ground_picture = pygame.image.load("ground.png").convert_alpha()
     wall_top_left_picture = pygame.image.load("top_left.png").convert_alpha()
     wall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
@@ -25,20 +27,15 @@ def background():
     wall_low_left_picture = pygame.image.load("low_left.png").convert_alpha()
     wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
     wall_vertical_picture = pygame.image.load("vertical.png").convert_alpha()
-    """récupèration des images de mon fond d'écran"""
-    
-    
-
-    """Fonction qui permet de traduire les listes ci-dessus 
-    afin de coller les images et créer le fond d'écran désiré"""
-    def wall_ground_location(line_number, index, number_picture, picture): # on indique des paramètres afin d'utiliser une seule fonction 
-        line_finale=[]  # on crée une liste vide                      pour fabriquer l'ensemble du fond d'écran
+    # function that translates the file (labyrinth_position.py) lists to paste the pictures in the right place
+    def wall_ground_location(line_number, index, number_picture, picture): 
+        coordinates_number_picture=[]  # on crée une liste vide                      
         i=0             # i : notre compteur
         for i, elt in enumerate(line_number):     # va permettre de parcourir tous les élèments de la ligne définie dans les paramètres 
             if elt == number_picture:                   # si un des élèments correspond au number_picture demandé,
-                line_finale.append(((i*40), index))     # les coordonnées de son emplacement s'ajoute à ma liste vide
+                coordinates_number_picture.append(((i*40), index))     # les coordonnées de son emplacement s'ajoute à ma liste vide
         i+=1                                            # permet de prendre en compte les élèments de ma liste 1 à 1 jusqu'à sa fin
-        for location in line_finale:
+        for location in coordinates_number_picture:
             window.blit(picture, (location))            # parcours les valeurs de ma nouvelle liste afin de traduire les coordonnées
                                                         # et coller les images à la bonne place pour former le fond d'écran
                                                         

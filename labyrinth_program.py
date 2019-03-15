@@ -108,7 +108,7 @@ while play:
             path_traveled_mac_gyver.append(last_location_mac_gyver_tuple) # creates a list with all mac gyver move coordinates 
             print(path_traveled_mac_gyver)
         # while mac gyver goes down on the coordinates of a wall
-        while event.type == KEYDOWN and event.key == K_DOWN and path_position.count(last_location_mac_gyver_tuple) == 0: 
+        while event.type == KEYDOWN and event.key == K_DOWN and path_position_list.count(last_location_mac_gyver_tuple) == 0: 
             # mac gyver returns to its original position        
             for cle, valeur in last_location_mac_gyver_dict.items(): 
                 moving_mac_gyver = moving_mac_gyver.move(0, - 40)
@@ -117,7 +117,7 @@ while play:
                 last_location_mac_gyver_dict[cle] = valeur - 40
                 init_event()
         # while mac gyver goes up on the coordinates of a wall
-        while event.type == KEYDOWN and event.key == K_UP and path_position.count(last_location_mac_gyver_tuple) == 0:
+        while event.type == KEYDOWN and event.key == K_UP and path_position_list.count(last_location_mac_gyver_tuple) == 0:
             # mac gyver returns to its original position
             for cle, valeur in last_location_mac_gyver_dict.items():
                 moving_mac_gyver = moving_mac_gyver.move(0, 40)
@@ -126,7 +126,7 @@ while play:
                 last_location_mac_gyver_dict[cle] = valeur + 40
                 init_event()
         # while mac gyver goes right on the coordinates of a wall
-        while event.type == KEYDOWN and event.key == K_RIGHT and path_position.count(last_location_mac_gyver_tuple) == 0:
+        while event.type == KEYDOWN and event.key == K_RIGHT and path_position_list.count(last_location_mac_gyver_tuple) == 0:
             # mac gyver returns to its original position
             for cle, valeur in last_location_mac_gyver_dict.items():
                 moving_mac_gyver = moving_mac_gyver.move(- 40, 0)
@@ -135,7 +135,7 @@ while play:
                 last_location_mac_gyver_dict[cle - 40] = valeur
                 init_event()
         # while mac gyver goes left on the coordinates of a wall
-        while event.type == KEYDOWN and event.key == K_LEFT and path_position.count(last_location_mac_gyver_tuple) == 0:
+        while event.type == KEYDOWN and event.key == K_LEFT and path_position_list.count(last_location_mac_gyver_tuple) == 0:
             # mac gyver returns to its original position
             for cle, valeur in last_location_mac_gyver_dict.items():
                 moving_mac_gyver = moving_mac_gyver.move(40, 0)

@@ -1,3 +1,16 @@
+#! /usr/bin/env python3
+# coding: utf-8
+
+"""Set of lists that represent the game window: each number is associated with an image :
+0 wall top left
+1 wall top right
+2 wall low right
+3 wall low left
+4 wall horizontal
+5 wall vertical
+6 ground"""
+
+
 line_0 =  ["0","4","4","4","4","4","4","4","4","4","2","6","3","4","1"]
 line_1 =  ["5","6","6","6","6","6","6","6","6","6","6","6","6","6","5"]
 line_2 =  ["5","6","0","4","4","4","4","4","4","4","4","4","4","4","5"]
@@ -13,13 +26,4 @@ line_11 = ["5","6","5","6","5","6","5","6","5","6","5","6","6","6","5"]
 line_12 = ["3","4","4","4","4","4","2","6","5","6","3","4","4","4","5"]
 line_13 = ["6","6","6","6","6","6","6","6","6","6","6","6","6","6","5"]
 line_14 = ["4","4","4","4","4","4","4","4","4","4","4","4","4","4","2"]
-"""L'ensemble de ces listes représente ma fenêtre. 
-Chaque valeur dans ces listes correspond à une case de la fenêtre (15/15)
-et donc à une image (60/60 pixels): 
-0 pour wall top left
-1 pour wall top right
-2 pour wall low right
-3 pour wall low left
-4 pour wall horizontal
-5 pour wall vertical
-6 pour ground"""
+

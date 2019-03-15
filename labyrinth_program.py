@@ -67,9 +67,11 @@ def init_event():
     window.blit(syringe_picture, syringe_position)
     pygame.display.flip()
 
-# 
+# dictionary that indicates the last position of mac gyver
 last_location_mac_gyver_dict = {0: 520}
+# list that indicates the coordinates of the path traveled by mac gyver
 path_traveled_mac_gyver = [(0, 520)]
+# counter of objects
 counter_objects = 0
 
 # infinite loop
@@ -105,8 +107,7 @@ while play:
                 last_location_mac_gyver_dict[cle] = valeur + 40
                 init_event()
         if event.type == KEYDOWN: # if press a key
-            path_traveled_mac_gyver.append(last_location_mac_gyver_tuple) # creates a list with all mac gyver move coordinates 
-            print(path_traveled_mac_gyver)
+            path_traveled_mac_gyver.append(last_location_mac_gyver_tuple) # creates a list with all mac gyver move coordinates
         # while mac gyver goes down on the coordinates of a wall
         while event.type == KEYDOWN and event.key == K_DOWN and path_position_list.count(last_location_mac_gyver_tuple) == 0: 
             # mac gyver returns to its original position        

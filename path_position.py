@@ -1,11 +1,15 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+"""creation of a list of coordinates of the labyrinth path"""
+
 import os
 from labyrinth_position import *  # import lists that visually represent the game background
 
+# empty list that will indicate the coordinates of the labyrinth path
 path_position_list=[]
 
+# we get in each line, the coordinates of the path and add it to the empty list
 i=0
 for i, elt in enumerate(line_0):
     if elt=="6":

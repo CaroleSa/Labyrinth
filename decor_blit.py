@@ -27,21 +27,22 @@ def background():
     wall_low_left_picture = pygame.image.load("low_left.png").convert_alpha()
     wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
     wall_vertical_picture = pygame.image.load("vertical.png").convert_alpha()
-    # function that translates the file (labyrinth_position.py) lists to paste the pictures in the right place
+    
+    # function that allows to search each list for the coordinates of each image to paste them
     def wall_ground_location(line_number, index, number_picture, picture): 
-        coordinates_number_picture=[]  # on crée une liste vide                      
-        i=0             # i : notre compteur
-        for i, elt in enumerate(line_number):     # va permettre de parcourir tous les élèments de la ligne définie dans les paramètres 
-            if elt == number_picture:                   # si un des élèments correspond au number_picture demandé,
-                coordinates_number_picture.append(((i*40), index))     # les coordonnées de son emplacement s'ajoute à ma liste vide
-        i+=1                                            # permet de prendre en compte les élèments de ma liste 1 à 1 jusqu'à sa fin
-        for location in coordinates_number_picture:
-            window.blit(picture, (location))            # parcours les valeurs de ma nouvelle liste afin de traduire les coordonnées
-                                                        # et coller les images à la bonne place pour former le fond d'écran
+        coordinates_number_picture_list=[]                     
+        i=0             
+        for i, elt in enumerate(line_number):     
+            if elt == number_picture:                   
+                coordinates_number_picture_list.append(((i*40), index))     
+        i+=1                                            
+        for location in coordinates_number_picture_list:
+            window.blit(picture, (location))            
                                                         
+    # call the function with different parameters                                                    
     wall_ground_location(line_0, 0, "0", wall_top_left_picture)    
-    wall_ground_location(line_1, 40, "0", wall_top_left_picture)       # appel de la fonction wall_location à de multiples reprises avec différents paramètres
-    wall_ground_location(line_2, 80, "0", wall_top_left_picture)       # afin de prendre en compte toutes les lignes et toutes les images
+    wall_ground_location(line_1, 40, "0", wall_top_left_picture)       
+    wall_ground_location(line_2, 80, "0", wall_top_left_picture)       
     wall_ground_location(line_3, 120, "0", wall_top_left_picture)
     wall_ground_location(line_4, 160, "0", wall_top_left_picture)
     wall_ground_location(line_5, 200, "0", wall_top_left_picture)

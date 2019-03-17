@@ -28,30 +28,3 @@ class RandomPosition:
         # determines a random coordinates
         self.random_location = choice(path_position_of_random_line)
         i += 1
-
-# creating variables with random coordinates for each objects
-NEEDLE_LOCATION = RandomPosition()
-ETHER_LOCATION = RandomPosition()
-SYRINGE_LOCATION = RandomPosition()
-NEEDLE_POSITION = NEEDLE_LOCATION.random_location
-ETHER_POSITION = ETHER_LOCATION.random_location
-SYRINGE_POSITION = SYRINGE_LOCATION.random_location
-
-# while the objects overlap, we determine a new random coordinates
-while NEEDLE_POSITION == ETHER_POSITION or ETHER_POSITION == SYRINGE_POSITION \
-    or SYRINGE_POSITION == NEEDLE_LOCATION:
-    NEEDLE_LOCATION = RandomPosition()
-    ETHER_LOCATION = RandomPosition()
-    SYRINGE_LOCATION = RandomPosition()
-    NEEDLE_POSITION = NEEDLE_LOCATION.random_location
-    ETHER_POSITION = ETHER_LOCATION.random_location
-    SYRINGE_POSITION = SYRINGE_LOCATION.random_location
-
-# while the objects overlap the characters, we determine a new random coordinates
-while NEEDLE_POSITION == (0, 520) or ETHER_POSITION == (0, 520) or SYRINGE_POSITION == (0, 520):
-    NEEDLE_LOCATION = RandomPosition()
-    ETHER_LOCATION = RandomPosition()
-    SYRINGE_LOCATION = RandomPosition()
-    NEEDLE_POSITION = NEEDLE_LOCATION.random_location
-    ETHER_POSITION = ETHER_LOCATION.random_location
-    SYRINGE_POSITION = SYRINGE_LOCATION.random_location

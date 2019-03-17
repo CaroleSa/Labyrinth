@@ -17,8 +17,8 @@ os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
 # creates the window
 WINDOW = pygame.display.set_mode((600, 600))
 
-# function that pastes multiple images to create the wallpaper
 def background():
+    """Function that pastes multiple images to create the wallpaper"""
     # load the pictures of the wall and the ground
     ground_picture = pygame.image.load("ground.png").convert_alpha()
     wall_top_left_picture = pygame.image.load("top_left.png").convert_alpha()

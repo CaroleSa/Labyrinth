@@ -30,28 +30,28 @@ def labyrinth_game():
     # creating variables with random coordinates for each objects
     needle_location = RandomPosition()
     ether_location = RandomPosition()
-    syringe_location = RandomPosition()
+    plastic_tube_location = RandomPosition()
     needle_position = needle_location.random_location
     ether_position = ether_location.random_location
-    syringe_position = syringe_location.random_location
+    plastic_tube_position = plastic_tube_location.random_location
 
     # while the objects overlap, we determine a new random coordinates
-    while needle_position == ether_position or ether_position == syringe_position \
-        or syringe_position == needle_position:
+    while needle_position == ether_position or ether_position == plastic_tube_position \
+        or plastic_tube_position == needle_position:
         needle_location = RandomPosition()
         ether_location = RandomPosition()
-        syringe_location = RandomPosition()
+        plastic_tube_location = RandomPosition()
         needle_position = needle_location.random_location
         ether_position = ether_location.random_location
-        syringe_position = syringe_location.random_location
+        plastic_tube_position = plastic_tube_location.random_location
     # while the objects overlap the characters, we determine a new random coordinates
-    while needle_position == (0, 520) or ether_position == (0, 520) or syringe_position == (0, 520):
+    while needle_position == (0, 520) or ether_position == (0, 520) or plastic_tube_position == (0, 520):
         needle_location = RandomPosition()
         ether_location = RandomPosition()
-        syringe_location = RandomPosition()
+        plastic_tube_location = RandomPosition()
         needle_position = needle_location.random_location
         ether_position = ether_location.random_location
-        syringe_position = syringe_location.random_location
+        splastic_tube_position = plastic_tube_location.random_location
 
     # use the function imported from the file decor_blit.py :
     # paste the background
@@ -78,15 +78,15 @@ def labyrinth_game():
 
     # load the picture of the ether, make the background
     # of the picture transparent and paste the picture
-    ether_picture = pygame.image.load("ether.png").convert_alpha()
-    ether_picture.set_colorkey((0, 0, 0))
+    ether_picture = pygame.image.load("ether.png").convert()
+    ether_picture.set_colorkey((3, 10, 67))
     WINDOW.blit(ether_picture, ether_position)
 
-    # load the picture of the syringe, make the background
+    # load the picture of the plastic tube, make the background
     # of the picture transparent and paste the picture
-    syringe_picture = pygame.image.load("syringe.png").convert()
-    syringe_picture.set_colorkey((255, 255, 255))
-    WINDOW.blit(syringe_picture, syringe_position)
+    plastic_tube_picture = pygame.image.load("plastic_tube.png").convert()
+    plastic_tube_picture.set_colorkey((255, 255, 255))
+    WINDOW.blit(plastic_tube_picture, plastic_tube_position)
 
     # load the picture of the grave and make the background
     # of the picture transparent
@@ -118,7 +118,7 @@ def labyrinth_game():
         WINDOW.blit(mac_gyver_picture, (last_location_mac_gyver_tuple))
         WINDOW.blit(ether_picture, ether_position)
         WINDOW.blit(needle_picture, needle_position)
-        WINDOW.blit(syringe_picture, syringe_position)
+        WINDOW.blit(plastic_tube_picture, plastic_tube_position)
         pygame.display.flip()
 
     # dictionary that indicates the last position of mac gyver
@@ -244,9 +244,9 @@ def labyrinth_game():
                 ether_position = WINDOW.blit(ether_picture, (600, 600))
             # if mac gyver is passed on the syringe
             # +1 to the counter of objects and the syringe disappears from the window
-            if path_traveled_mac_gyver.count(syringe_position) == 1:
+            if path_traveled_mac_gyver.count(plastic_tube_position) == 1:
                 counter_objects = counter_objects + 1
-                syringe_position = WINDOW.blit(syringe_picture, (600, 600))
+                plastic_tube_position = WINDOW.blit(plastic_tube_picture, (600, 600))
             # if mac gyver have not the 3 objects and arrives at the guardian
             # the messages "perdu !", "rejouer" and "quitter" is displayed
             # if the player clicks on "rejouer", the program restarts,

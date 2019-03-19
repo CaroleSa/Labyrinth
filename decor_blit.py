@@ -1,6 +1,9 @@
-# personage
-from labyrinth_position import LabyrinthList
+#! /usr/bin/env python3
+# coding: utf-8
 
+from labyrinth_position import LabyrinthList
+from labyrinth_position import PathPosition
+from path_position import Objet
 class Personne:
 
     def __init__(self):
@@ -180,4 +183,10 @@ class Personne:
                     pygame.display.flip()
                     pygame.quit()
                     quit()
+                return
 
+def main():
+    Personne()
+
+if __name__ == "__main__":
+    main()

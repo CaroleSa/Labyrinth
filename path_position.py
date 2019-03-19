@@ -1,4 +1,6 @@
-from random import *             # import the random library
+#! /usr/bin/env python3
+# coding: utf-8
+
 from labyrinth_position import LabyrinthList # import lists that represent the game background
 
 class Objet:
@@ -83,3 +85,9 @@ class Objet:
                         self.needle_position = self.needle_location.self.random_location
                         self.ether_position = self.ether_location.self.random_location
                         self.plastic_tube_position = self.plastic_tube_location.self.random_location
+
+def main():
+    Objet()
+
+if __name__ == "__main__":
+    main()

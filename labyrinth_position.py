@@ -1,13 +1,6 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-import os
-
-import pygame                # import the pygame library and this module
-from pygame.locals import *
-
-pygame.init()                # initialize the pygame library
-
 """Set of lists that represent the game window: each number is associated with an image :
 0 wall top left
 1 wall top right
@@ -228,3 +221,10 @@ class PathPosition:
         for i, elt in enumerate(self.LINE_14):
             if elt == "6":
                 self.path_position_list.append((i*40, 560))
+
+def main():
+    LabyrinthList()
+    PathPosition()
+
+if __name__ == "__main__":
+    main()

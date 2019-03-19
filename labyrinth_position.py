@@ -60,7 +60,7 @@ class LabyrinthList:
         for location in self.coordinates_number_picture_list:
             WINDOW.blit(picture, (location))
     
-    def call_function_decor_blit (self):
+    def call_decor_blit(self):
         # call the function with different parameters
         decor_blit(self.LINE_0, 0, "0", self.wall_top_left_picture)
         decor_blit(self.LINE_1, 40, "0", self.wall_top_left_picture)
@@ -175,3 +175,56 @@ class LabyrinthList:
         decor_blit(self.LINE_14, 560, "6", self.ground_picture)
 """Function that pastes multiple images to create the wallpaper"""
 """Searchs each list for the coordinates of each image to paste them"""
+
+class PathPosition:
+    # empty list that will indicate the coordinates of the labyrinth path
+    def __init__(self):
+        self.path_position_list = []
+
+    def incrementation(self):
+        # we get in each line, the coordinates of the path and add it to the empty list
+        for i, elt in enumerate(self.LINE_0):
+            if elt == "6":
+                self.path_position_list.append((i*40, 0))
+        for i, elt in enumerate(self.LINE_1):
+            if elt == "6":
+                self.path_position_list.append((i*40, 40))
+        for i, elt in enumerate(self.LINE_2):
+            if elt == "6":
+                self.path_position_list.append((i*40, 80))
+        for i, elt in enumerate(self.LINE_3):
+            if elt == "6":
+                self.path_position_list.append((i*40, 120))
+        for i, elt in enumerate(self.LINE_4):
+            if elt == "6":
+                self.path_position_list.append((i*40, 160))
+        for i, elt in enumerate(self.LINE_5):
+            if elt == "6":
+                self.path_position_list.append((i*40, 200))
+        for i, elt in enumerate(self.LINE_6):
+            if elt == "6":
+                self.path_position_list.append((i*40, 240))
+        for i, elt in enumerate(self.LINE_7):
+            if elt == "6":
+                self.path_position_list.append((i*40, 280))
+        for i, elt in enumerate(self.LINE_8):
+            if elt == "6":
+                self.path_position_list.append((i*40, 320))
+        for i, elt in enumerate(self.LINE_9):
+            if elt == "6":
+                self.path_position_list.append((i*40, 360))
+        for i, elt in enumerate(self.LINE_10):
+            if elt == "6":
+                self.path_position_list.append((i*40, 400))
+        for i, elt in enumerate(self.LINE_11):
+            if elt == "6":
+                self.path_position_list.append((i*40, 440))
+        for i, elt in enumerate(self.LINE_12):
+            if elt == "6":
+                self.path_position_list.append((i*40, 480))
+        for i, elt in enumerate(self.LINE_13):
+            if elt == "6":
+                self.path_position_list.append((i*40, 520))
+        for i, elt in enumerate(self.LINE_14):
+            if elt == "6":
+                self.path_position_list.append((i*40, 560))

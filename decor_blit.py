@@ -1,4 +1,8 @@
-#! /usr/bin/env python3
-# coding: utf-8
+class test:
+    def __init__(self):
+        self.x=2
+    def parle(self):
+        print(self.x)
 
-PERSONNAGE
+un_test = test()
+un_test.parle()

@@ -27,7 +27,7 @@ pygame.init()
 def labyrinth_game():
     """For replay the game"""
     # indicates the way to find the images to be used for the program
-    os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource")
+    os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
     
     # creating variables with random coordinates for each objects
     needle_location = RandomPosition()

@@ -4,12 +4,7 @@
 """Allows to define the coordinates of objects at random"""
 
 from random import *             # import the random library
-import pygame                    # import the pygame library and this module
-from pygame.locals import *
 from labyrinth_position import * # import lists that represent the game background
-
-# initialize the pygame library
-pygame.init()
 
 class RandomPosition:
     """Class that determines a random line and a random number in this line"""
@@ -19,7 +14,6 @@ class RandomPosition:
         path_position_of_random_line = []
 
         random_line = choice(line_list) # determines a random line
-        i = 0
         # add in path_position_of_random_line the path coordinates of the random list
         for i, elt in enumerate(random_line):
             if elt == "6":
@@ -27,4 +21,3 @@ class RandomPosition:
                 path_position_of_random_line.append(((i * 40), (index_random_line + 1) * 40))
         # determines a random coordinates
         self.random_location = choice(path_position_of_random_line)
-        i += 1

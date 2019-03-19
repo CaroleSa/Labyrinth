@@ -5,16 +5,18 @@
 to kill the guardian and escape """
 
 import os
+
 # import the pygame library and this module
 import pygame
 from pygame.locals import *
+
 # import lists that visually represent the game background
 from labyrinth_position import *
 # import decor_blit.py that creates the window
 # and paste the background
 from decor_blit import *
 # import the file that defines the random coordinates of objects
-from random_position_objects import *
+from random_position_objects import RandomPosition
 # import the file which indicates in list form the coordinates
 # of the labyrinth path
 from path_position import *
@@ -26,7 +28,7 @@ def labyrinth_game():
     """For replay the game"""
     # indicates the way to find the images to be used for the program
     os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressource")
-
+    
     # creating variables with random coordinates for each objects
     needle_location = RandomPosition()
     ether_location = RandomPosition()
@@ -79,7 +81,7 @@ def labyrinth_game():
     # load the picture of the ether, make the background
     # of the picture transparent and paste the picture
     ether_picture = pygame.image.load("ether.png").convert()
-    ether_picture.set_colorkey((3, 10, 67))
+    ether_picture.set_colorkey((255, 255, 255))
     WINDOW.blit(ether_picture, ether_position)
 
     # load the picture of the plastic tube, make the background
@@ -160,7 +162,7 @@ def labyrinth_game():
                     moving_mac_gyver = moving_mac_gyver.move(0, - 40)
                     last_location_mac_gyver_tuple = (cle, valeur - 40)
                     last_location_mac_gyver_dict.clear()
-                    last_location_mac_gyver_dict[cle] = valeur- 40
+                    last_location_mac_gyver_dict[cle] = valeur -40
                     path_traveled_mac_gyver.append(last_location_mac_gyver_tuple)
                     init_event()
             # if press the down arrow key, mac gyver goes down
@@ -242,7 +244,7 @@ def labyrinth_game():
             if path_traveled_mac_gyver.count(ether_position) == 1:
                 counter_objects = counter_objects + 1
                 ether_position = WINDOW.blit(ether_picture, (600, 600))
-            # if mac gyver is passed on the syringe
+            # if mac gyver is passed on the plastic_tube
             # +1 to the counter of objects and the syringe disappears from the window
             if path_traveled_mac_gyver.count(plastic_tube_position) == 1:
                 counter_objects = counter_objects + 1

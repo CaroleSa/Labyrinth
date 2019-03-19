@@ -9,7 +9,6 @@ from labyrinth_position import *  # import lists that visually represent the gam
 path_position_list = []
 
 # we get in each line, the coordinates of the path and add it to the empty list
-i = 0
 for i, elt in enumerate(LINE_0):
     if elt == "6":
         path_position_list.append((i*40, 0))
@@ -55,4 +54,3 @@ for i, elt in enumerate(LINE_13):
 for i, elt in enumerate(LINE_14):
     if elt == "6":
         path_position_list.append((i*40, 560))
-i += 1

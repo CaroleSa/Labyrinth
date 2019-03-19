@@ -11,14 +11,12 @@ from labyrinth_position import * # import lists that visually represent the game
 # initialize the pygame library
 pygame.init()
 
-# indicates the way to find the images to be used for the program
-os.chdir("C:/Users/Carole/program_python/program/labyrinth/ressource")
-
 # creates the window
 WINDOW = pygame.display.set_mode((600, 600))
 
 def background():
     """Function that pastes multiple images to create the wallpaper"""
+    
     # load the pictures of the wall and the ground
     ground_picture = pygame.image.load("ground.png").convert_alpha()
     wall_top_left_picture = pygame.image.load("top_left.png").convert_alpha()
@@ -31,11 +29,10 @@ def background():
     def wall_ground_location(line_number, index, number_picture, picture):
         """Searchs each list for the coordinates of each image to paste them"""
         coordinates_number_picture_list = []
-        i = 0
+
         for i, elt in enumerate(line_number):
             if elt == number_picture:
                 coordinates_number_picture_list.append(((i*40), index))
-        i += 1
         for location in coordinates_number_picture_list:
             WINDOW.blit(picture, (location))
 
@@ -150,3 +147,4 @@ def background():
     wall_ground_location(LINE_12, 480, "6", ground_picture)
     wall_ground_location(LINE_13, 520, "6", ground_picture)
     wall_ground_location(LINE_14, 560, "6", ground_picture)
+    return WINDOW

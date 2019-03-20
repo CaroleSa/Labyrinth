@@ -1,7 +1,15 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+import os
+
+import pygame                # import the pygame library and this module
+from pygame.locals import *
+pygame.init()                # initialize the pygame library
+
 from labyrinth_position import LabyrinthList # import lists that represent the game background
+
+os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
 
 class Objet:
         def __init__(self):
@@ -23,69 +31,63 @@ class Objet:
                 self.plastic_tube_picture.set_colorkey((255, 255, 255))
                 WINDOW.blit(self.plastic_tube_picture, plastic_tube_position)
 
-                # load the picture of the grave and make the background
-                # of the picture transparent
-                self.grave_picture = pygame.image.load("grave.png").convert()
-                self.grave_picture.set_colorkey((255, 255, 255))
-
-                # load the picture of the won and make the background
-                # of the picture transparent
-                self.won_picture = pygame.image.load("won.png").convert()
-                self.won_picture.set_colorkey((255, 255, 255))
-
-                # load the picture of the quit and make the background
-                # of the picture transparent
-                self.quit_picture = pygame.image.load("quit.png").convert()
-                self.quit_picture.set_colorkey((255, 255, 255))
-
-                # load the picture of the replay and make the background
-                # of the picture transparent
-                self.replay_picture = pygame.image.load("replay.png").convert()
-                self.replay_picture.set_colorkey((255, 255, 255))
-
                 self.line_list = [LINE_1, LINE_2, LINE_3, LINE_4, LINE_5, LINE_6, LINE_7, LINE_8,
                      LINE_9, LINE_10, LINE_11, LINE_12, LINE_13]
                 self.path_position_of_random_line = []
 
         def random_position(self):
                 """Class that determines a random line and a random number in this line"""
-                self.random_line = choice(line_list) # determines a random line
+                random_line = choice(line_list) # determines a random line
                 # add in path_position_of_random_line the path coordinates of the random list
-                for i, elt in enumerate(self.random_line):
+                for i, elt in enumerate(random_line):
                         if elt == "6":
-                                self.index_random_line = self.line_list.index(self.random_line)
-                                self.path_position_of_random_line.append(((i * 40), (self.index_random_line + 1) * 40))
+                                index_random_line = self.line_list.index(random_line)
+                                self.path_position_of_random_line.append(((i * 40), (index_random_line + 1) * 40))
                 # determines a random coordinates
-                self.random_location = choice(self.path_position_of_random_line)
+                random_location = choice(self.path_position_of_random_line)
+                return random_location
 
-        def call_function_random_position(self):
+        def needle_random_position():
                 # creating variables with random coordinates for each objects
-                self.needle_location = random_position()
-                self.ether_location = random_position()
-                self.plastic_tube_location = random_position()
-                self.needle_position = self.needle_location.self.random_location
-                self.ether_position = self.ether_location.self.random_location
-                self.plastic_tube_position = self.plastic_tube_location.self.random_location
+                needle_position = random_position()
+                return needle_position
+        
+        def ether_random_position():
+                # creating variables with random coordinates for each objects
+                ether_position = random_position()
+                return ether_position
+        
+        def plastic_tube_random_position():
+                # creating variables with random coordinates for each objects
+                plastic_tube_position = random_position()
+                return plastic_tube_position
 
-        def recall_function_random_position(self):
+        #def new_needle_position():
+                #needle_position = random_position()
+                #return needle_position
+        
+        #def new_ether_position():
+                #ether_position = random_position()
+                #return ether_position
+                        
+        #def new_plastic_tube_position():
+                #plastic_tube_position = random_position()
+                #return plastic_tube_position
+
+        def recall_function_random_position():
                 # while the objects overlap, we determine a new random coordinates
-                while self.needle_position == self.ether_position or self.ether_position == self.plastic_tube_position \
-                        or self.plastic_tube_position == self.needle_position:
-                        self.needle_location = random_position()
-                        self.ether_location = random_position()
-                        self.plastic_tube_location = random_position()
-                        self.needle_position = self.needle_location.self.random_location
-                        self.ether_position = self.ether_location.self.random_location
-                        self.plastic_tube_position = self.plastic_tube_location.self.random_location
+                while needle_position == ether_position or ether_position == plastic_tube_position \
+                        or plastic_tube_position == needle_position:
+                        needle_position()
+                        ether_position()
+                        plastic_tube_position()      
+                        
                 # while the objects overlap the characters, we determine a new random coordinates
-                while self.needle_position == (0, 520) or self.ether_position == (0, 520) or self.plastic_tube_position == (0, 520):
-                        self.needle_location = random_position()
-                        self.ether_location = random_position()
-                        self.plastic_tube_location = random_position()
-                        self.needle_position = self.needle_location.self.random_location
-                        self.ether_position = self.ether_location.self.random_location
-                        self.plastic_tube_position = self.plastic_tube_location.self.random_location
-
+                while needle_position == (0, 520) or ether_position == (0, 520) or plastic_tube_position == (0, 520):
+                        needle_position()
+                        ether_position()
+                        plastic_tube_position()
+                        
 def main():
     Objet()
 

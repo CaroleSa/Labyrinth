@@ -3,7 +3,7 @@
 
 from labyrinth_position import LabyrinthList
 from labyrinth_position import PathPosition
-from path_position import Objet
+from path_position import Objects
 class Personne:
 
     def __init__(self):
@@ -19,6 +19,26 @@ class Personne:
         self.guardian_picture = pygame.image.load("guardian.png").convert()
         self.guardian_picture.set_colorkey((255, 255, 255))
         WINDOW.blit(self.guardian_picture, (440, 0))
+
+        # load the picture of the grave and make the background
+                # of the picture transparent
+                self.grave_picture = pygame.image.load("grave.png").convert()
+                self.grave_picture.set_colorkey((255, 255, 255))
+
+                # load the picture of the won and make the background
+                # of the picture transparent
+                self.won_picture = pygame.image.load("won.png").convert()
+                self.won_picture.set_colorkey((255, 255, 255))
+
+                # load the picture of the quit and make the background
+                # of the picture transparent
+                self.quit_picture = pygame.image.load("quit.png").convert()
+                self.quit_picture.set_colorkey((255, 255, 255))
+
+                # load the picture of the replay and make the background
+                # of the picture transparent
+                self.replay_picture = pygame.image.load("replay.png").convert()
+                self.replay_picture.set_colorkey((255, 255, 255))
 
         # dictionary that indicates the last position of mac gyver
         self.last_location_mac_gyver_dict = {0: 520}

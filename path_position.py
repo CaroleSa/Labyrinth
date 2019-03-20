@@ -11,7 +11,7 @@ from labyrinth_position import LabyrinthList # import lists that represent the g
 
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
 
-class Objet:
+class Objects:
         def __init__(self):
                 # load the picture of the needle, make the background
                 # of the picture transparent and paste the picture

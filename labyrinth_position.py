@@ -32,19 +32,45 @@ class LabyrinthList:
 
         self.coordinates_number_picture_list = []
 
-    def load_picture(self):   
+    def load_ground_picture():   
         # load the pictures of the wall and the ground
-        self.ground_picture = pygame.image.load("ground.png").convert_alpha()
-        self.wall_top_left_picture = pygame.image.load("top_left.png").convert_alpha()
-        self.wall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
-        self.wall_low_right_picture = pygame.image.load("low_right.png").convert_alpha()
-        self.wall_low_left_picture = pygame.image.load("low_left.png").convert_alpha()
-        self.wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
-        self.wall_vertical_picture = pygame.image.load("vertical.png").convert_alpha()
+        ground_picture = pygame.image.load("ground.png").convert_alpha()
+        return ground_picture
+    
+    def load_wall_top_left_picture():   
+        # load the pictures of the wall and the ground
+        wall_top_left_picture = pygame.image.load("top_left.png").convert_alpha()
+        return wall_top_left_picture
 
-    def window_blit(self):
+    def load_wall_top_right_picture():   
+        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
+        wall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
+        return wall_top_right_picture
+
+    def load_wall_low_right_picture():   
+        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
+        wall_low_right_picture = pygame.image.load("low_right.png").convert_alpha()
+        return wall_low_right_picture
+
+    def load_wall_low_left_picture():   
+        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
+        wall_low_left_picture = pygame.image.load("low_left.png").convert_alpha()
+        return wall_low_left_picture
+        
+    def load_wall_vertical_picture():   
+        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
+        wall_vertical_picture = pygame.image.load("vertical.png").convert_alpha()
+        return wall_vertical_picture
+
+    def load_wall_horizontal_picture():   
+        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
+        wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
+        return wall_horizontal_picture
+
+    def creation_window():
         # creates the window
-        self.WINDOW = pygame.display.set_mode((600, 600))
+        WINDOW = pygame.display.set_mode((600, 600))
+        return WINDOW
     
     def decor_blit(self, line_number, index, number_picture, picture):
         for i, elt in enumerate(line_number):
@@ -221,6 +247,7 @@ class PathPosition:
         for i, elt in enumerate(self.LINE_14):
             if elt == "6":
                 self.path_position_list.append((i*40, 560))
+        return self.path_position_list
 
 def main():
     LabyrinthList()

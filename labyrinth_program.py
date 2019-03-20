@@ -16,7 +16,7 @@ import decor_blit as db
 
 def main():
     db.Personne
-
+    
 if __name__ == "__main__":
     main()
 

@@ -53,7 +53,7 @@ def labyrinth_game():
         plastic_tube_location = RandomPosition()
         needle_position = needle_location.random_location
         ether_position = ether_location.random_location
-        splastic_tube_position = plastic_tube_location.random_location
+        plastic_tube_position = plastic_tube_location.random_location
 
     # use the function imported from the file decor_blit.py :
     # paste the background

@@ -1,7 +1,11 @@
 
+class Truc:
+        def __init__(self):
+                self.a=2
+                self.b=self.bidule()
 
+        def bidule(self):
+                return self.a*2
 
-
-for index in range(0, 600, 40):
-        line_number = int(index / 40)
-        print(index)
+new_truc = Truc()
+print(new_truc.bidule())

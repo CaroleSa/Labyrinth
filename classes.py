@@ -1,405 +1,301 @@
 #! /usr/bin/env python3
-# coding: utf-8
+# coding: UTF-8 je garde
 
 import os
 
-from random import *  
-import pygame                # import the pygame library and this module
+import random
+# import the pygame library and this module
+import pygame
 from pygame.locals import *
-pygame.init()                # initialize the pygame library
+# initialize the pygame library
+pygame.init()
 
-from labyrinth_list import *
-
-os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
-WINDOW = pygame.display.set_mode((600, 600))
-pygame.display.flip()
 class Labyrinth:
-    """ Creates the window and paste the background """
-    
-    def __init__(self):
-        self.coordinates_number_picture_list = []
 
-    def load_ground_picture(self):   
-        # load the pictures of the wall and the ground
+    def __init__(self):
+
+        os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
+        self.LABYRINTH_LIST = [
+        [0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 6, 3, 4, 1],
+        [5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5],
+        [5, 6, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5],
+        [5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 5],
+        [5, 6, 5, 6, 0, 4, 4, 6, 4, 4, 4, 4, 1, 6, 5],
+        [5, 6, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 5, 6, 5],
+        [5, 6, 5, 6, 5, 6, 0, 4, 4, 4, 4, 6, 5, 6, 5],
+        [5, 6, 5, 6, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 5],
+        [5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 4, 4, 4, 4, 5],
+        [5, 6, 6, 6, 5, 6, 5, 6, 5, 6, 6, 6, 6, 6, 5],
+        [5, 6, 5, 6, 5, 6, 5, 6, 5, 4, 4, 4, 4, 6, 5],
+        [5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 6, 6, 5],
+        [3, 4, 4, 4, 4, 4, 2, 6, 5, 6, 3, 4, 4, 4, 5],
+        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5],
+        [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2]]
+
+        # creates the window    
+        self.WINDOW = pygame.display.set_mode((600, 600))
+
         self.ground_picture = pygame.image.load("ground.png").convert_alpha()
-        return self.ground_picture
-    
-    def load_wall_top_left_picture(self):   
-        # load the pictures of the wall and the ground
         self.wall_top_left_picture = pygame.image.load("top_left.png").convert_alpha()
-        return self.wall_top_left_picture
-
-    def load_wall_top_right_picture(self):   
-        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
         self.wall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
-        return self.wall_top_right_picture
-
-    def load_wall_low_right_picture(self):   
-        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
         self.wall_low_right_picture = pygame.image.load("low_right.png").convert_alpha()
-        return self.wall_low_right_picture
-
-    def load_wall_low_left_picture(self):   
-        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()
         self.wall_low_left_picture = pygame.image.load("low_left.png").convert_alpha()
-        return self.wall_low_left_picture
-        
-    def load_wall_vertical_picture(self):   
-        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
-        self.wall_vertical_picture = pygame.image.load("vertical.png").convert_alpha()
-        return self.wall_vertical_picture
-
-    def load_wall_horizontal_picture(self):   
-        # load the pictures of the wall and the groundwall_top_right_picture = pygame.image.load("top_right.png").convert_alpha()wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
         self.wall_horizontal_picture = pygame.image.load("horizontal.png").convert_alpha()
-        return self.wall_horizontal_picture 
-    
-    def decor_blit(self, line_number, index, number_picture, picture):
-        for i, elt in enumerate(line_number):
-            if elt == number_picture:
-                self.coordinates_number_picture_list.append(((i*40), index))
-        for location in self.coordinates_number_picture_list:
-            WINDOW.blit(picture, (location))
-    
-    def call_decor_blit(self):
-        # call the function with different parameters
-        """for index in range(0, 600, 40):
-            line_number = int(index / 40)"""
-        
-        """self.decor_blit(LINE_{}, {}, \"0\", self.load_wall_top_left_picture())".format(line_number, index)
-        "self.decor_blit(LINE_{}, {}, \"1\", self.load_wall_top_right_picture())".format(line_number, index)
-        "self.decor_blit(LINE_{}, {}, \"2\", self.load_wall_low_right_picture())".format(line_number, index)
-        "self.decor_blit(LINE_{}, {}, \"3\", self.load_wall_low_left_picture())".format(line_number, index)
-        "self.decor_blit(LINE_{}, {}, \"4\", self.load_wall_horizontal_picture())".format(line_number, index)
-        "self.decor_blit(LINE_{}, {}, \"5\", self.load_wall_vertical_picture())".format(line_number, index)
-        "self.decor_blit(LINE_{}, {}, \"6\", self.load_ground_picture())".format(line_number, index)"""     
-
-        """self.decor_blit(LINE_0, 0, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_1, 40, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_2, 80, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_3, 120, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_4, 160, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_5, 200, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_6, 240, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_7, 280, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_8, 320, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_9, 360, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_10, 400, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_11, 440, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_12, 480, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_13, 520, "0", self.load_wall_top_left_picture())
-        self.decor_blit(LINE_14, 560, "0", self.load_wall_top_left_picture())
-        
-        self.decor_blit(LINE_0, 0, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_1, 40, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_2, 80, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_3, 120, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_4, 160, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_5, 200, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_6, 240, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_7, 280, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_8, 320, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_9, 360, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_10, 400, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_11, 440, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_12, 480, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_13, 520, "1", self.load_wall_top_right_picture())
-        self.decor_blit(LINE_14, 560, "1", self.load_wall_top_right_picture())
-        
-        self.decor_blit(LINE_0, 0, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_1, 40, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_2, 80, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_3, 120, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_4, 160, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_5, 200, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_6, 240, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_7, 280, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_8, 320, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_9, 360, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_10, 400, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_11, 440, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_12, 480, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_13, 520, "2", self.load_wall_low_right_picture())
-        self.decor_blit(LINE_14, 560, "2", self.load_wall_low_right_picture())
-        
-        self.decor_blit(LINE_0, 0, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_1, 40, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_2, 80, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_3, 120, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_4, 160, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_5, 200, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_6, 240, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_7, 280, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_8, 320, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_9, 360, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_10, 400, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_11, 440, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_12, 480, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_13, 520, "5", self.load_wall_vertical_picture())
-        self.decor_blit(LINE_14, 560, "5", self.load_wall_vertical_picture())
-        
-        self.decor_blit(LINE_0, 0, "6", self.load_ground_picture())
-        self.decor_blit(LINE_1, 40, "6", self.load_ground_picture())
-        self.decor_blit(LINE_2, 80, "6", self.load_ground_picture())
-        self.decor_blit(LINE_3, 120, "6", self.load_ground_picture())
-        self.decor_blit(LINE_4, 160, "6", self.load_ground_picture())
-        self.decor_blit(LINE_5, 200, "6", self.load_ground_picture())
-        self.decor_blit(LINE_6, 240, "6", self.load_ground_picture())
-        self.decor_blit(LINE_7, 280, "6", self.load_ground_picture())
-        self.decor_blit(LINE_8, 320, "6", self.load_ground_picture())
-        self.decor_blit(LINE_9, 360, "6", self.load_ground_picture())
-        self.decor_blit(LINE_10, 400, "6", self.load_ground_picture())
-        self.decor_blit(LINE_11, 440, "6", self.load_ground_picture())
-        self.decor_blit(LINE_12, 480, "6", self.load_ground_picture())
-        self.decor_blit(LINE_13, 520, "6", self.load_ground_picture())
-        self.decor_blit(LINE_14, 560, "6", self.load_ground_picture())
-
-        self.decor_blit(LINE_0, 0, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_1, 40, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_2, 80, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_3, 120, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_4, 160, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_5, 200, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_6, 240, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_7, 280, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_8, 320, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_9, 360, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_10, 400, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_11, 440, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_12, 480, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_13, 520, "3", self.load_wall_low_left_picture())
-        self.decor_blit(LINE_14, 560, "3", self.load_wall_low_left_picture())
-
-        self.decor_blit(LINE_0, 0, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_1, 40, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_2, 80, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_3, 120, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_4, 160, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_5, 200, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_6, 240, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_7, 280, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_8, 320, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_9, 360, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_10, 400, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_11, 440, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_12, 480, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_13, 520, "4", self.load_wall_horizontal_picture())
-        self.decor_blit(LINE_14, 560, "4", self.load_wall_horizontal_picture())"""
-
-        
-    """Function that pastes multiple images to create the wallpaper"""
-    """Searchs each list for the coordinates of each image to paste them"""
- 
-class PathPosition:
-    # empty list that will indicate the coordinates of the labyrinth path
-    def __init__(self):
+        self.wall_vertical_picture = pygame.image.load("vertical.png").convert_alpha()
+                
+        self.PICTURE_LIST = [self.wall_top_left_picture, self.wall_top_right_picture, self.wall_low_right_picture, 
+        self.wall_low_left_picture, self.wall_horizontal_picture, self.wall_vertical_picture, self.ground_picture]
+        # empty list that will indicate the coordinates of the labyrinth path
+                
         self.path_position_list = []
 
-    def incrementation(self):
-        # we get in each line, the coordinates of the path and add it to the empty list
-        # for elt in line_list... c'est surement plus simple et ca reduit le code
-        for i, elt in enumerate(LINE_0):
-            if elt == "6":
-                self.path_position_list.append((i*40, 0))
-        for i, elt in enumerate(LINE_1):
-            if elt == "6":
-                self.path_position_list.append((i*40, 40))
-        for i, elt in enumerate(LINE_2):
-            if elt == "6":
-                self.path_position_list.append((i*40, 80))
-        for i, elt in enumerate(LINE_3):
-            if elt == "6":
-                self.path_position_list.append((i*40, 120))
-        for i, elt in enumerate(LINE_4):
-            if elt == "6":
-                self.path_position_list.append((i*40, 160))
-        for i, elt in enumerate(LINE_5):
-            if elt == "6":
-                self.path_position_list.append((i*40, 200))
-        for i, elt in enumerate(LINE_6):
-            if elt == "6":
-                self.path_position_list.append((i*40, 240))
-        for i, elt in enumerate(LINE_7):
-            if elt == "6":
-                self.path_position_list.append((i*40, 280))
-        for i, elt in enumerate(LINE_8):
-            if elt == "6":
-                self.path_position_list.append((i*40, 320))
-        for i, elt in enumerate(LINE_9):
-            if elt == "6":
-                self.path_position_list.append((i*40, 360))
-        for i, elt in enumerate(LINE_10):
-            if elt == "6":
-                self.path_position_list.append((i*40, 400))
-        for i, elt in enumerate(LINE_11):
-            if elt == "6":
-                self.path_position_list.append((i*40, 440))
-        for i, elt in enumerate(LINE_12):
-            if elt == "6":
-                self.path_position_list.append((i*40, 480))
-        for i, elt in enumerate(LINE_13):
-            if elt == "6":
-                self.path_position_list.append((i*40, 520))
-        for i, elt in enumerate(LINE_14):
-            if elt == "6":
-                self.path_position_list.append((i*40, 560))
+        self.labyrinth_entry = (0, 520)
+
+        self.labyrinth_exit = (440, 0)
+
+    def blit_pictures(self):
+        """Searchs each list for the coordinates of each image to paste them"""
+        for i, elt in enumerate(self.LABYRINTH_LIST):
+            for y, number in enumerate(elt):
+                picture = self.PICTURE_LIST[number]
+                location = (y*40, i*40)
+                self.WINDOW.blit(picture, location)
+
+    def path_location(self): 
+        for i, elt in enumerate(self.LABYRINTH_LIST):
+            for y, number in enumerate(elt):
+                if number == 6:
+                    self.path_position_list.append((y*40, i*40))
         return self.path_position_list
 
 class Objects:
-    def __init__(self):
 
-            self.line_list = [LINE_1, LINE_2, LINE_3, LINE_4, LINE_5, LINE_6, LINE_7, LINE_8,
-                    LINE_9, LINE_10, LINE_11, LINE_12, LINE_13]
-            self.path_position_of_random_line = []
-        
+    def __init__(self):
+        self.WINDOW = Labyrinth().WINDOW
+        os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
+        self.object_1 = pygame.image.load("needle.png").convert()
+        self.object_2 = pygame.image.load("ether.png").convert()
+        self.object_3 = pygame.image.load("plastic_tube.png").convert()
+
     def random_position(self):
-        """Class that determines a random line and a random number in this line"""
-        random_line = choice(self.line_list) # determines a random line
-        # add in path_position_of_random_line the path coordinates of the random list
-        for i, elt in enumerate(random_line):
-                if elt == "6":
-                        index_random_line = self.line_list.index(random_line)
-                        self.path_position_of_random_line.append(((i * 40), (index_random_line + 1) * 40))
-        # determines a random coordinates
-        random_location = choice(self.path_position_of_random_line)
-        return random_location
+        self.labyrinth_entry = Labyrinth().labyrinth_entry
+        self.labyrinth_exit = Labyrinth().labyrinth_exit
+        self.path_location = Labyrinth().path_location()
 
-    def objects_random_position(self):
-        # creating variables with random coordinates for each objects
-        needle_position = self.random_position()
-        ether_position = self.random_position()
-        plastic_tube_position = self.random_position()
-                
-        """# while the objects overlap, we determine a new random coordinates
-        while needle_position == ether_position or ether_position == plastic_tube_position \
-                or plastic_tube_position == needle_position:     
-            self.objects_random_position()    
-        # while the objects overlap the characters, we determine a new random coordinates
-        while needle_position == (0, 520) or ether_position == (0, 520) or plastic_tube_position == (0, 520):
-            self.objects_random_position()"""
-                
-        return needle_position, ether_position, plastic_tube_position
-                        
-    def objects_position(self):
-        self.needle_position = self.objects_random_position()[0]
-        self.ether_position = self.objects_random_position()[1]
-        self.plastic_tube_position = self.objects_random_position()[2]
+        self.path_location.remove(Labyrinth().labyrinth_entry)
+        self.path_location.remove(Labyrinth().labyrinth_exit)
+        self.list_random_position = random.sample(self.path_location, 3)
+        return self.list_random_position
+   
+    def color_blit_objects(self):
+        self.WINDOW = Labyrinth().WINDOW
+        self.object_1.set_colorkey((255, 255, 255))
+        self.object_2.set_colorkey((255, 255, 255))
+        self.object_3.set_colorkey((255, 255, 255))
 
-    def load_needle_picture(self):
-        # load the picture of the needle, make the background
-        # of the picture transparent and paste the picture
-        self.needle_picture = pygame.image.load("needle.png").convert()
-        self.needle_picture.set_colorkey((255, 255, 255))
-        return self.needle_picture      
-        
-    def load_ether_picture(self):
-        # load the picture of the ether, make the background
-        # of the picture transparent and paste the picture
-        self.ether_picture = pygame.image.load("ether.png").convert()
-        self.ether_picture.set_colorkey((255, 255, 255))
-        return self.ether_picture
-                
-    def load_plastic_tube_picture(self):
-        # load the picture of the plastic tube, make the background
-        # of the picture transparent and paste the picture
-        self.plastic_tube_picture = pygame.image.load("plastic_tube.png").convert()
-        self.plastic_tube_picture.set_colorkey((255, 255, 255))
-        return self.plastic_tube_picture
-         
-    def blit_needle_picture(self):
-        #if self.load_needle_picture() != None:
-        self.objects_position()
-        WINDOW.blit(self.load_needle_picture(), self.needle_position)
-        
-    def blit_ether_picture(self):
-        self.objects_position()        
-        WINDOW.blit(self.load_ether_picture(), self.ether_position)
+        self.WINDOW.blit(self.object_1, self.random_position()[0])
+        self.WINDOW.blit(self.object_2, self.random_position()[1])
+        self.WINDOW.blit(self.object_3, self.random_position()[2])
 
-    def blit_plastic_tube_picture(self):
-        self.objects_position()
-        WINDOW.blit(self.load_plastic_tube_picture(), self.plastic_tube_position)
-    
-class Person:
+class Person(Labyrinth):
+
     def __init__(self):
+        self.WINDOW = Labyrinth().WINDOW
+        self.labyrinth_entry = Labyrinth().labyrinth_entry
+        os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")        
+        self.grave_picture = pygame.image.load("grave.png").convert()
+        self.replay_picture = pygame.image.load("replay.png").convert()
+        self.won_picture = pygame.image.load("won.png").convert()
+        self.quit_picture = pygame.image.load("quit.png").convert()
+        self.guardian_picture = pygame.image.load("guardian.png").convert()
+        self.mac_gyver_picture = pygame.image.load("MacGyver.png").convert()
         # dictionary that indicates the last position of mac gyver
-        self.last_location_mac_gyver_dict = {0: 520}
+        self.last_location_mac_gyver_dict = {self.labyrinth_entry[0]: self.labyrinth_entry[1]}
         # list that indicates the coordinates of the path traveled
         # by mac gyver
-        self.path_traveled_mac_gyver = [(0, 520)]
+        self.path_traveled_mac_gyver = [self.labyrinth_entry]
         # counter of objects
-        self.counter_objects = 0
+        self.counter_objects = 0 
+        self.last_location_mac_gyver_tuple = self.labyrinth_entry 
 
-    def blit_mac_gyver_picture(self):
-        # load the picture of the Mac Gyver, make the background
-        # of the picture transparent and paste the picture
-        self.mac_gyver_picture = pygame.image.load("MacGyver.png").convert()
-        self.mac_gyver_picture.set_colorkey((255, 255, 255))
-        self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
-        WINDOW.blit(self.mac_gyver_picture, (0, 520))
-        return self.moving_mac_gyver, self.mac_gyver_picture
-
-    def blit_guardian_picture(self):
-        # load the picture of the guardian, make the background
-        # of the picture transparent and paste the picture
-        self.guardian_picture = pygame.image.load("guardian.png").convert()
-        self.guardian_picture.set_colorkey((255, 255, 255))
-        WINDOW.blit(self.guardian_picture, (440, 0))
-        return self.guardian_picture
-
-    def load_grave_picture(self):
-        # load the picture of the grave and make the background
-        # of the picture transparent
-        self.grave_picture = pygame.image.load("grave.png").convert()
+    def color(self):
         self.grave_picture.set_colorkey((255, 255, 255))
-        return self.grave_picture
-
-    def load_won_picture(self):
-        # load the picture of the won and make the background
-        # of the picture transparent
-        self.won_picture = pygame.image.load("won.png").convert()
         self.won_picture.set_colorkey((255, 255, 255))
-        return self.won_picture
-
-    def load_quit_picture(self):
-        # load the picture of the quit and make the background
-        # of the picture transparent
-        self.quit_picture = pygame.image.load("quit.png").convert()
         self.quit_picture.set_colorkey((255, 255, 255))
-        return self.quit_picture
-
-    def load_replay_picture(self):
-        # load the picture of the replay and make the background
-        # of the picture transparent
-        self.replay_picture = pygame.image.load("replay.png").convert()
         self.replay_picture.set_colorkey((255, 255, 255))
-        return self.replay_picture
 
+    def mac_gyver_move(self):
+        self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
+        return self.moving_mac_gyver
+                
     def init_event(self):
-        """Function that paste the pictures and refresh the screen"""
+        self.WINDOW = Labyrinth().WINDOW
+
+        Labyrinth().blit_pictures()
+        new_objects = Objects()
+        new_objects.color_blit_objects()
+
+        self.labyrinth_entry = Labyrinth().labyrinth_entry
+        self.labyrinth_exit = Labyrinth().labyrinth_exit
         
-        """Objects.load_ether_picture(self)
-        Objects.load_needle_picture(self)
-        Objects.load_plastic_tube_picture(self)
-        Objects.objects_random_position(self)
-        Objects.objects_position(self)"""
+        self.guardian_picture.set_colorkey((255, 255, 255))       
+        self.WINDOW.blit(self.guardian_picture, self.labyrinth_exit)
         
-        Labyrinth.call_decor_blit(self)
-        self.mac_gyver_picture = self.blit_mac_gyver_picture()[1]
-        WINDOW.blit(self.blit_guardian_picture(), (440, 0))
-        WINDOW.blit(self.mac_gyver_picture, (self.last_location_mac_gyver_tuple))
-        """WINDOW.blit(load_ether_picture(), ether_position)
-        WINDOW.blit(load_needle_picture(), needle_position)
-        WINDOW.blit(load_plastic_tube_picture(), plastic_tube_position)"""
+        self.mac_gyver_picture.set_colorkey((255, 255, 255))
+        self.WINDOW.blit(self.mac_gyver_picture, self.last_location_mac_gyver_tuple)
+
+        
+
+
         pygame.display.flip()
-    
+
     def movement_right(self):
-        for cle, valeur in self.last_location_mac_gyver_dict.items():
-            """self.moving_mac_gyver = self.blit_mac_gyver_picture()[0]"""
+        self.moving_mac_gyver = self.mac_gyver_move()
+
+        for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(40, 0)
-            self.last_location_mac_gyver_tuple = (cle + 40, valeur)
+            self.last_location_mac_gyver_tuple = (key + 40, value)
             self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[cle + 40] = valeur
+            self.last_location_mac_gyver_dict[key + 40] = value
             self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
             self.init_event()
-            print(self.path_traveled_mac_gyver)
+            print(self.last_location_mac_gyver_dict)
+
+    def movement_left(self):
+        self.moving_mac_gyver = self.mac_gyver_move()
+
+        for key, value in self.last_location_mac_gyver_dict.items():
+            self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
+            self.last_location_mac_gyver_tuple = (key - 40, value)
+            self.last_location_mac_gyver_dict.clear()
+            self.last_location_mac_gyver_dict[key - 40] = value
+            self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
+            self.init_event()
+                    
+    def movement_up(self):
+        self.moving_mac_gyver = self.mac_gyver_move()
+
+        for key, value in self.last_location_mac_gyver_dict.items():
+            self.moving_mac_gyver = self.moving_mac_gyver.move(0, - 40)
+            self.last_location_mac_gyver_tuple = (key, value - 40)
+            self.last_location_mac_gyver_dict.clear()
+            self.last_location_mac_gyver_dict[key] = value - 40
+            self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
+            self.init_event()
+
+    def movement_down(self):
+        self.moving_mac_gyver = self.mac_gyver_move()
+
+        for key, value in self.last_location_mac_gyver_dict.items():
+            self.moving_mac_gyver = self.moving_mac_gyver.move(0, 40)
+            self.last_location_mac_gyver_tuple = (key, value + 40)
+            self.last_location_mac_gyver_dict.clear()
+            self.last_location_mac_gyver_dict[key] = value + 40
+            self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
+            self.init_event()
+
+    """def avoid_wall_right(self):
+        for key, value in self.last_location_mac_gyver_dict.items():
+            self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
+            del self.path_traveled_mac_gyver[-1]
+            self.last_location_mac_gyver_tuple = (key - 40, value)
+            self.last_location_mac_gyver_dict.clear()
+            self.last_location_mac_gyver_dict[key - 40] = value
+            self.init_event()
+
+    def avoid_wall_left(self):
+        for key, value in self.last_location_mac_gyver_dict.items():
+            del self.path_traveled_mac_gyver[-1]
+            self.moving_mac_gyver = self.moving_mac_gyver.move(40, 0)
+            self.last_location_mac_gyver_tuple = (key + 40, value)
+            self.last_location_mac_gyver_dict.clear()
+            self.last_location_mac_gyver_dict[key + 40] = value
+            self.init_event()
+
+    def avoid_wall_top(self):
+        for key, value in self.last_location_mac_gyver_dict.items():
+            self.moving_mac_gyver = self.moving_mac_gyver.move(0, 40)
+            del self.path_traveled_mac_gyver[-1]
+            self.last_location_mac_gyver_tuple = (key, value + 40)
+            self.last_location_mac_gyver_dict.clear()
+            self.last_location_mac_gyver_dict[key] = value + 40
+            self.init_event() #ne pas oublier dans fichier principal de permettre de modifier le labyrinth
+        
+    def avoid_wall_down(self):
+        for key, value in self.last_location_mac_gyver_dict.items():
+            self.moving_mac_gyver = self.moving_mac_gyver.move(0, - 40)
+            del self.path_traveled_mac_gyver[-1]
+            self.last_location_mac_gyver_tuple = (key, value - 40)
+            self.last_location_mac_gyver_dict.clear()
+            self.last_location_mac_gyver_dict[key] = value - 40
+            self.init_event()
+
+    def keep_still(self):
+        new_labyrinth = Labyrinth()
+        exit_location = new_labyrinth.labyrinth_exit
+        column = exit_location[0]
+        line = exit_location[1]  #a tout revoir car l'idée et de pouvoir modif la localisation de la sortie
+        # if the player arrives on the guardien, he can no longer move
+        if self.last_location_mac_gyver_dict == {440: - 40}:
+            for key, value in self.last_location_mac_gyver_dict.items():
+                self.last_location_mac_gyver_tuple = (cle, valeur + 40)
+                self.last_location_mac_gyver_dict.clear()
+                self.last_location_mac_gyver_dict[cle] = valeur + 40
+                init_event()
+        if self.path_traveled_mac_gyver.count((440, 0)) == 1 \
+        and self.last_location_mac_gyver_dict == {440: 40}:
+            for key, value in self.last_location_mac_gyver_dict.items():
+                del self.path_traveled_mac_gyver[-1]
+                self.last_location_mac_gyver_tuple = (cle, valeur - 40)
+                self.last_location_mac_gyver_dict.clear()
+                self.last_location_mac_gyver_dict[cle] = valeur - 40
+                init_event()
+
+    def pick_up_objects(self):
+        new_objects = Objects()  #voir si on peut pas réduire les lignes
+        object_1 = new_objects.object_1
+        object_2 = new_objects.object_2
+        object_3 = new_objects.object_3
+        object_1_position = new_objects.blit_random_position()[0]
+        object_2_position = new_objects.blit_random_position()[1]
+        object_3_position = new_objects.blit_random_position()[2]
+        # if mac gyver is passed on the neddle
+        # +1 to the counter of objects and the needle disappears from the window
+        if self.path_traveled_mac_gyver.count(object_1_position) == 1:
+            self.counter_objects = self.counter_objects + 1
+            object_1_position = self.WINDOW.blit(object_1, (600, 600))
+        # if mac gyver is passed on the ether
+        # +1 to the counter of objects and the ether disappears from the window
+        if self.path_traveled_mac_gyver.count(object_2_position) == 1:
+            self.counter_objects = self.counter_objects + 1
+            object_2_position = self.WINDOW.blit(object_2, (600, 600))
+        # if mac gyver is passed on the plastic_tube
+        # +1 to the counter of objects and the syringe disappears from the window
+        if self.path_traveled_mac_gyver.count(object_3_position) == 1:
+            self.counter_objects = self.counter_objects + 1
+            object_2_position = self.WINDOW.blit(object_3, (600, 600))"""
+
+
+
     
+
+
+    
+         
+        
+
+"""new_labyrinth = Labyrinth()
+new_labyrinth.blit_pictures()
+new_labyrinth.path_location()"""
+"""new_objects = Objects("needle.png", "ether.png", "plastic_tube.png")
+new_objects.random_position()
+new_objects.color_blit_objects()"""
+"""Person().init_event()
+Person().person_color_blit()
+Person().movement_right()"""
+
+
+
+                                        
+
+

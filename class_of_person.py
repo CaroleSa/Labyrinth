@@ -182,7 +182,8 @@ class Person():
         line = self.labyrinth.labyrinth_exit[1]
         
         # if the player arrives on the guardien, he can no longer move
-        if self.last_location_mac_gyver_dict == {column, line - 40}:
+        if self.path_traveled_mac_gyver.count(self.labyrinth.labyrinth_exit) == 1 \
+        and self.last_location_mac_gyver_dict == {column: line - 40}:
             for key, value in self.last_location_mac_gyver_dict.items():
                 self.last_location_mac_gyver_tuple = (key, value + 40)
                 self.last_location_mac_gyver_dict.clear()
@@ -196,18 +197,20 @@ class Person():
                 self.last_location_mac_gyver_dict.clear()
                 self.last_location_mac_gyver_dict[key] = value - 40
                 self.init_event()
-        """if self.last_location_mac_gyver_dict == {440: - 40}:
+        if self.path_traveled_mac_gyver.count(self.labyrinth.labyrinth_exit) == 1 \
+        and self.last_location_mac_gyver_dict == {column + 40: line}:
             for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (key, value + 40)
+                self.last_location_mac_gyver_tuple = (key - 40, value)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key] = value + 40
+                self.last_location_mac_gyver_dict[key - 40] = value
                 self.init_event()
-        if self.last_location_mac_gyver_dict == {440: - 40}:
+        if self.path_traveled_mac_gyver.count(self.labyrinth.labyrinth_exit) == 1 \
+        and self.last_location_mac_gyver_dict == {column - 40: line}:
             for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (key, value + 40)
+                self.last_location_mac_gyver_tuple = (key + 40, value)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key] = value + 40
-                self.init_event()"""
+                self.last_location_mac_gyver_dict[key + 40] = value
+                self.init_event()
 
     """def pick_up_objects(self):
         new_objects = Objects()  #voir si on peut pas réduire les lignes

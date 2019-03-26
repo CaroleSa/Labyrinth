@@ -105,7 +105,7 @@ class Person():
             self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
             self.init_event()
 
-    """def avoid_wall_right(self):
+    def avoid_wall_right(self):
         for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
             del self.path_traveled_mac_gyver[-1]
@@ -141,7 +141,7 @@ class Person():
             self.last_location_mac_gyver_dict[key] = value - 40
             self.init_event()
 
-    def keep_still(self):
+    """def keep_still(self):
         new_labyrinth = Labyrinth()
         exit_location = new_labyrinth.labyrinth_exit
         column = exit_location[0]

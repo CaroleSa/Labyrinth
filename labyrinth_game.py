@@ -45,63 +45,47 @@ def labyrinth_game():
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_RIGHT:
                 person.movement_right()    
+
             # if press the left arrow key, mac gyver goes left
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_LEFT:
                 person.movement_left() 
+
             # if press the up arrow key, mac gyver goes up
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_UP:
                 person.movement_up() 
+
             # if press the down arrow key, mac gyver goes down
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_DOWN:
                 person.movement_down()
+
             """# if mac gyver goes down on the coordinates of a wall
             # mac gyver returns to its original position
             if event.type == KEYDOWN and event.key == K_DOWN \
-                and path_position_list.count(last_location_mac_gyver_tuple) == 0:
-                for cle, valeur in last_location_mac_gyver_dict.items():
-                    moving_mac_gyver = moving_mac_gyver.move(0, - 40)
-                    del path_traveled_mac_gyver[-1]
-                    last_location_mac_gyver_tuple = (cle, valeur - 40)
-                    last_location_mac_gyver_dict.clear()
-                    last_location_mac_gyver_dict[cle] = valeur - 40
-                    init_event()
+                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
+                person.avoid_wall_down()
+
             # if mac gyver goes up on the coordinates of a wall
             # mac gyver returns to its original position
             if event.type == KEYDOWN and event.key == K_UP \
-                and path_position_list.count(last_location_mac_gyver_tuple) == 0:
-                for cle, valeur in last_location_mac_gyver_dict.items():
-                    moving_mac_gyver = moving_mac_gyver.move(0, 40)
-                    del path_traveled_mac_gyver[-1]
-                    last_location_mac_gyver_tuple = (cle, valeur + 40)
-                    last_location_mac_gyver_dict.clear()
-                    last_location_mac_gyver_dict[cle] = valeur + 40
-                    init_event()
+                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
+                person.avoid_wall_up()
+
             # if mac gyver goes right on the coordinates of a wall
             # mac gyver returns to its original position
             if event.type == KEYDOWN and event.key == K_RIGHT \
-                and path_position_list.count(last_location_mac_gyver_tuple) == 0:
-                for cle, valeur in last_location_mac_gyver_dict.items():
-                    moving_mac_gyver = moving_mac_gyver.move(- 40, 0)
-                    del path_traveled_mac_gyver[-1]
-                    last_location_mac_gyver_tuple = (cle - 40, valeur)
-                    last_location_mac_gyver_dict.clear()
-                    last_location_mac_gyver_dict[cle - 40] = valeur
-                    init_event()
+                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
+                person.avoid_wall_right()
+
             # if mac gyver goes left on the coordinates of a wall
             # mac gyver returns to its original position
             if event.type == KEYDOWN and event.key == K_LEFT \
-                and path_position_list.count(last_location_mac_gyver_tuple) == 0:
-                for cle, valeur in last_location_mac_gyver_dict.items():
-                    del path_traveled_mac_gyver[-1]
-                    moving_mac_gyver = moving_mac_gyver.move(40, 0)
-                    last_location_mac_gyver_tuple = (cle + 40, valeur)
-                    last_location_mac_gyver_dict.clear()
-                    last_location_mac_gyver_dict[cle + 40] = valeur
-                    init_event()
-            # if the player arrives on the guardien, he can no longer move
+                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
+                person.avoid_wall_left()"""
+
+            """# if the player arrives on the guardien, he can no longer move
             if last_location_mac_gyver_dict == {440: - 40}:
                 for cle, valeur in last_location_mac_gyver_dict.items():
                     last_location_mac_gyver_tuple = (cle, valeur + 40)

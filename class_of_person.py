@@ -39,9 +39,9 @@ class Person():
         self.counter_objects = 0 
         self.last_location_mac_gyver_tuple = self.labyrinth_entry
         self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
+        
 
     def color_blit_person(self):
-        
         
         self.WINDOW = self.labyrinth.WINDOW
         self.labyrinth_entry = self.labyrinth.labyrinth_entry
@@ -61,7 +61,6 @@ class Person():
                 
     def init_event(self):
         
-        self.objects = class_of_objects.Objects()
         self.labyrinth.blit_pictures()
         
         self.color_blit_person()
@@ -236,7 +235,29 @@ class Person():
             self.counter_objects = self.counter_objects + 1
             object_2_position = self.WINDOW.blit(object_3, (600, 600))"""
 
-
+    def lost(self):
+        lost = 1
+        if self.last_location_mac_gyver_tuple == self.labyrinth.labyrinth_exit and self.counter_objects != 3:
+            self.labyrinth.blit_pictures()
+            self.color_blit_person()
+            self.objects.color_blit_objects()
+            self.color_pictures_end_game()
+            self.WINDOW.blit(self.grave_picture, (200, 200))
+            self.WINDOW.blit(self.replay_picture, (0, 520))
+            self.WINDOW.blit(self.quit_picture, (520, 520))
+            pygame.display.flip()
+            return lost
+        
+    def won(self): # ok
+        won = 1
+        if self.last_location_mac_gyver_tuple == self.labyrinth.labyrinth_exit and self.counter_objects == 3:
+            self.labyrinth.blit_pictures()
+            self.WINDOW.blit(self.won_picture, (120, 120))
+            self.color_pictures_end_game()
+            pygame.display.flip()
+            pygame.quit()
+            quit()
+            return won
 
     
 

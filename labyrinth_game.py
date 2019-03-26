@@ -61,22 +61,28 @@ def labyrinth_game():
             # Mac Gyver keep still when he arrives on the guardian
             person.keep_still()
 
-            """# if the player arrives on the guardien, he can no longer move
-            if last_location_mac_gyver_dict == {440: - 40}:
-                for cle, valeur in last_location_mac_gyver_dict.items():
-                    last_location_mac_gyver_tuple = (cle, valeur + 40)
-                    last_location_mac_gyver_dict.clear()
-                    last_location_mac_gyver_dict[cle] = valeur + 40
-                    init_event()
-            if path_traveled_mac_gyver.count((440, 0)) == 1 \
-                and last_location_mac_gyver_dict == {440: 40}:
-                for cle, valeur in last_location_mac_gyver_dict.items():
-                    del path_traveled_mac_gyver[-1]
-                    last_location_mac_gyver_tuple = (cle, valeur - 40)
-                    last_location_mac_gyver_dict.clear()
-                    last_location_mac_gyver_dict[cle] = valeur - 40
-                    init_event()
-            # if mac gyver is passed on the neddle
+            if person.lost() == 1:
+                if event.type == MOUSEBUTTONDOWN and event.button == 1 \
+                and event.pos[0] > 520 and event.pos[1] > 520:
+                    pygame.quit()
+                    quit()
+                if event.type == MOUSEBUTTONDOWN and event.button == 1 \
+                and event.pos[0] < 80 and event.pos[1] > 520:
+                    labyrinth_game()
+
+            if person.won() == 1:
+                pygame.quit()
+                quit()
+
+
+            
+
+            
+            
+                    
+
+           
+            """# if mac gyver is passed on the neddle
             # +1 to the counter of objects and the needle disappears from the window
             if path_traveled_mac_gyver.count(needle_position) == 1:
                 counter_objects = counter_objects + 1

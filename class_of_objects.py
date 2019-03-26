@@ -24,30 +24,38 @@ class Objects:
         self.object_3 = pygame.image.load("plastic_tube.png").convert()
 
     def random_position(self):
-        self.labyrinth_entry = self.labyrinth.labyrinth_entry
-        self.labyrinth_exit = self.labyrinth.labyrinth_exit
+        #self.labyrinth_entry = self.labyrinth.labyrinth_entry
+        #self.labyrinth_exit = self.labyrinth.labyrinth_exit
         self.path_location = self.labyrinth.path_location()
 
         self.path_location.remove(self.labyrinth.labyrinth_entry)
         self.path_location.remove(self.labyrinth.labyrinth_exit)
         self.list_random_position = random.sample(self.path_location, 3)
-        return self.list_random_position
-   
-    def __get__value_position_objects(self):
-        self.WINDOW = self.labyrinth.WINDOW
 
-        self.position_object_1 = self.random_position()[0]
-        self.position_object_2 = self.random_position()[1]
-        self.position_object_3 = self.random_position()[2]
+        self.position_object_1 = self.list_random_position[0]
+        self.position_object_2 = self.list_random_position[1]
+        self.position_object_3 = self.list_random_position[2]
+
+        return self.position_object_1, self.position_object_2, self.position_object_3
+
+    def seed_position(self):
+
+        random.seed(self.random_position()[0])
+        random.seed(self.random_position()[1])
+        random.seed(self.random_position()[2]) 
+
         return self.position_object_1, self.position_object_2, self.position_object_3
 
     def color_blit_objects(self):
+        self.WINDOW = self.labyrinth.WINDOW
+
         self.object_1.set_colorkey((255, 255, 255))
         self.object_2.set_colorkey((255, 255, 255))
         self.object_3.set_colorkey((255, 255, 255))
 
-        self.WINDOW.blit(self.object_1, self.__get__value_position_objects()[0])
-        self.WINDOW.blit(self.object_2, self.__get__value_position_objects()[1])
-        self.WINDOW.blit(self.object_3, self.__get__value_position_objects()[2])
+        self.seed_position()
 
-Objects()
+        self.WINDOW.blit(self.object_1, self.seed_position()[0])
+        self.WINDOW.blit(self.object_2, self.seed_position()[1])
+        self.WINDOW.blit(self.object_3, self.seed_position()[2])
+

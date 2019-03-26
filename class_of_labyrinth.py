@@ -49,7 +49,7 @@ class Labyrinth:
                 
         self.path_position_list = []
 
-        self.labyrinth_entry = (0, 520)
+        self.labyrinth_entry = (0, 520) #prevoir de mettre l'entree et la sortie dans le tableau
 
         self.labyrinth_exit = (440, 0)
 

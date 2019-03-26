@@ -12,6 +12,7 @@ from pygame.locals import *
 # initialize the pygame library
 pygame.init()
 
+# import modules of the game
 import class_of_labyrinth
 import class_of_person
 import class_of_objects
@@ -41,26 +42,23 @@ def labyrinth_game():
 
         for event in pygame.event.get(): 
             
-            # if press the right arrow key? mac gyver goes right
-            # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
+            # Mac Gyver turns to the right and avoids the wall
             if event.type == KEYDOWN and event.key == K_RIGHT:
                 person.movement_right()    
 
-            # if press the left arrow key, mac gyver goes left
-            # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
+            # Mac Gyver turns to the left and avoids the wall
             if event.type == KEYDOWN and event.key == K_LEFT:
                 person.movement_left() 
 
-            # if press the up arrow key, mac gyver goes up
-            # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
+            # Mac Gyver goes up and avoids the wall
             if event.type == KEYDOWN and event.key == K_UP:
                 person.movement_up() 
 
-            # if press the down arrow key, mac gyver goes down
-            # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
+            # Mac Gyver goes down and avoids the wall
             if event.type == KEYDOWN and event.key == K_DOWN:
                 person.movement_down()
 
+            # Mac Gyver keep still when he arrives on the guardian
             person.keep_still()
 
             """# if the player arrives on the guardien, he can no longer move

@@ -78,6 +78,16 @@ class Person():
             self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
             self.init_event()
 
+        if self.labyrinth.path_location().count(self.last_location_mac_gyver_tuple) == 0:
+            for key, value in self.last_location_mac_gyver_dict.items():
+                self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
+                del self.path_traveled_mac_gyver[-1]
+                self.last_location_mac_gyver_tuple = (key - 40, value)
+                self.last_location_mac_gyver_dict.clear()
+                self.last_location_mac_gyver_dict[key - 40] = value
+                self.init_event()
+
+
     def movement_left(self):
         for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)

@@ -12,16 +12,25 @@ from pygame.locals import *
 # initialize the pygame library
 pygame.init()
 
-from classes import *
+import class_of_labyrinth
+import class_of_person
+import class_of_objects
+labyrinth = class_of_labyrinth.Labyrinth()
+person = class_of_person.Person()
+objects = class_of_objects.Objects()
+
 
 def labyrinth_game():
     """For replay the game"""
     # indicates the way to find the images to be used for the program
     os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
+    
+    
+    objects.color_blit_objects()
+    
+    labyrinth.blit_pictures()
 
-    Labyrinth().blit_pictures()
-    Objects().color_blit_objects()
-    Person().color_blit_person()
+    person.color_blit_person()
 
     pygame.display.flip()
 
@@ -31,26 +40,23 @@ def labyrinth_game():
     while play:
 
         for event in pygame.event.get(): 
+            
             # if press the right arrow key? mac gyver goes right
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_RIGHT:
-                new_person = Person()
-                new_person.movement_right()    
+                person.movement_right()    
             # if press the left arrow key, mac gyver goes left
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_LEFT:
-                new_person = Person()
-                new_person.movement_left() 
+                person.movement_left() 
             # if press the up arrow key, mac gyver goes up
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_UP:
-                new_person = Person()
-                new_person.movement_up() 
+                person.movement_up() 
             # if press the down arrow key, mac gyver goes down
             # adding the last position of mac gyver in the list PATH_TRAVELED_MAC_GYVER
             if event.type == KEYDOWN and event.key == K_DOWN:
-                new_person = Person()
-                new_person.movement_down()
+                person.movement_down()
             """# if mac gyver goes down on the coordinates of a wall
             # mac gyver returns to its original position
             if event.type == KEYDOWN and event.key == K_DOWN \

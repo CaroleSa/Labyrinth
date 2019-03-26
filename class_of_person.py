@@ -177,28 +177,39 @@ class Person():
             self.last_location_mac_gyver_dict[key] = value - 40
             self.init_event()
 
-    """def keep_still(self):
-        new_labyrinth = Labyrinth()
-        exit_location = new_labyrinth.labyrinth_exit
-        column = exit_location[0]
-        line = exit_location[1]  #a tout revoir car l'idée et de pouvoir modif la localisation de la sortie
+    def keep_still(self):
+        column = self.labyrinth.labyrinth_exit[0]
+        line = self.labyrinth.labyrinth_exit[1]
+        
         # if the player arrives on the guardien, he can no longer move
-        if self.last_location_mac_gyver_dict == {440: - 40}:
+        if self.last_location_mac_gyver_dict == {column, line - 40}:
             for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (cle, valeur + 40)
+                self.last_location_mac_gyver_tuple = (key, value + 40)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[cle] = valeur + 40
-                init_event()
-        if self.path_traveled_mac_gyver.count((440, 0)) == 1 \
-        and self.last_location_mac_gyver_dict == {440: 40}:
+                self.last_location_mac_gyver_dict[key] = value + 40
+                self.init_event()
+        if self.path_traveled_mac_gyver.count(self.labyrinth.labyrinth_exit) == 1 \
+        and self.last_location_mac_gyver_dict == {column: line + 40}:
             for key, value in self.last_location_mac_gyver_dict.items():
                 del self.path_traveled_mac_gyver[-1]
-                self.last_location_mac_gyver_tuple = (cle, valeur - 40)
+                self.last_location_mac_gyver_tuple = (key, value - 40)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[cle] = valeur - 40
-                init_event()
+                self.last_location_mac_gyver_dict[key] = value - 40
+                self.init_event()
+        """if self.last_location_mac_gyver_dict == {440: - 40}:
+            for key, value in self.last_location_mac_gyver_dict.items():
+                self.last_location_mac_gyver_tuple = (key, value + 40)
+                self.last_location_mac_gyver_dict.clear()
+                self.last_location_mac_gyver_dict[key] = value + 40
+                self.init_event()
+        if self.last_location_mac_gyver_dict == {440: - 40}:
+            for key, value in self.last_location_mac_gyver_dict.items():
+                self.last_location_mac_gyver_tuple = (key, value + 40)
+                self.last_location_mac_gyver_dict.clear()
+                self.last_location_mac_gyver_dict[key] = value + 40
+                self.init_event()"""
 
-    def pick_up_objects(self):
+    """def pick_up_objects(self):
         new_objects = Objects()  #voir si on peut pas réduire les lignes
         object_1 = new_objects.object_1
         object_2 = new_objects.object_2

@@ -68,7 +68,6 @@ class Labyrinth:
                     self.path_position_list.append((y*40, i*40))
         return self.path_position_list
 
-Labyrinth()
 
 
          

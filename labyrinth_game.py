@@ -61,29 +61,7 @@ def labyrinth_game():
             if event.type == KEYDOWN and event.key == K_DOWN:
                 person.movement_down()
 
-            """# if mac gyver goes down on the coordinates of a wall
-            # mac gyver returns to its original position
-            if event.type == KEYDOWN and event.key == K_DOWN \
-                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
-                person.avoid_wall_down()
-
-            # if mac gyver goes up on the coordinates of a wall
-            # mac gyver returns to its original position
-            if event.type == KEYDOWN and event.key == K_UP \
-                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
-                person.avoid_wall_up()
-
-            # if mac gyver goes right on the coordinates of a wall
-            # mac gyver returns to its original position
-            if event.type == KEYDOWN and event.key == K_RIGHT \
-                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
-                person.avoid_wall_right()
-
-            # if mac gyver goes left on the coordinates of a wall
-            # mac gyver returns to its original position
-            if event.type == KEYDOWN and event.key == K_LEFT \
-                and labyrinth.path_position_list.count(person.last_location_mac_gyver_tuple) == 0:
-                person.avoid_wall_left()"""
+            person.keep_still()
 
             """# if the player arrives on the guardien, he can no longer move
             if last_location_mac_gyver_dict == {440: - 40}:

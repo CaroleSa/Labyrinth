@@ -19,14 +19,9 @@ def labyrinth_game():
     # indicates the way to find the images to be used for the program
     os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
 
-
-    new_objects = Objects()
-    new_objects.color_blit_objects()
-
-    Person().init_event()
-    Person().mac_gyver_move()
-
     Labyrinth().blit_pictures()
+    Objects().color_blit_objects()
+    Person().color_blit_person()
 
     pygame.display.flip()
 

@@ -87,15 +87,24 @@ class Objects:
         self.list_random_position = random.sample(self.path_location, 3)
         return self.list_random_position
    
-    def color_blit_objects(self):
+    def __get__value_position_objects(self):
         self.WINDOW = Labyrinth().WINDOW
+
+        self.position_object_1 = self.random_position()[0]
+        self.position_object_2 = self.random_position()[1]
+        self.position_object_3 = self.random_position()[2]
+        return self.position_object_1, self.position_object_2, self.position_object_3
+
+    def color_blit_objects(self):
         self.object_1.set_colorkey((255, 255, 255))
         self.object_2.set_colorkey((255, 255, 255))
         self.object_3.set_colorkey((255, 255, 255))
 
-        self.WINDOW.blit(self.object_1, self.random_position()[0])
-        self.WINDOW.blit(self.object_2, self.random_position()[1])
-        self.WINDOW.blit(self.object_3, self.random_position()[2])
+        self.WINDOW.blit(self.object_1, self.__get__value_position_objects()[0])
+        self.WINDOW.blit(self.object_2, self.__get__value_position_objects()[1])
+        self.WINDOW.blit(self.object_3, self.__get__value_position_objects()[2])
+
+         
 
 class Person(Labyrinth):
 
@@ -116,42 +125,35 @@ class Person(Labyrinth):
         self.path_traveled_mac_gyver = [self.labyrinth_entry]
         # counter of objects
         self.counter_objects = 0 
-        self.last_location_mac_gyver_tuple = self.labyrinth_entry 
-
-    def color(self):
-        self.grave_picture.set_colorkey((255, 255, 255))
-        self.won_picture.set_colorkey((255, 255, 255))
-        self.quit_picture.set_colorkey((255, 255, 255))
-        self.replay_picture.set_colorkey((255, 255, 255))
-
-    def mac_gyver_move(self):
+        self.last_location_mac_gyver_tuple = self.labyrinth_entry
         self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
-        return self.moving_mac_gyver
-                
-    def init_event(self):
+
+    def color_blit_person(self):
         self.WINDOW = Labyrinth().WINDOW
-
-        Labyrinth().blit_pictures()
-        new_objects = Objects()
-        new_objects.color_blit_objects()
-
         self.labyrinth_entry = Labyrinth().labyrinth_entry
         self.labyrinth_exit = Labyrinth().labyrinth_exit
-        
+
         self.guardian_picture.set_colorkey((255, 255, 255))       
         self.WINDOW.blit(self.guardian_picture, self.labyrinth_exit)
         
         self.mac_gyver_picture.set_colorkey((255, 255, 255))
         self.WINDOW.blit(self.mac_gyver_picture, self.last_location_mac_gyver_tuple)
 
+    def color_pictures_end_game(self):
+        self.grave_picture.set_colorkey((255, 255, 255))
+        self.won_picture.set_colorkey((255, 255, 255))
+        self.quit_picture.set_colorkey((255, 255, 255))
+        self.replay_picture.set_colorkey((255, 255, 255))
+                
+    def init_event(self):
+        Labyrinth().blit_pictures()
         
+        self.color_blit_person()
 
-
+        Objects().color_blit_objects()
         pygame.display.flip()
 
     def movement_right(self):
-        self.moving_mac_gyver = self.mac_gyver_move()
-
         for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(40, 0)
             self.last_location_mac_gyver_tuple = (key + 40, value)
@@ -159,11 +161,8 @@ class Person(Labyrinth):
             self.last_location_mac_gyver_dict[key + 40] = value
             self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
             self.init_event()
-            print(self.last_location_mac_gyver_dict)
 
     def movement_left(self):
-        self.moving_mac_gyver = self.mac_gyver_move()
-
         for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
             self.last_location_mac_gyver_tuple = (key - 40, value)
@@ -173,8 +172,6 @@ class Person(Labyrinth):
             self.init_event()
                     
     def movement_up(self):
-        self.moving_mac_gyver = self.mac_gyver_move()
-
         for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(0, - 40)
             self.last_location_mac_gyver_tuple = (key, value - 40)
@@ -184,8 +181,6 @@ class Person(Labyrinth):
             self.init_event()
 
     def movement_down(self):
-        self.moving_mac_gyver = self.mac_gyver_move()
-
         for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(0, 40)
             self.last_location_mac_gyver_tuple = (key, value + 40)

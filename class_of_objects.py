@@ -11,11 +11,15 @@ from pygame.locals import *
 pygame.init()
 
 import class_of_labyrinth
+import class_of_person
 
 class Objects:
     
     def __init__(self):
         self.labyrinth = class_of_labyrinth.Labyrinth()
+        
+
+        self.counter_objects = 0
 
         self.WINDOW = self.labyrinth.WINDOW
         os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")

@@ -39,6 +39,12 @@ class Person():
         self.counter_objects = 0 
         self.last_location_mac_gyver_tuple = self.labyrinth_entry
         self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
+        self.position_object_1 = self.objects.position_object_1
+        self.position_object_2 = self.objects.position_object_2
+        self.position_object_3 = self.objects.position_object_3
+        self.object_1 = self.objects.object_1
+        self.object_2 = self.objects.object_2
+        self.object_3 = self.objects.object_3
         
 
     def color_blit_person(self):
@@ -65,7 +71,29 @@ class Person():
         
         self.color_blit_person()
 
-        self.objects.color_blit_objects()
+        # if mac gyver is passed on the neddle
+        # +1 to the counter of objects and the needle disappears from the window
+        if self.path_traveled_mac_gyver.count(self.position_object_1) == 1:
+            self.counter_objects = self.counter_objects + 1
+            self.position_object_1 = self.WINDOW.blit(self.object_1, (600, 600))
+        else:
+            self.objects.color_blit_objects()
+        # if mac gyver is passed on the ether
+        # +1 to the counter of objects and the ether disappears from the window
+        if self.path_traveled_mac_gyver.count(self.position_object_2) == 1:
+            self.counter_objects = self.counter_objects + 1
+            self.position_object_2 = self.WINDOW.blit(self.object_2, (600, 600))
+        else:
+            self.objects.color_blit_objects()
+        # if mac gyver is passed on the plastic_tube
+        # +1 to the counter of objects and the syringe disappears from the window
+        if self.path_traveled_mac_gyver.count(self.position_object_3) == 1:
+            self.counter_objects = self.counter_objects + 1
+            self.position_object_3 = self.WINDOW.blit(self.object_3, (600, 600))
+        else:
+            self.objects.color_blit_objects()
+
+        
         pygame.display.flip()
 
     def movement_right(self):
@@ -211,28 +239,9 @@ class Person():
                 self.last_location_mac_gyver_dict[key + 40] = value
                 self.init_event()
 
-    def pick_up_objects(self):
-        self.position_object_1 = self.objects.position_object_1
-        self.position_object_2 = self.objects.position_object_2
-        self.position_object_3 = self.objects.position_object_3
-        self.object_1 = self.objects.object_1
-        self.object_2 = self.objects.object_2
-        self.object_3 = self.objects.object_3
-        # if mac gyver is passed on the neddle
-        # +1 to the counter of objects and the needle disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_1) == 1:
-            self.counter_objects = self.counter_objects + 1
-            self.position_object_1 = self.WINDOW.blit(self.object_1, (600, 600))
-        # if mac gyver is passed on the ether
-        # +1 to the counter of objects and the ether disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_2) == 1:
-            self.counter_objects = self.counter_objects + 1
-            self.position_object_2 = self.WINDOW.blit(self.object_2, (600, 600))
-        # if mac gyver is passed on the plastic_tube
-        # +1 to the counter of objects and the syringe disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_3) == 1:
-            self.counter_objects = self.counter_objects + 1
-            self.position_object_3 = self.WINDOW.blit(self.object_3, (600, 600))
+
+        
+        
 
     def lost(self):
         lost = 1
@@ -250,24 +259,8 @@ class Person():
     def won(self): # ok
         won = 1
         if self.last_location_mac_gyver_tuple == self.labyrinth.labyrinth_exit and self.counter_objects == 3:
-            self.labyrinth.blit_pictures()
-            self.WINDOW.blit(self.won_picture, (120, 120))
+            self.labyrinth.blit_pictures()  
             self.color_pictures_end_game()
+            self.WINDOW.blit(self.won_picture, (120, 120))
             pygame.display.flip()
-            pygame.quit()
-            quit()
             return won
-
-    
-
-
-    
-         
-        
-
-
-
-
-                                        
-
-

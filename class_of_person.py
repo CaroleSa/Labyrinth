@@ -36,6 +36,9 @@ class Person():
         # by mac gyver
         self.path_traveled_mac_gyver = [self.labyrinth_entry]
         # counter of objects
+        self.pick_up_object_1 = 0
+        self.pick_up_object_2 = 0
+        self.pick_up_object_3 = 0
         self.counter_objects = 0 
         self.last_location_mac_gyver_tuple = self.labyrinth_entry
         self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
@@ -71,7 +74,6 @@ class Person():
         
         self.color_blit_person()
 
-       
         self.objects.color_blit_objects()
 
         
@@ -221,26 +223,26 @@ class Person():
                 self.init_event()
 
     def pick_up_objects(self):
+        
         # if mac gyver is passed on the neddle
         # +1 to the counter of objects and the needle disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_1) == 1:
-            self.counter_objects = self.counter_objects + 1
+        if self.path_traveled_mac_gyver[-1] == self.position_object_1:
+            self.pick_up_object_1 = 1
             self.objects.disappearance_object_1()
        
         # if mac gyver is passed on the ether
         # +1 to the counter of objects and the ether disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_2) == 1:
-            self.counter_objects = self.counter_objects + 1
+        if self.path_traveled_mac_gyver[-1] == self.position_object_2:
+            self.pick_up_object_2 = 1
             self.objects.disappearance_object_2()
        
         # if mac gyver is passed on the plastic_tube
         # +1 to the counter of objects and the syringe disappears from the window
         if self.path_traveled_mac_gyver.count(self.position_object_3) == 1:
-            self.counter_objects = self.counter_objects + 1
+            self.pick_up_object_3 = 1
             self.objects.disappearance_object_3()
-      
-
         
+        self.counter_objects = self.pick_up_object_1 + self.pick_up_object_2 + self.pick_up_object_3
         
 
     def lost(self):

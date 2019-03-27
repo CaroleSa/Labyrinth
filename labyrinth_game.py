@@ -63,7 +63,7 @@ def labyrinth_game():
             # Mac Gyver keep still when he arrives on the guardian
             person.keep_still()
 
-            print(person.path_traveled_mac_gyver)
+            print(person.counter_objects)
 
             if person.lost() == 1:
                 if event.type == MOUSEBUTTONDOWN and event.button == 1 \

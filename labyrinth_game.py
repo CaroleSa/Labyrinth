@@ -57,11 +57,13 @@ def labyrinth_game():
             # Mac Gyver goes down and avoids the wall
             if event.type == KEYDOWN and event.key == K_DOWN:
                 person.movement_down()
-            print(person.counter_objects)
+            
+            person.pick_up_objects()
            
-
             # Mac Gyver keep still when he arrives on the guardian
             person.keep_still()
+
+            print(person.path_traveled_mac_gyver)
 
             if person.lost() == 1:
                 if event.type == MOUSEBUTTONDOWN and event.button == 1 \

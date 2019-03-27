@@ -51,3 +51,14 @@ class Objects:
         self.WINDOW.blit(self.object_2, self.position_object_2)
         self.WINDOW.blit(self.object_3, self.position_object_3)
 
+    def disappearance_object_1(self):
+        self.position_object_1 = (600, 600)
+        return self.position_object_1
+
+    def disappearance_object_2(self):
+        self.position_object_2 = (600, 600)
+        return self.position_object_2
+
+    def disappearance_object_3(self):
+        self.position_object_3 = (600, 600)
+        return self.position_object_3

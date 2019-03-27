@@ -71,27 +71,8 @@ class Person():
         
         self.color_blit_person()
 
-        # if mac gyver is passed on the neddle
-        # +1 to the counter of objects and the needle disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_1) == 1:
-            self.counter_objects = self.counter_objects + 1
-            self.position_object_1 = self.WINDOW.blit(self.object_1, (600, 600))
-        else:
-            self.objects.color_blit_objects()
-        # if mac gyver is passed on the ether
-        # +1 to the counter of objects and the ether disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_2) == 1:
-            self.counter_objects = self.counter_objects + 1
-            self.position_object_2 = self.WINDOW.blit(self.object_2, (600, 600))
-        else:
-            self.objects.color_blit_objects()
-        # if mac gyver is passed on the plastic_tube
-        # +1 to the counter of objects and the syringe disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_3) == 1:
-            self.counter_objects = self.counter_objects + 1
-            self.position_object_3 = self.WINDOW.blit(self.object_3, (600, 600))
-        else:
-            self.objects.color_blit_objects()
+       
+        self.objects.color_blit_objects()
 
         
         pygame.display.flip()
@@ -239,6 +220,25 @@ class Person():
                 self.last_location_mac_gyver_dict[key + 40] = value
                 self.init_event()
 
+    def pick_up_objects(self):
+        # if mac gyver is passed on the neddle
+        # +1 to the counter of objects and the needle disappears from the window
+        if self.path_traveled_mac_gyver.count(self.position_object_1) == 1:
+            self.counter_objects = self.counter_objects + 1
+            self.objects.disappearance_object_1()
+       
+        # if mac gyver is passed on the ether
+        # +1 to the counter of objects and the ether disappears from the window
+        if self.path_traveled_mac_gyver.count(self.position_object_2) == 1:
+            self.counter_objects = self.counter_objects + 1
+            self.objects.disappearance_object_2()
+       
+        # if mac gyver is passed on the plastic_tube
+        # +1 to the counter of objects and the syringe disappears from the window
+        if self.path_traveled_mac_gyver.count(self.position_object_3) == 1:
+            self.counter_objects = self.counter_objects + 1
+            self.objects.disappearance_object_3()
+      
 
         
         

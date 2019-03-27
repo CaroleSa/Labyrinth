@@ -1,14 +1,7 @@
-import random
+def test():
+    return (600, 600)
 
-
-test = [3, 4, 10, 100, 3000]
-
-random.seed(3)
-
-idee = random.sample(test, 3)
-
-print(idee)
-
+print(test())
 
 
 

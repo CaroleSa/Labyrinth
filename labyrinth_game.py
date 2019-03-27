@@ -27,14 +27,7 @@ def labyrinth_game():
     os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
     
     
-    labyrinth.blit_pictures()
-        
-    person.color_blit_person()
-
-    objects.color_blit_objects()
-
-        
-    pygame.display.flip()
+    person.init_event()
 
 
     # infinite loop

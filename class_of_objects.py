@@ -33,15 +33,16 @@ class Objects:
 
         self.path_location.remove(self.labyrinth.labyrinth_entry)
         self.path_location.remove(self.labyrinth.labyrinth_exit)
+        
+        self.list_random_position = random.sample(self.path_location, 3)
 
         random.seed(3)
-        list_random_position = random.sample(self.path_location, 3)
-
-        self.position_object_1 = list_random_position[0]
-        self.position_object_2 = list_random_position[1]
-        self.position_object_3 = list_random_position[2]
-
+        self.position_object_1 = self.list_random_position[0]
+        self.position_object_2 = self.list_random_position[1]
+        self.position_object_3 = self.list_random_position[2]
+    
     def color_blit_objects(self):
+        
 
         self.object_1.set_colorkey((255, 255, 255))
         self.object_2.set_colorkey((255, 255, 255))
@@ -50,6 +51,23 @@ class Objects:
         self.WINDOW.blit(self.object_1, self.position_object_1)
         self.WINDOW.blit(self.object_2, self.position_object_2)
         self.WINDOW.blit(self.object_3, self.position_object_3)
+
+    def start_game_color_blit_objects(self):
+        
+        #list_random_position = random.sample(self.path_location, 3)
+
+        """self.position_object_1 = self.list_random_position[0]
+        self.position_object_2 = self.list_random_position[1]
+        self.position_object_3 = self.list_random_position[2]"""
+
+        self.object_1.set_colorkey((255, 255, 255))
+        self.object_2.set_colorkey((255, 255, 255))
+        self.object_3.set_colorkey((255, 255, 255))
+
+        self.WINDOW.blit(self.object_1, self.position_object_1)
+        self.WINDOW.blit(self.object_2, self.position_object_2)
+        self.WINDOW.blit(self.object_3, self.position_object_3)
+
 
     def disappearance_object_1(self):
         self.position_object_1 = (600, 600)

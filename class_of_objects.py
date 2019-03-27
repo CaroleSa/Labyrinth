@@ -18,7 +18,7 @@ class Objects:
     def __init__(self):
         self.labyrinth = class_of_labyrinth.Labyrinth()
 
-        self.WINDOW = self.labyrinth.WINDOW
+        self.window = self.labyrinth.window
         self.object_1 = pygame.image.load("needle.png").convert()
         self.object_2 = pygame.image.load("ether.png").convert()
         self.object_3 = pygame.image.load("plastic_tube.png").convert()
@@ -41,9 +41,9 @@ class Objects:
         self.object_2.set_colorkey((255, 255, 255))
         self.object_3.set_colorkey((255, 255, 255))
 
-        self.WINDOW.blit(self.object_1, self.position_object_1)
-        self.WINDOW.blit(self.object_2, self.position_object_2)
-        self.WINDOW.blit(self.object_3, self.position_object_3)
+        self.window.blit(self.object_1, self.position_object_1)
+        self.window.blit(self.object_2, self.position_object_2)
+        self.window.blit(self.object_3, self.position_object_3)
 
     def disappearance_object_1(self):
         self.position_object_1 = (600, 600)

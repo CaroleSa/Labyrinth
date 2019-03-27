@@ -9,7 +9,7 @@ class Labyrinth:
     """features of the labyrinth and blit the background"""
 
     def __init__(self):
-        """features of the labyrinth"""
+        """features of the labyrinth and download pictures"""
 
         # corresponds to the visual of the labyrinth,
         # each number corresponds to an picture :

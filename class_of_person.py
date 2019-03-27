@@ -22,8 +22,7 @@ class Person():
         self.objects = class_of_objects.Objects()
     
         self.WINDOW = self.labyrinth.WINDOW
-        self.labyrinth_entry = self.labyrinth.labyrinth_entry
-        os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")        
+        self.labyrinth_entry = self.labyrinth.labyrinth_entry        
         self.grave_picture = pygame.image.load("grave.png").convert()
         self.replay_picture = pygame.image.load("replay.png").convert()
         self.won_picture = pygame.image.load("won.png").convert()
@@ -213,7 +212,6 @@ class Person():
             self.labyrinth.blit_pictures()
             self.guardian_picture.set_colorkey((255, 255, 255))       
             self.WINDOW.blit(self.guardian_picture, self.labyrinth_exit)
-            #self.objects.color_blit_objects()
             self.color_pictures_end_game()
             self.WINDOW.blit(self.grave_picture, (200, 200))
             self.WINDOW.blit(self.replay_picture, (0, 520))

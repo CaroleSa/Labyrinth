@@ -19,7 +19,6 @@ class Objects:
         self.labyrinth = class_of_labyrinth.Labyrinth()
 
         self.WINDOW = self.labyrinth.WINDOW
-        os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
         self.object_1 = pygame.image.load("needle.png").convert()
         self.object_2 = pygame.image.load("ether.png").convert()
         self.object_3 = pygame.image.load("plastic_tube.png").convert()

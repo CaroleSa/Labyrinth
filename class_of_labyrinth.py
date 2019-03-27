@@ -13,8 +13,6 @@ pygame.init()
 class Labyrinth:
 
     def __init__(self):
-
-        os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
         self.LABYRINTH_LIST = [
         [0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 6, 3, 4, 1],
         [5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5],

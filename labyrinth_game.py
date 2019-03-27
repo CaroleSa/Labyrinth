@@ -6,11 +6,10 @@ to kill the guardian and escape """
 
 import os
 
-# import the pygame library and this module
-import pygame
-from pygame.locals import *
-# initialize the pygame library
-pygame.init()
+
+import pygame # import the pygame library and this module
+from pygame.locals import * 
+pygame.init() # initialize the pygame library
 
 # indicates the way to find the images to be used for the program
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")

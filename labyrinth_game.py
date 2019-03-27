@@ -1,8 +1,12 @@
 #! /usr/bin/env python3
 # coding: UTF-8
 
+
 """ Labyrinth game in which mac gyver must retrieve all objects
 to kill the guardian and escape """
+
+
+
 import os
 
 import pygame # import the pygame library and this module
@@ -14,16 +18,16 @@ import class_of_person # import modules of the game
 # path to the pictures
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
 
+
+
 def labyrinth_game():
     """play the game"""
 
     person = class_of_person.Person() # instantiate the class Person
-
     person.init_event() # blits the pictures
 
-    # infinite loop
     play = 1
-    while play:
+    while play:  # infinite loop
 
         for event in pygame.event.get():
             # Mac Gyver turns to the right and avoids the wall

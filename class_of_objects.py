@@ -6,7 +6,6 @@
 
 
 import random  # import the random library
-
 import pygame  # import the pygame library and this module
 from pygame.locals import *
 

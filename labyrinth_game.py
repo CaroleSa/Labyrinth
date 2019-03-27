@@ -27,12 +27,13 @@ def labyrinth_game():
     os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
     
     
-    objects.color_blit_objects()
-    
     labyrinth.blit_pictures()
-
+        
     person.color_blit_person()
 
+    objects.color_blit_objects()
+
+        
     pygame.display.flip()
 
 

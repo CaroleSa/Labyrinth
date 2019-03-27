@@ -3,38 +3,30 @@
 
 """ Labyrinth game in which mac gyver must retrieve all objects
 to kill the guardian and escape """
-
+OK!!!!!!
 import os
 
-
 import pygame # import the pygame library and this module
-from pygame.locals import * 
+from pygame.locals import *
 pygame.init() # initialize the pygame library
 
-# indicates the way to find the images to be used for the program
+import class_of_person # import modules of the game
+
+# path to the pictures
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
 
-# import modules of the game
-import class_of_labyrinth
-import class_of_person
-import class_of_objects
-"""labyrinth = class_of_labyrinth.Labyrinth()
-person = class_of_person.Person()
-objects = class_of_objects.Objects()"""
-
-
 def labyrinth_game():
+    """play the game"""
 
-    person = class_of_person.Person()
+    person = class_of_person.Person() # instantiate the class Person
 
-    person.init_event()
+    person.init_event() # blits the pictures
 
     # infinite loop
     play = 1
     while play:
 
         for event in pygame.event.get():
-            
             # Mac Gyver turns to the right and avoids the wall
             if event.type == KEYDOWN and event.key == K_RIGHT:
                 person.movement_right()
@@ -51,11 +43,13 @@ def labyrinth_game():
             if event.type == KEYDOWN and event.key == K_DOWN:
                 person.movement_down()
 
+            # Mac Gyver picks up the objects
             person.pick_up_objects()
 
-            # Mac Gyver keep still when he arrives on the guardian
+            # Mac Gyver does not move when he arrives on the guardian
             person.keep_still()
 
+            # if Mac Gyver loses, the player may choose to restart or stop the program
             if person.lost() == 1:
                 if event.type == MOUSEBUTTONDOWN and event.button == 1 \
                 and event.pos[0] > 520 and event.pos[1] > 520:
@@ -65,8 +59,10 @@ def labyrinth_game():
                 and event.pos[0] < 80 and event.pos[1] > 520:
                     labyrinth_game()
 
+            # if Mac Gyver wins, the program stops
             if person.won() == 1:
                 pygame.quit()
                 quit()
 
+# call the function to play the game
 labyrinth_game()

@@ -211,7 +211,8 @@ class Person():
         lost = 1
         if self.last_location_mac_gyver_tuple == self.labyrinth.labyrinth_exit and self.counter_objects != 3:
             self.labyrinth.blit_pictures()
-            self.color_blit_person()
+            self.guardian_picture.set_colorkey((255, 255, 255))       
+            self.WINDOW.blit(self.guardian_picture, self.labyrinth_exit)
             #self.objects.color_blit_objects()
             self.color_pictures_end_game()
             self.WINDOW.blit(self.grave_picture, (200, 200))

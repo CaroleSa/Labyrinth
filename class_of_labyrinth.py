@@ -1,18 +1,21 @@
 #! /usr/bin/env python3
-# coding: UTF-8 je garde
+# coding: UTF-8
 
 import os
 
-import random
-# import the pygame library and this module
-import pygame
+import pygame # import the pygame library and this module
 from pygame.locals import *
-# initialize the pygame library
-pygame.init()
+pygame.init() # initialize the pygame library
 
 class Labyrinth:
-
+    """features of the labyrinth and blit the background"""
     def __init__(self):
+        """corresponds to the visual of the labyrinth, 
+        each number corresponds to an image : 
+        0 wall_top_left_picture     4 wall_horizontal_picture
+        1 wall_top_right_picture    5 wall_vertical_picture
+        2 wall_low_right_picture    6 ground_picture
+        3 wall_low_left_picture"""
         self.LABYRINTH_LIST = [
         [0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 6, 3, 4, 1],
         [5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5],

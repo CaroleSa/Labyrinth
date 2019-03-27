@@ -12,6 +12,9 @@ from pygame.locals import *
 # initialize the pygame library
 pygame.init()
 
+# indicates the way to find the images to be used for the program
+os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
+
 # import modules of the game
 import class_of_labyrinth
 import class_of_person
@@ -23,13 +26,7 @@ objects = class_of_objects.Objects()"""
 
 def labyrinth_game():
 
-    labyrinth = class_of_labyrinth.Labyrinth()
     person = class_of_person.Person()
-    objects = class_of_objects.Objects()
-    
-    """For replay the game"""
-    # indicates the way to find the images to be used for the program
-    os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
 
     person.init_event()
 

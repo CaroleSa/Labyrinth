@@ -151,42 +151,6 @@ class Person():
                 self.last_location_mac_gyver_dict[key] = value - 40
                 self.init_event()
 
-    """def avoid_wall_right(self): # A SUPPRIMER
-        for key, value in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
-            del self.path_traveled_mac_gyver[-1]
-            self.last_location_mac_gyver_tuple = (key - 40, value)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key - 40] = value
-            self.init_event()
-
-    def avoid_wall_left(self):
-        for key, value in self.last_location_mac_gyver_dict.items():
-            del self.path_traveled_mac_gyver[-1]
-            self.moving_mac_gyver = self.moving_mac_gyver.move(40, 0)
-            self.last_location_mac_gyver_tuple = (key + 40, value)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key + 40] = value
-            self.init_event()
-
-    def avoid_wall_top(self):
-        for key, value in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(0, 40)
-            del self.path_traveled_mac_gyver[-1]
-            self.last_location_mac_gyver_tuple = (key, value + 40)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key] = value + 40
-            self.init_event() #ne pas oublier dans fichier principal de permettre de modifier le labyrinth
-        
-    def avoid_wall_down(self):
-        for key, value in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(0, - 40)
-            del self.path_traveled_mac_gyver[-1]
-            self.last_location_mac_gyver_tuple = (key, value - 40)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key] = value - 40
-            self.init_event()"""
-
     def keep_still(self):
         column = self.labyrinth.labyrinth_exit[0]
         line = self.labyrinth.labyrinth_exit[1]
@@ -223,7 +187,6 @@ class Person():
                 self.init_event()
 
     def pick_up_objects(self):
-        
         # if mac gyver is passed on the neddle
         # +1 to the counter of objects and the needle disappears from the window
         if self.path_traveled_mac_gyver[-1] == self.position_object_1:
@@ -243,7 +206,6 @@ class Person():
             self.objects.disappearance_object_3()
         
         self.counter_objects = self.pick_up_object_1 + self.pick_up_object_2 + self.pick_up_object_3
-        
 
     def lost(self):
         lost = 1

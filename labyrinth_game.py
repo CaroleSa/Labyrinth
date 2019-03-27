@@ -58,6 +58,8 @@ def labyrinth_game():
             if event.type == KEYDOWN and event.key == K_DOWN:
                 person.movement_down()
 
+            person.pick_up_objects()
+
             # Mac Gyver keep still when he arrives on the guardian
             person.keep_still()
 

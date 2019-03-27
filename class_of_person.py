@@ -140,7 +140,7 @@ class Person():
                 self.last_location_mac_gyver_dict[key] = value - 40
                 self.init_event()
 
-    def avoid_wall_right(self):
+    """def avoid_wall_right(self): # A SUPPRIMER
         for key, value in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
             del self.path_traveled_mac_gyver[-1]
@@ -174,7 +174,7 @@ class Person():
             self.last_location_mac_gyver_tuple = (key, value - 40)
             self.last_location_mac_gyver_dict.clear()
             self.last_location_mac_gyver_dict[key] = value - 40
-            self.init_event()
+            self.init_event()"""
 
     def keep_still(self):
         column = self.labyrinth.labyrinth_exit[0]
@@ -211,29 +211,28 @@ class Person():
                 self.last_location_mac_gyver_dict[key + 40] = value
                 self.init_event()
 
-    """def pick_up_objects(self):
-        new_objects = Objects()  #voir si on peut pas réduire les lignes
-        object_1 = new_objects.object_1
-        object_2 = new_objects.object_2
-        object_3 = new_objects.object_3
-        object_1_position = new_objects.blit_random_position()[0]
-        object_2_position = new_objects.blit_random_position()[1]
-        object_3_position = new_objects.blit_random_position()[2]
+    def pick_up_objects(self):
+        self.position_object_1 = self.objects.position_object_1
+        self.position_object_2 = self.objects.position_object_2
+        self.position_object_3 = self.objects.position_object_3
+        self.object_1 = self.objects.object_1
+        self.object_2 = self.objects.object_2
+        self.object_3 = self.objects.object_3
         # if mac gyver is passed on the neddle
         # +1 to the counter of objects and the needle disappears from the window
-        if self.path_traveled_mac_gyver.count(object_1_position) == 1:
+        if self.path_traveled_mac_gyver.count(self.position_object_1) == 1:
             self.counter_objects = self.counter_objects + 1
-            object_1_position = self.WINDOW.blit(object_1, (600, 600))
+            self.position_object_1 = self.WINDOW.blit(self.object_1, (600, 600))
         # if mac gyver is passed on the ether
         # +1 to the counter of objects and the ether disappears from the window
-        if self.path_traveled_mac_gyver.count(object_2_position) == 1:
+        if self.path_traveled_mac_gyver.count(self.position_object_2) == 1:
             self.counter_objects = self.counter_objects + 1
-            object_2_position = self.WINDOW.blit(object_2, (600, 600))
+            self.position_object_2 = self.WINDOW.blit(self.object_2, (600, 600))
         # if mac gyver is passed on the plastic_tube
         # +1 to the counter of objects and the syringe disappears from the window
-        if self.path_traveled_mac_gyver.count(object_3_position) == 1:
+        if self.path_traveled_mac_gyver.count(self.position_object_3) == 1:
             self.counter_objects = self.counter_objects + 1
-            object_2_position = self.WINDOW.blit(object_3, (600, 600))"""
+            self.position_object_3 = self.WINDOW.blit(self.object_3, (600, 600))
 
     def lost(self):
         lost = 1

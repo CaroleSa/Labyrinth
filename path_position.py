@@ -3,18 +3,11 @@ import random
 
 test = [3, 4, 10, 100, 3000]
 
+random.seed(3)
 
+idee = random.sample(test, 3)
 
-
-print(random.sample(test, 2)[1])
-print(random.sample(test, 2)[0])
-
-
-
-random.seed(random.sample(test, 2)[0])
-
-print(random.sample(test, 2)[1])
-print(random.sample(test, 2)[0])
+print(idee)
 
 
 

@@ -14,9 +14,6 @@ import class_of_labyrinth
 import class_of_objects
 
 class Person():
-    
-    
-
     def __init__(self):
         self.labyrinth = class_of_labyrinth.Labyrinth()
         self.objects = class_of_objects.Objects()

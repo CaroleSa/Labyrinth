@@ -3,7 +3,7 @@
 
 """ Labyrinth game in which mac gyver must retrieve all objects
 to kill the guardian and escape """
-OK!!!!!!
+"""OK!!!!!!"""
 import os
 
 import pygame # import the pygame library and this module

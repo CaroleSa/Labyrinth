@@ -8,7 +8,7 @@
 import random  # import the random library
 import pygame  # import the pygame library
 
-import class_of_labyrinth  # import module of the game
+import class_of_labyrinth as col # import module of the game
 
 
 class Objects:
@@ -17,7 +17,7 @@ class Objects:
     def __init__(self):
         """random position of objects and download pictures"""
         # instantiate the class Labyrinth
-        self.labyrinth = class_of_labyrinth.Labyrinth()
+        self.labyrinth = col.Labyrinth()
         self.labyrinth_entry = self.labyrinth.labyrinth_entry
         self.labyrinth_exit = self.labyrinth.labyrinth_exit
         self.path_location = self.labyrinth.path_location()
@@ -57,3 +57,10 @@ class Objects:
         """disappearing object 3 by blit them outside the window"""
         self.position_object_3 = (600, 600)
         return self.position_object_3
+
+def main():
+    col.Labyrinth
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main()

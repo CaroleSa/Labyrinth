@@ -9,11 +9,11 @@ to kill the guardian and escape """
 
 import os
 
-import pygame # import the pygame library and this module
+import pygame # import the pygame library
 from pygame.locals import *
 pygame.init() # initialize the pygame library
 
-import class_of_person # import module of the game
+import class_of_person as cop # import module of the game
 
 # path to the pictures
 os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
@@ -23,14 +23,13 @@ os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
 def labyrinth_game():
     """play the game"""
 
-    person = class_of_person.Person() # instantiate the class Person
+    person = cop.Person() # instantiate the class Person
     person.init_event() # blits the pictures
 
     play = 1
     while play:  # infinite loop
 
         for event in pygame.event.get():
-
             # if the player presses the right key
             # Mac Gyver turns to the right and avoids the wall
             if event.type == KEYDOWN and event.key == K_RIGHT:
@@ -45,7 +44,7 @@ def labyrinth_game():
             # Mac Gyver goes up and avoids the wall
             if event.type == KEYDOWN and event.key == K_UP:
                 person.movement_up()
-                
+
             # if the player presses the down key
             # Mac Gyver goes down and avoids the wall
             if event.type == KEYDOWN and event.key == K_DOWN:
@@ -74,3 +73,10 @@ def labyrinth_game():
 
 # call the function to play the game
 labyrinth_game()
+
+def main():
+    cop.Person
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main()

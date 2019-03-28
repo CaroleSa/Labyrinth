@@ -8,8 +8,8 @@
 
 import pygame  # import the pygame library and this module
 
-import class_of_labyrinth # import modules of the game
-import class_of_objects
+import class_of_labyrinth as col # import modules of the game
+import class_of_objects as coo
 
 
 
@@ -20,12 +20,12 @@ class Person():
     def __init__(self):
         """download pictures"""
         # instantiate the class Labyrinth
-        self.labyrinth = class_of_labyrinth.Labyrinth()
+        self.labyrinth = col.Labyrinth()
         self.labyrinth_entry = self.labyrinth.labyrinth_entry
         self.labyrinth_exit = self.labyrinth.labyrinth_exit
         self.window = self.labyrinth.window
         # instantiate the class Objects
-        self.objects = class_of_objects.Objects()
+        self.objects = coo.Objects()
         self.position_object_1 = self.objects.position_object_1
         self.position_object_2 = self.objects.position_object_2
         self.position_object_3 = self.objects.position_object_3
@@ -236,3 +236,11 @@ class Person():
             self.window.blit(self.won_picture, (120, 120))
             pygame.display.flip()
             return won
+
+def main():
+    col.Labyrinth
+    coo.Objects
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main()

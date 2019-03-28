@@ -7,7 +7,6 @@
 
 
 import pygame  # import the pygame library and this module
-from pygame.locals import *
 
 import class_of_labyrinth # import modules of the game
 import class_of_objects
@@ -55,7 +54,7 @@ class Person():
         self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
 
     def color_blit_person(self):
-        """transparency of the background and blit of the pictures : guardian and Mac Gyver"""        
+        """transparency of the background and blit of the pictures : guardian and Mac Gyver"""
         self.guardian_picture.set_colorkey((255, 255, 255))
         self.window.blit(self.guardian_picture, self.labyrinth_exit)
         self.mac_gyver_picture.set_colorkey((255, 255, 255))

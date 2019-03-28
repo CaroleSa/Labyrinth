@@ -6,8 +6,7 @@
 
 
 import random  # import the random library
-import pygame  # import the pygame library and this module
-from pygame.locals import *
+import pygame  # import the pygame library
 
 import class_of_labyrinth  # import module of the game
 

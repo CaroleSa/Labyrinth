@@ -36,11 +36,10 @@ class Objects:
         self.position_object_3 = self.list_random_position[2]
 
     def color_blit_objects(self):
-        """transparency of the background of images and blit pictures"""
+        """transparency of the background and blit of the pictures : objects"""
         self.object_1.set_colorkey((255, 255, 255))
         self.object_2.set_colorkey((255, 255, 255))
         self.object_3.set_colorkey((255, 255, 255))
-
         self.window.blit(self.object_1, self.position_object_1)
         self.window.blit(self.object_2, self.position_object_2)
         self.window.blit(self.object_3, self.position_object_3)

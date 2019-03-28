@@ -30,18 +30,23 @@ def labyrinth_game():
     while play:  # infinite loop
 
         for event in pygame.event.get():
+
+            # if the player presses the right key
             # Mac Gyver turns to the right and avoids the wall
             if event.type == KEYDOWN and event.key == K_RIGHT:
                 person.movement_right()
 
+            # if the player presses the left key
             # Mac Gyver turns to the left and avoids the wall
             if event.type == KEYDOWN and event.key == K_LEFT:
                 person.movement_left()
 
+            # if the player presses the up key
             # Mac Gyver goes up and avoids the wall
             if event.type == KEYDOWN and event.key == K_UP:
                 person.movement_up()
-
+                
+            # if the player presses the down key
             # Mac Gyver goes down and avoids the wall
             if event.type == KEYDOWN and event.key == K_DOWN:
                 person.movement_down()

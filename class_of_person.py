@@ -1,25 +1,38 @@
 #! /usr/bin/env python3
-# coding: UTF-8 je garde
+# coding: UTF-8
 
-import os
 
-import random
-# import the pygame library and this module
-import pygame
+"""class Labyrinth"""
+
+
+
+import pygame  # import the pygame library and this module
 from pygame.locals import *
-# initialize the pygame library
-pygame.init()
 
-import class_of_labyrinth
+import class_of_labyrinth # import modules of the game
 import class_of_objects
 
+
+
 class Person():
+    """define the movements of Mac Gyver and the conditions in which mac gyver loses or wins,
+    display of pictures during the game"""
+
     def __init__(self):
+        """download pictures"""
+        # instantiate the class Labyrinth
         self.labyrinth = class_of_labyrinth.Labyrinth()
+        self.labyrinth_entry = self.labyrinth.labyrinth_entry 
+        self.window = self.labyrinth.window 
+        # instantiate the class Objects
         self.objects = class_of_objects.Objects()
-    
-        self.window = self.labyrinth.window
-        self.labyrinth_entry = self.labyrinth.labyrinth_entry        
+        self.position_object_1 = self.objects.position_object_1
+        self.position_object_2 = self.objects.position_object_2
+        self.position_object_3 = self.objects.position_object_3
+        self.object_1 = self.objects.object_1
+        self.object_2 = self.objects.object_2
+        self.object_3 = self.objects.object_3
+        # download pictures     
         self.grave_picture = pygame.image.load("grave.png").convert()
         self.replay_picture = pygame.image.load("replay.png").convert()
         self.won_picture = pygame.image.load("won.png").convert()
@@ -28,22 +41,18 @@ class Person():
         self.mac_gyver_picture = pygame.image.load("MacGyver.png").convert()
         # dictionary that indicates the last position of mac gyver
         self.last_location_mac_gyver_dict = {self.labyrinth_entry[0]: self.labyrinth_entry[1]}
+        # tuple that indicates the last position of mac gyver
+        self.last_location_mac_gyver_tuple = self.labyrinth_entry
         # list that indicates the coordinates of the path traveled
-        # by mac gyver
+        # by Mac Gyver
         self.path_traveled_mac_gyver = [self.labyrinth_entry]
-        # counter of objects
+        # = 1 when Mac Gyver finds the object
         self.pick_up_object_1 = 0
         self.pick_up_object_2 = 0
-        self.pick_up_object_3 = 0
-        self.counter_objects = 0 
-        self.last_location_mac_gyver_tuple = self.labyrinth_entry
+        self.pick_up_object_3 = 0 
+        # creating a rect
         self.moving_mac_gyver = self.mac_gyver_picture.get_rect()
-        self.position_object_1 = self.objects.position_object_1
-        self.position_object_2 = self.objects.position_object_2
-        self.position_object_3 = self.objects.position_object_3
-        self.object_1 = self.objects.object_1
-        self.object_2 = self.objects.object_2
-        self.object_3 = self.objects.object_3
+        
         
 
     def color_blit_person(self):

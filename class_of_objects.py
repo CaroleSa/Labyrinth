@@ -23,12 +23,10 @@ class Objects:
         self.labyrinth_exit = self.labyrinth.labyrinth_exit
         self.path_location = self.labyrinth.path_location()
         self.window = self.labyrinth.window
-
         # download pictures
         self.object_1 = pygame.image.load("needle.png").convert()
         self.object_2 = pygame.image.load("ether.png").convert()
         self.object_3 = pygame.image.load("plastic_tube.png").convert()
-
         # determination of the random position objects
         self.path_location.remove(self.labyrinth_entry)
         self.path_location.remove(self.labyrinth_exit)

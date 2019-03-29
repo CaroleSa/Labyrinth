@@ -171,7 +171,6 @@ class Person():
         if self.path_traveled_mac_gyver.count(self.labyrinth_exit) == 1 \
         and self.last_location_mac_gyver_dict == {column: line + 40}:
             for key, value in self.last_location_mac_gyver_dict.items():
-                del self.path_traveled_mac_gyver[-1]
                 self.last_location_mac_gyver_tuple = (key, value - 40)
                 self.last_location_mac_gyver_dict.clear()
                 self.last_location_mac_gyver_dict[key] = value - 40

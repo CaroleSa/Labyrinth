@@ -1,2 +1,2 @@
-# Labyrinth
-projet 3
+A labyrinth game with Mac Gyver.
+(Openclassrooms Python project 3)

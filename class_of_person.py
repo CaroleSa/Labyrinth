@@ -6,11 +6,10 @@
 
 
 
-import pygame  # import the pygame library and this module
+import pygame  # import the pygame library
 
-import class_of_labyrinth as col # import modules of the game
-import class_of_objects as coo
-
+import class_of_labyrinth # import modules of the game
+import class_of_objects
 
 
 class Person():
@@ -20,12 +19,12 @@ class Person():
     def __init__(self):
         """download pictures"""
         # instantiate the class Labyrinth
-        self.labyrinth = col.Labyrinth()
+        self.labyrinth = class_of_labyrinth.Labyrinth()
         self.labyrinth_entry = self.labyrinth.labyrinth_entry
         self.labyrinth_exit = self.labyrinth.labyrinth_exit
         self.window = self.labyrinth.window
         # instantiate the class Objects
-        self.objects = coo.Objects()
+        self.objects = class_of_objects.Objects()
         self.position_object_1 = self.objects.position_object_1
         self.position_object_2 = self.objects.position_object_2
         self.position_object_3 = self.objects.position_object_3
@@ -196,17 +195,17 @@ class Person():
         """Mac Gyver takes objects"""
         # if mac gyver takes the object 1
         # initialization of the object counter and the object 1 disappears from the window
-        if self.path_traveled_mac_gyver[-1] == self.position_object_1:
+        if self.last_location_mac_gyver_tuple == self.position_object_1:
             self.pick_up_object_1 = 1
             self.objects.disappearance_object_1()
         # if mac gyver takes the object 2
         # initialization of the object counter and the object 2 disappears from the window
-        if self.path_traveled_mac_gyver[-1] == self.position_object_2:
+        if self.last_location_mac_gyver_tuple == self.position_object_2:
             self.pick_up_object_2 = 1
             self.objects.disappearance_object_2()
         # if mac gyver takes the object 3
         # initialization of the object counter and the object 3 disappears from the window
-        if self.path_traveled_mac_gyver.count(self.position_object_3) == 1:
+        if self.last_location_mac_gyver_tuple == self.position_object_3:
             self.pick_up_object_3 = 1
             self.objects.disappearance_object_3()
         # the objects counter
@@ -235,11 +234,3 @@ class Person():
             self.window.blit(self.won_picture, (120, 120))
             pygame.display.flip()
             return won
-
-def main():
-    col.Labyrinth
-    coo.Objects
-
-if __name__ == "__main__":
-    # execute only if run as a script
-    main()

@@ -5,14 +5,14 @@
 """ class Labyrinth """
 
 
-import pygame # import the pygame library and this module
+import pygame # import the pygame library
 
 
 class Labyrinth:
-    """features of the labyrinth and blit the background"""
+    """creating the window, features of the labyrinth and blit the background"""
 
     def __init__(self):
-        """features of the labyrinth and download pictures"""
+        """creating the window, features of the labyrinth and download pictures"""
         # corresponds to the visual of the labyrinth,
         # each number corresponds to an picture :
         # 0 wall_top_left_picture   5 wall_vertical_picture

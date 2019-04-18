@@ -41,9 +41,8 @@ class Person():
         self.last_location_mac_gyver_dict = {self.maze_entry[0]: self.maze_entry[1]}
         # tuple that indicates the last position of mac gyver
         self.last_location_mac_gyver_tuple = self.maze_entry
-        # list that indicates the coordinates of the path traveled
-        # by Mac Gyver
-        self.path_traveled_mac_gyver = [self.maze_entry]
+        # exit = 1 indicates that Mac Gyver has arrived at the end of the maze
+        self.exit = 0
         # = 1 when Mac Gyver finds the object
         self.pick_up_object_1 = 0
         self.pick_up_object_2 = 0
@@ -81,13 +80,11 @@ class Person():
             self.last_location_mac_gyver_tuple = (column + x, line + y)
             self.last_location_mac_gyver_dict.clear()
             self.last_location_mac_gyver_dict[column + x] = line + y
-            self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
             self.init_event()
         # Mac Gyver avoids the right wall
         if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
             for column, line in self.last_location_mac_gyver_dict.items():
                 self.moving_mac_gyver = self.moving_mac_gyver.move(- x, - y)
-                del self.path_traveled_mac_gyver[-1]
                 self.last_location_mac_gyver_tuple = (column - x, line - y)
                 self.last_location_mac_gyver_dict.clear()
                 self.last_location_mac_gyver_dict[column - x] = line - y
@@ -97,8 +94,9 @@ class Person():
         """if Mac Gyver arrives on the guardien, he can no longer move"""
         column_exit = self.maze.maze_exit[0]
         line_exit = self.maze.maze_exit[1]
-        if self.path_traveled_mac_gyver.count(self.maze_exit) == 1 \
-        and self.last_location_mac_gyver_dict == {column_exit + x : line_exit + y}:
+        if self.last_location_mac_gyver_tuple == self.maze_exit:
+            self.exit = 1
+        if self.exit == 1 and self.last_location_mac_gyver_dict == {column_exit + x : line_exit + y}:
             for column, line in self.last_location_mac_gyver_dict.items():
                 self.last_location_mac_gyver_tuple = (column - x, line - y)
                 self.last_location_mac_gyver_dict.clear()

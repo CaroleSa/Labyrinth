@@ -5,7 +5,6 @@
 """class Person"""
 
 
-
 import pygame  # import the pygame library
 
 import Maze_class # import modules of the game

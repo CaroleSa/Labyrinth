@@ -14,10 +14,10 @@ import pygame # import the pygame library
 from pygame.locals import *
 pygame.init() # initialize the pygame library
 
-import Person_class as cop # import module of the game
-
 # path to the pictures
-os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
+os.chdir("./ressources")
+
+import Person_class as cop # import module of the game
 
 
 

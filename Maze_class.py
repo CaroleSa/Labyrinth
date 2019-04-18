@@ -4,8 +4,7 @@
 
 """ class Maze """
 
-import os 
-os.chdir("C:/Users/Carole/program_python/Program/Labyrinth/ressources")
+
 import pygame # import the pygame library
 
 
@@ -15,7 +14,7 @@ class Maze:
     def __init__(self):
         """creating the window, features of the maze and download pictures"""
         # open and read the file
-        with open("maze_structure.txt", "r") as maze_structure:
+        with open("../ressources/maze_structure.txt", "r") as maze_structure:
             maze_structure = maze_structure.read()
         
         # creates liste of maze

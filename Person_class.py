@@ -75,20 +75,16 @@ class Person():
     def movement(self, x, y):
         """Mac Gyver moves and avoids the walls"""
         # Mac Gyver moves
-        for column, line in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
-            self.last_location_mac_gyver_tuple = (column + x, line + y)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[column + x] = line + y
-            self.init_event()
+        column = self.last_location_mac_gyver_tuple[0]
+        line = self.last_location_mac_gyver_tuple[1]
+        self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
+        self.last_location_mac_gyver_tuple = (column + x, line + y)
+        self.init_event()
         # Mac Gyver avoids the right wall
         if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
-            for column, line in self.last_location_mac_gyver_dict.items():
-                self.moving_mac_gyver = self.moving_mac_gyver.move(- x, - y)
-                self.last_location_mac_gyver_tuple = (column - x, line - y)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[column - x] = line - y
-                self.init_event()
+            self.moving_mac_gyver = self.moving_mac_gyver.move(column, line)
+            self.last_location_mac_gyver_tuple = (column , line )
+            self.init_event()
 
     def keep_still(self, x, y):
         """if Mac Gyver arrives on the guardien, he can no longer move"""

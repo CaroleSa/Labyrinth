@@ -73,84 +73,24 @@ class Person():
         # refreshing
         pygame.display.flip()
 
-    def movement_right(self):
+    def movement(self, x, y):
         """Mac Gyver turns to the right, update of the list path_traveled_mac_gyver"""
         # moving of Mac Gyver and blit all pictures
         for key, value in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(40, 0)
-            self.last_location_mac_gyver_tuple = (key + 40, value)
+            self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
+            self.last_location_mac_gyver_tuple = (key + x, value + y)
             self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key + 40] = value
+            self.last_location_mac_gyver_dict[key + x] = value + y
             self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
             self.init_event()
         # Mac Gyver avoids the right wall
         if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
             for key, value in self.last_location_mac_gyver_dict.items():
-                self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
+                self.moving_mac_gyver = self.moving_mac_gyver.move(- x, - y)
                 del self.path_traveled_mac_gyver[-1]
-                self.last_location_mac_gyver_tuple = (key - 40, value)
+                self.last_location_mac_gyver_tuple = (key - x, value - y)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key - 40] = value
-                self.init_event()
-
-    def movement_left(self):
-        """Mac Gyver turns to the left, update of the list path_traveled_mac_gyver"""
-        # moving of Mac Gyver and blit all pictures
-        for key, value in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(- 40, 0)
-            self.last_location_mac_gyver_tuple = (key - 40, value)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key - 40] = value
-            self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
-            self.init_event()
-        # Mac Gyver avoids the left wall
-        if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
-            for key, value in self.last_location_mac_gyver_dict.items():
-                del self.path_traveled_mac_gyver[-1]
-                self.moving_mac_gyver = self.moving_mac_gyver.move(40, 0)
-                self.last_location_mac_gyver_tuple = (key + 40, value)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key + 40] = value
-                self.init_event()
-
-    def movement_up(self):
-        """Mac Gyver goes upstairs, update of the list path_traveled_mac_gyver"""
-        # moving of Mac Gyver and blit all pictures
-        for key, value in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(0, - 40)
-            self.last_location_mac_gyver_tuple = (key, value - 40)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key] = value - 40
-            self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
-            self.init_event()
-        # Mac Gyver avoids the top wall
-        if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
-            for key, value in self.last_location_mac_gyver_dict.items():
-                self.moving_mac_gyver = self.moving_mac_gyver.move(0, 40)
-                del self.path_traveled_mac_gyver[-1]
-                self.last_location_mac_gyver_tuple = (key, value + 40)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key] = value + 40
-                self.init_event()
-
-    def movement_down(self):
-        """Mac Gyver goes downstairs, update of the list path_traveled_mac_gyver"""
-        # moving of Mac Gyver and blit all pictures
-        for key, value in self.last_location_mac_gyver_dict.items():
-            self.moving_mac_gyver = self.moving_mac_gyver.move(0, 40)
-            self.last_location_mac_gyver_tuple = (key, value + 40)
-            self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key] = value + 40
-            self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
-            self.init_event()
-        # Mac Gyver avoids the bottom wall
-        if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
-            for key, value in self.last_location_mac_gyver_dict.items():
-                self.moving_mac_gyver = self.moving_mac_gyver.move(0, - 40)
-                del self.path_traveled_mac_gyver[-1]
-                self.last_location_mac_gyver_tuple = (key, value - 40)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key] = value - 40
+                self.last_location_mac_gyver_dict[key - x] = value - y
                 self.init_event()
 
     def keep_still(self):

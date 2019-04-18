@@ -34,22 +34,22 @@ def maze_game():
             # if the player presses the right key
             # Mac Gyver turns to the right and avoids the wall
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                person.movement_right()
+                person.movement(+ 40, 0)
 
             # if the player presses the left key
             # Mac Gyver turns to the left and avoids the wall
             if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                person.movement_left()
+                person.movement(- 40, 0)
 
             # if the player presses the up key
             # Mac Gyver goes up and avoids the wall
             if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                person.movement_up()
+                person.movement(0, - 40)
 
             # if the player presses the down key
             # Mac Gyver goes down and avoids the wall
             if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                person.movement_down()
+                person.movement(0, + 40)
 
             # Mac Gyver picks up the objects
             person.pick_up_objects()

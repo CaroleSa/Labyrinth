@@ -74,35 +74,35 @@ class Person():
         pygame.display.flip()
 
     def movement(self, x, y):
-        """Mac Gyver turns to the right, update of the list path_traveled_mac_gyver"""
-        # moving of Mac Gyver and blit all pictures
-        for key, value in self.last_location_mac_gyver_dict.items():
+        """Mac Gyver moves and avoids the walls"""
+        # Mac Gyver moves
+        for column, line in self.last_location_mac_gyver_dict.items():
             self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
-            self.last_location_mac_gyver_tuple = (key + x, value + y)
+            self.last_location_mac_gyver_tuple = (column + x, line + y)
             self.last_location_mac_gyver_dict.clear()
-            self.last_location_mac_gyver_dict[key + x] = value + y
+            self.last_location_mac_gyver_dict[column + x] = line + y
             self.path_traveled_mac_gyver.append(self.last_location_mac_gyver_tuple)
             self.init_event()
         # Mac Gyver avoids the right wall
         if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
-            for key, value in self.last_location_mac_gyver_dict.items():
+            for column, line in self.last_location_mac_gyver_dict.items():
                 self.moving_mac_gyver = self.moving_mac_gyver.move(- x, - y)
                 del self.path_traveled_mac_gyver[-1]
-                self.last_location_mac_gyver_tuple = (key - x, value - y)
+                self.last_location_mac_gyver_tuple = (column - x, line - y)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key - x] = value - y
+                self.last_location_mac_gyver_dict[column - x] = line - y
                 self.init_event()
 
     def keep_still(self, x, y):
         """if Mac Gyver arrives on the guardien, he can no longer move"""
-        column = self.maze.maze_exit[0]
-        line = self.maze.maze_exit[1]
+        column_exit = self.maze.maze_exit[0]
+        line_exit = self.maze.maze_exit[1]
         if self.path_traveled_mac_gyver.count(self.maze_exit) == 1 \
-        and self.last_location_mac_gyver_dict == {column + x : line + y}:
-            for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (key - x, value - y)
+        and self.last_location_mac_gyver_dict == {column_exit + x : line_exit + y}:
+            for column, line in self.last_location_mac_gyver_dict.items():
+                self.last_location_mac_gyver_tuple = (column - x, line - y)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key - x] = value - y
+                self.last_location_mac_gyver_dict[column - x] = line - y
                 self.init_event()
 
     def pick_up_objects(self):

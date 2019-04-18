@@ -41,9 +41,9 @@ class Person():
         self.last_location_mac_gyver_dict = {self.maze_entry[0]: self.maze_entry[1]}
         # tuple that indicates the last position of mac gyver
         self.last_location_mac_gyver_tuple = self.maze_entry
-        # exit = 1 indicates that Mac Gyver has arrived at the end of the maze
+        # = 1 indicates that Mac Gyver has arrived at the end of the maze
         self.exit = 0
-        # = 1 when Mac Gyver finds the object
+        # = 1 indicates that Mac Gyver finds the object
         self.pick_up_object_1 = 0
         self.pick_up_object_2 = 0
         self.pick_up_object_3 = 0

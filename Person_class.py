@@ -93,41 +93,16 @@ class Person():
                 self.last_location_mac_gyver_dict[key - x] = value - y
                 self.init_event()
 
-    def keep_still(self):
+    def keep_still(self, x, y):
         """if Mac Gyver arrives on the guardien, he can no longer move"""
         column = self.maze.maze_exit[0]
         line = self.maze.maze_exit[1]
-        # if Mac Gyver goes over the guardian
         if self.path_traveled_mac_gyver.count(self.maze_exit) == 1 \
-        and self.last_location_mac_gyver_dict == {column: line - 40}:
+        and self.last_location_mac_gyver_dict == {column + x : line + y}:
             for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (key, value + 40)
+                self.last_location_mac_gyver_tuple = (key - x, value - y)
                 self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key] = value + 40
-                self.init_event()
-        # if Mac Gyver goes below the guardian
-        if self.path_traveled_mac_gyver.count(self.maze_exit) == 1 \
-        and self.last_location_mac_gyver_dict == {column: line + 40}:
-            for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (key, value - 40)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key] = value - 40
-                self.init_event()
-        # if Mac Gyver goes to the right of the guardian
-        if self.path_traveled_mac_gyver.count(self.maze_exit) == 1 \
-        and self.last_location_mac_gyver_dict == {column + 40: line}:
-            for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (key - 40, value)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key - 40] = value
-                self.init_event()
-        # if Mac Gyver goes to the left of the guardian
-        if self.path_traveled_mac_gyver.count(self.maze_exit) == 1 \
-        and self.last_location_mac_gyver_dict == {column - 40: line}:
-            for key, value in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (key + 40, value)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[key + 40] = value
+                self.last_location_mac_gyver_dict[key - x] = value - y
                 self.init_event()
 
     def pick_up_objects(self):

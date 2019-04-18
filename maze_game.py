@@ -17,14 +17,14 @@ pygame.init() # initialize the pygame library
 # path to the pictures
 os.chdir("./ressources")
 
-import person_class as cop # import module of the game
+import person_class as pc # import module of the game
 
 
 
 def maze_game():
     """play the game"""
 
-    person = cop.Person() # instantiate the class Person
+    person = pc.Person() # instantiate the class Person
     person.init_event() # blits the pictures
 
     play = 1
@@ -80,7 +80,7 @@ maze_game()
 
 def main():
     """use of class Person"""
-    cop.Person
+    pc.Person
 
 if __name__ == "__main__":
     # execute only if run as a script

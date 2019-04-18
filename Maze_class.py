@@ -16,14 +16,14 @@ class Maze:
         # open and read the file
         with open("../ressources/maze_structure.txt", "r") as maze_structure:
             maze_structure = maze_structure.read()
-        
+
         # creates liste of maze
         self.maze_list = []
         i = 0
         while i < 15:
             self.maze_list.append(list(maze_structure.split()[i]))
             i += 1
-        
+
         # creates the window
         self.window = pygame.display.set_mode((600, 600))
 

@@ -8,7 +8,7 @@
 import random  # import the random library
 import pygame  # import the pygame library
 
-import Maze_class # import module of the game
+import maze_class # import module of the game
 
 
 class Objects:
@@ -17,7 +17,7 @@ class Objects:
     def __init__(self):
         """random position of objects and download pictures"""
         # instantiate the class Maze
-        self.maze = Maze_class.Maze()
+        self.maze = maze_class.Maze()
         self.maze_entry = self.maze.maze_entry
         self.maze_exit = self.maze.maze_exit
         self.path_location = self.maze.path_location()

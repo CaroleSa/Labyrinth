@@ -7,8 +7,8 @@
 
 import pygame  # import the pygame library
 
-import Maze_class # import modules of the game
-import Objects_class
+import maze_class # import modules of the game
+import objects_class
 
 
 class Person():
@@ -18,12 +18,12 @@ class Person():
     def __init__(self):
         """download pictures"""
         # instantiate the class Maze
-        self.maze = Maze_class.Maze()
+        self.maze = maze_class.Maze()
         self.maze_entry = self.maze.maze_entry
         self.maze_exit = self.maze.maze_exit
         self.window = self.maze.window
         # instantiate the class Objects
-        self.objects = Objects_class.Objects()
+        self.objects = objects_class.Objects()
         self.position_object_1 = self.objects.position_object_1
         self.position_object_2 = self.objects.position_object_2
         self.position_object_3 = self.objects.position_object_3

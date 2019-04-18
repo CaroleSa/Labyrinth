@@ -37,10 +37,8 @@ class Person():
         self.quit_picture = pygame.image.load("quit.png").convert()
         self.guardian_picture = pygame.image.load("guardian.png").convert()
         self.mac_gyver_picture = pygame.image.load("MacGyver.png").convert()
-        # dictionary that indicates the last position of mac gyver
-        self.last_location_mac_gyver_dict = {self.maze_entry[0]: self.maze_entry[1]}
         # tuple that indicates the last position of mac gyver
-        self.last_location_mac_gyver_tuple = self.maze_entry
+        self.last_location_mac_gyver = self.maze_entry
         # = 1 indicates that Mac Gyver has arrived at the end of the maze
         self.exit = 0
         # = 1 indicates that Mac Gyver finds the object
@@ -55,7 +53,7 @@ class Person():
         self.guardian_picture.set_colorkey((255, 255, 255))
         self.window.blit(self.guardian_picture, self.maze_exit)
         self.mac_gyver_picture.set_colorkey((255, 255, 255))
-        self.window.blit(self.mac_gyver_picture, self.last_location_mac_gyver_tuple)
+        self.window.blit(self.mac_gyver_picture, self.last_location_mac_gyver)
 
     def color_pictures_end_game(self):
         """transparency of the background : pictures of the end of the game"""
@@ -75,45 +73,44 @@ class Person():
     def movement(self, x, y):
         """Mac Gyver moves and avoids the walls"""
         # Mac Gyver moves
-        column = self.last_location_mac_gyver_tuple[0]
-        line = self.last_location_mac_gyver_tuple[1]
+        column = self.last_location_mac_gyver[0]
+        line = self.last_location_mac_gyver[1]
         self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
-        self.last_location_mac_gyver_tuple = (column + x, line + y)
+        self.last_location_mac_gyver = (column + x, line + y)
         self.init_event()
         # Mac Gyver avoids the right wall
-        if self.maze.path_location().count(self.last_location_mac_gyver_tuple) == 0:
+        if self.maze.path_location().count(self.last_location_mac_gyver) == 0:
             self.moving_mac_gyver = self.moving_mac_gyver.move(column, line)
-            self.last_location_mac_gyver_tuple = (column , line )
+            self.last_location_mac_gyver = (column, line)
             self.init_event()
 
     def keep_still(self, x, y):
         """if Mac Gyver arrives on the guardien, he can no longer move"""
         column_exit = self.maze.maze_exit[0]
         line_exit = self.maze.maze_exit[1]
-        if self.last_location_mac_gyver_tuple == self.maze_exit:
+        column = self.last_location_mac_gyver[0]
+        line = self.last_location_mac_gyver[1]
+        if self.last_location_mac_gyver == self.maze_exit:
             self.exit = 1
-        if self.exit == 1 and self.last_location_mac_gyver_dict == {column_exit + x : line_exit + y}:
-            for column, line in self.last_location_mac_gyver_dict.items():
-                self.last_location_mac_gyver_tuple = (column - x, line - y)
-                self.last_location_mac_gyver_dict.clear()
-                self.last_location_mac_gyver_dict[column - x] = line - y
-                self.init_event()
+        if self.exit == 1 and self.last_location_mac_gyver == (column_exit + x, line_exit + y):
+            self.last_location_mac_gyver = (column - x, line - y)
+            self.init_event()
 
     def pick_up_objects(self):
         """Mac Gyver takes objects"""
         # if mac gyver takes the object 1
         # initialization of the object counter and the object 1 disappears from the window
-        if self.last_location_mac_gyver_tuple == self.position_object_1:
+        if self.last_location_mac_gyver == self.position_object_1:
             self.pick_up_object_1 = 1
             self.objects.disappearance_object_1()
         # if mac gyver takes the object 2
         # initialization of the object counter and the object 2 disappears from the window
-        if self.last_location_mac_gyver_tuple == self.position_object_2:
+        if self.last_location_mac_gyver == self.position_object_2:
             self.pick_up_object_2 = 1
             self.objects.disappearance_object_2()
         # if mac gyver takes the object 3
         # initialization of the object counter and the object 3 disappears from the window
-        if self.last_location_mac_gyver_tuple == self.position_object_3:
+        if self.last_location_mac_gyver == self.position_object_3:
             self.pick_up_object_3 = 1
             self.objects.disappearance_object_3()
         # the objects counter
@@ -122,7 +119,7 @@ class Person():
     def lost(self):
         """if Mac Gyver loses, blit pictures"""
         lost = 1
-        if self.last_location_mac_gyver_tuple == self.maze_exit and self.counter_objects != 3:
+        if self.last_location_mac_gyver == self.maze_exit and self.counter_objects != 3:
             self.maze.blit_pictures()
             self.guardian_picture.set_colorkey((255, 255, 255))
             self.window.blit(self.guardian_picture, self.maze_exit)
@@ -136,7 +133,7 @@ class Person():
     def won(self):
         """if Mac Gyver wins, blit pictures"""
         won = 1
-        if self.last_location_mac_gyver_tuple == self.maze_exit and self.counter_objects == 3:
+        if self.last_location_mac_gyver == self.maze_exit and self.counter_objects == 3:
             self.maze.blit_pictures()
             self.color_pictures_end_game()
             self.window.blit(self.won_picture, (120, 120))

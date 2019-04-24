@@ -75,14 +75,13 @@ class Person():
         # Mac Gyver moves
         column = self.location_mac_gyver[0]
         line = self.location_mac_gyver[1]
-        self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
         self.location_mac_gyver = (column + x, line + y)
-        self.init_event()
         # Mac Gyver avoids the right wall
         if self.maze.path_location().count(self.location_mac_gyver) == 0:
-            self.moving_mac_gyver = self.moving_mac_gyver.move(column, line)
-            self.location_mac_gyver = (column, line)
-            self.init_event()
+            self.location_mac_gyver = (column, line)     
+        else:
+            self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
+        self.init_event()
 
     def keep_still(self, x, y):
         """if Mac Gyver arrives on the guardien, he can no longer move"""

@@ -5,10 +5,10 @@
 """class Objects"""
 
 
-import random  # import the random library
+import random  # import the random module
 import pygame  # import the pygame library
 
-import maze_class # import module of the game
+import maze_class # import file
 
 
 class Objects:

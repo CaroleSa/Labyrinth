@@ -7,7 +7,7 @@
 
 import pygame  # import the pygame library
 
-import maze_class # import modules of the game
+import maze_class # import files
 import objects_class
 
 

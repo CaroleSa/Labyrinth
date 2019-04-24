@@ -17,7 +17,7 @@ pygame.init() # initialize the pygame library
 # path to the pictures
 os.chdir("./ressources")
 
-import person_class as pc # import module of the game
+import person_class as pc # import file
 
 
 

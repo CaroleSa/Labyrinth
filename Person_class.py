@@ -72,27 +72,18 @@ class Person():
 
     def movement(self, x, y):
         """Mac Gyver moves and avoids the walls"""
-        # Mac Gyver moves
-        column = self.location_mac_gyver[0]
-        line = self.location_mac_gyver[1]
-        self.location_mac_gyver = (column + x, line + y)
-        # Mac Gyver avoids the right wall
-        if self.maze.path_location().count(self.location_mac_gyver) == 0:
-            self.location_mac_gyver = (column, line)     
-        else:
-            self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
-        self.init_event()
-
-    def keep_still(self, x, y):
-        """if Mac Gyver arrives on the guardien, he can no longer move"""
-        column_exit = self.maze.maze_exit[0]
-        line_exit = self.maze.maze_exit[1]
-        column = self.location_mac_gyver[0]
-        line = self.location_mac_gyver[1]
         if self.location_mac_gyver == self.maze_exit:
             self.exit = 1
-        if self.exit == 1 and self.location_mac_gyver == (column_exit + x, line_exit + y):
-            self.location_mac_gyver = (column - x, line - y)
+        if self.exit == 0:
+            # Mac Gyver moves
+            column = self.location_mac_gyver[0]
+            line = self.location_mac_gyver[1]
+            self.location_mac_gyver = (column + x, line + y)
+            # Mac Gyver avoids the right wall
+            if self.maze.path_location().count(self.location_mac_gyver) == 0:
+                self.location_mac_gyver = (column, line)
+            else:
+                self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
             self.init_event()
 
     def pick_up_objects(self):

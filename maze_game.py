@@ -50,12 +50,6 @@ def maze_game():
             # Mac Gyver picks up the objects
             person.pick_up_objects()
 
-            # Mac Gyver does not move when he arrives on the guardian
-            person.keep_still(0, - 40)
-            person.keep_still(0, + 40)
-            person.keep_still(- 40, 0)
-            person.keep_still(+ 40, 0)
-
             # if Mac Gyver loses, the player may choose to restart or stop the program
             if person.lost() == 1:
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 \

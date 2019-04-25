@@ -72,6 +72,7 @@ class Person():
 
     def movement(self, x, y):
         """Mac Gyver moves and avoids the walls"""
+        # Mac Gyver don't moves
         if self.location_mac_gyver == self.maze_exit:
             self.exit = 1
         if self.exit == 0:
@@ -79,7 +80,7 @@ class Person():
             column = self.location_mac_gyver[0]
             line = self.location_mac_gyver[1]
             self.location_mac_gyver = (column + x, line + y)
-            # Mac Gyver avoids the right wall
+            # Mac Gyver avoids the walls
             if self.maze.path_location().count(self.location_mac_gyver) == 0:
                 self.location_mac_gyver = (column, line)
             else:

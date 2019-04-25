@@ -21,7 +21,7 @@ def maze_game():
     """play the game"""
 
     person = pc.Person() # instantiate the class Person
-    person.init_event() # blits the pictures
+    person.init_event() # blit the pictures
 
     play = 1
     while play:  # infinite loop

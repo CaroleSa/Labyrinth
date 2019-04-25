@@ -1,24 +1,20 @@
 #! /usr/bin/env python3
 # coding: UTF-8
-
-
 """ Maze game in which mac gyver must retrieve all objects
 to kill the guardian and escape """
 
 
-
 import os
 
+# pylint: disable = no-member
 import pygame # import the pygame library
-
-from pygame.locals import *
+import pygame.locals
 pygame.init() # initialize the pygame library
-
-# path to the pictures
-os.chdir("./ressources")
 
 import person_class as pc # import file
 
+# path to the pictures
+os.chdir("./ressources")
 
 
 def maze_game():
@@ -64,7 +60,6 @@ def maze_game():
             if person.lost() == 1:
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 \
                 and event.pos[0] > 520 and event.pos[1] > 520:
-                    pygame.quit()
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 \
                 and event.pos[0] < 80 and event.pos[1] > 520:
@@ -72,7 +67,6 @@ def maze_game():
 
             # if Mac Gyver wins, the program stops
             if person.won() == 1:
-                pygame.quit()
                 quit()
 
 # call the function to play the game
@@ -80,7 +74,7 @@ maze_game()
 
 def main():
     """use of class Person"""
-    pc.Person
+    pc.Person()
 
 if __name__ == "__main__":
     # execute only if run as a script

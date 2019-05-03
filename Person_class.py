@@ -70,7 +70,7 @@ class Person():
         # refreshing
         pygame.display.flip()
 
-    def movement(self, x, y):
+    def movement(self, c_x, c_y):
         """Mac Gyver moves and avoids the walls"""
         # Mac Gyver don't moves
         if self.location_mac_gyver == self.maze_exit:
@@ -79,12 +79,12 @@ class Person():
             # Mac Gyver moves
             column = self.location_mac_gyver[0]
             line = self.location_mac_gyver[1]
-            self.location_mac_gyver = (column + x, line + y)
+            self.location_mac_gyver = (column + c_x, line + c_y)
             # Mac Gyver avoids the walls
             if self.maze.path_location().count(self.location_mac_gyver) == 0:
                 self.location_mac_gyver = (column, line)
             else:
-                self.moving_mac_gyver = self.moving_mac_gyver.move(x, y)
+                self.moving_mac_gyver = self.moving_mac_gyver.move(c_x, c_y)
             self.init_event()
 
     def pick_up_objects(self):
